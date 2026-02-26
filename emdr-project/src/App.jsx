@@ -313,8 +313,7 @@ export default function App() {
       </div>
 
       <section id="about">
-       <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: "32px" }} />
-            <div className="credentials">
+<img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: "32px" }} />            <div className="credentials">
               <div className="credential"><strong>Licensed LMFT</strong> — California</div>
               <div className="credential"><strong>EMDR Trained</strong> — EMDRIA-approved</div>
               <div className="credential"><strong>10+ Years</strong> clinical experience</div>
