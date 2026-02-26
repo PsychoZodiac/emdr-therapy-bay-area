@@ -225,6 +225,59 @@ export default function App() {
 
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
+  // Inject JSON-LD structured data for SEO
+  useState(() => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "Bayside Wellness & Counseling - EMDR Therapy",
+      "description": "EMDR therapy for trauma, anxiety, depression, grief, and life transitions. Telehealth sessions available throughout California.",
+      "url": "https://emdrtherapybayarea.com",
+      "telephone": "",
+      "priceRange": "$$",
+      "image": "https://emdrtherapybayarea.com/marcus.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "2323 Broadway",
+        "addressLocality": "Oakland",
+        "addressRegion": "CA",
+        "postalCode": "94612",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.8141,
+        "longitude": -122.2635
+      },
+      "areaServed": [
+        "Oakland, CA", "San Francisco, CA", "Berkeley, CA",
+        "Bay Area, CA", "California"
+      ],
+      "medicalSpecialty": "EMDR Therapy",
+      "availableService": [
+        { "@type": "MedicalTherapy", "name": "EMDR Therapy" },
+        { "@type": "MedicalTherapy", "name": "Trauma Therapy" },
+        { "@type": "MedicalTherapy", "name": "Anxiety Treatment" },
+        { "@type": "MedicalTherapy", "name": "Depression Therapy" },
+        { "@type": "MedicalTherapy", "name": "Grief Counseling" },
+        { "@type": "MedicalTherapy", "name": "Life Transitions Counseling" }
+      ],
+      "employee": {
+        "@type": "Person",
+        "name": "Marcus Ghiasi",
+        "jobTitle": "Licensed Marriage and Family Therapist",
+        "description": "LMFT specializing in EMDR therapy via telehealth throughout California."
+      },
+      "sameAs": [
+        "https://www.baysidewellnessandcounseling.com"
+      ]
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(schema);
+    document.head.appendChild(script);
+  });
+
   return (
     <>
       <style>{fonts + styles}</style>
@@ -372,6 +425,10 @@ export default function App() {
                   <span className="contact-detail-value">Telehealth — California-wide</span>
                 </div>
                 <div className="contact-detail-item">
+                  <span className="contact-detail-label">Mailing Address</span>
+                  <span className="contact-detail-value">2323 Broadway, Oakland CA 94612</span>
+                </div>
+                <div className="contact-detail-item">
                   <span className="contact-detail-label">Session Rate</span>
                   <span className="contact-detail-value">Contact for current rates</span>
                 </div>
@@ -444,7 +501,7 @@ export default function App() {
           Bayside Wellness &amp; Counseling
           <span>Marcus Ghiasi, LMFT</span>
         </a>
-        <p className="footer-note">A Bayside Wellness &amp; Counseling practice. Licensed Marriage &amp; Family Therapist in California. This website is for informational purposes only and does not constitute a therapeutic relationship.</p>
+        <p className="footer-note">A Bayside Wellness &amp; Counseling practice. Licensed Marriage &amp; Family Therapist in California. 2323 Broadway, Oakland CA 94612. This website is for informational purposes only and does not constitute a therapeutic relationship.</p>
         <p style={{ fontSize: "12px", color: "var(--muted)" }}>emdrtherapybayarea.com</p>
       </footer>
       <div className="crisis-bar">
