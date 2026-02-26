@@ -197,15 +197,27 @@ export default function App() {
   const [openFaq, setOpenFaq] = useState(null);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", concern: "", message: "", _honeypot: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null);
+
+  useState(() => {
+    const script = document.createElement('script');
+    script.src = 'https://js.hcaptcha.com/1/api.js';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+    window.onCaptchaSuccess = (token) => setCaptchaToken(token);
+    window.onCaptchaExpired = () => setCaptchaToken(null);
+  });
 
   const handleSubmit = async () => {
     if (!formData.name || !formData.email) return;
     if (formData._honeypot) return; // Bot caught
+    if (!captchaToken) { alert('Please complete the captcha first.'); return; }
     try {
       const res = await fetch("https://formspree.io/f/mlgwzaoq", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, 'h-captcha-response': captchaToken }),
       });
       if (res.ok) setSubmitted(true);
     } catch (e) {
@@ -420,6 +432,7 @@ export default function App() {
                   <div style={{ position: "relative" }}>
                     <input className="_honeypot-field" type="text" name="_honeypot" value={formData._honeypot} onChange={(e) => setFormData({ ...formData, _honeypot: e.target.value })} tabIndex="-1" autoComplete="off" />
                   </div>
+                  <div className="h-captcha" data-sitekey="4feca060-ae00-4ba2-ad54-7e82c9988e46" data-callback="onCaptchaSuccess" data-expired-callback="onCaptchaExpired" style={{ marginBottom: "12px" }}></div>
                   <div>
                     <button className="form-submit" onClick={handleSubmit}>Send message</button>
                     <p style={{ fontSize: "12px", color: "var(--muted)", marginTop: "12px" }}>I typically respond within one business day.</p>
