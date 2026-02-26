@@ -77,8 +77,6 @@ const styles = `
 
   .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 72px; align-items: start; }
   .about-left { display: flex; flex-direction: column; }
-  .about-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--ink2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-  .about-placeholder-text { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
   .credentials { display: flex; flex-direction: column; gap: 14px; }
   .credential { display: flex; align-items: center; gap: 14px; font-size: 13px; color: var(--muted); }
   .credential::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
@@ -313,7 +311,11 @@ export default function App() {
       </div>
 
       <section id="about">
-<img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: "32px" }} />            <div className="credentials">
+        <div className="section-label">About</div>
+        <div className="about-grid">
+          <div className="about-left">
+            <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: "32px" }} />
+            <div className="credentials">
               <div className="credential"><strong>Licensed LMFT</strong> — California</div>
               <div className="credential"><strong>EMDR Trained</strong> — EMDRIA-approved</div>
               <div className="credential"><strong>10+ Years</strong> clinical experience</div>
