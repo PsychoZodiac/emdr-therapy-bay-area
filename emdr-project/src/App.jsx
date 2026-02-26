@@ -313,13 +313,7 @@ export default function App() {
       </div>
 
       <section id="about">
-        <div className="section-label">About</div>
-        <div className="about-grid">
-          <div className="about-left">
-            <div className="about-placeholder">
-              <span style={{ fontSize: "48px" }}>👨🏽</span>
-              <span className="about-placeholder-text">Photo coming soon</span>
-            </div>
+       <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: "32px" }} />
             <div className="credentials">
               <div className="credential"><strong>Licensed LMFT</strong> — California</div>
               <div className="credential"><strong>EMDR Trained</strong> — EMDRIA-approved</div>
