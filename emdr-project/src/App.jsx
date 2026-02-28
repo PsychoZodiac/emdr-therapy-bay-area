@@ -375,6 +375,10 @@ export default function App() {
               <div className="credential"><strong>Telehealth</strong> — California-wide</div>
               <div className="credential"><strong>Free 15-min</strong> consultation</div>
             </div>
+            <div style={{ marginTop: "28px" }}>
+              <a href="https://www.psychologytoday.com/profile/1134128" className="sx-verified-seal"></a>
+              <script type="text/javascript" src="https://member.psychologytoday.com/verified-seal.js" data-badge="13" data-id="1134128" data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy8xMy9wcm9maWxlLzExMzQxMjg/Y2FsbGJhY2s9c3hjYWxsYmFjaw=="></script>
+            </div>
           </div>
           <div className="about-content">
             <h2>Marcus<br /><em>Ghiasi,</em> LMFT</h2>
