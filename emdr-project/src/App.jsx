@@ -225,6 +225,17 @@ export default function App() {
 
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
+  // Load Psychology Today verified seal script
+  useState(() => {
+    const ptScript = document.createElement('script');
+    ptScript.type = 'text/javascript';
+    ptScript.src = 'https://member.psychologytoday.com/verified-seal.js';
+    ptScript.setAttribute('data-badge', '13');
+    ptScript.setAttribute('data-id', '1134128');
+    ptScript.setAttribute('data-code', 'aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy8xMy9wcm9maWxlLzExMzQxMjg/Y2FsbGJhY2s9c3hjYWxsYmFjaw==');
+    document.body.appendChild(ptScript);
+  });
+
   // Inject JSON-LD structured data for SEO
   useState(() => {
     const schema = {
@@ -377,7 +388,6 @@ export default function App() {
             </div>
             <div style={{ marginTop: "28px" }}>
               <a href="https://www.psychologytoday.com/profile/1134128" className="sx-verified-seal"></a>
-              <script type="text/javascript" src="https://member.psychologytoday.com/verified-seal.js" data-badge="13" data-id="1134128" data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy8xMy9wcm9maWxlLzExMzQxMjg/Y2FsbGJhY2s9c3hjYWxsYmFjaw=="></script>
             </div>
           </div>
           <div className="about-content">
