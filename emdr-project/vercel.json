@@ -1,8 +1,9 @@
 {
-  "rewrites": [
-    {
-      "source": "/((?!sitemap.xml$).*)",
-      "destination": "/"
-    }
+  "routes": [
+    { "src": "/sitemap.xml", "dest": "/sitemap.xml" },
+    { "src": "/favicon.svg", "dest": "/favicon.svg" },
+    { "src": "/marcus.jpg", "dest": "/marcus.jpg" },
+    { "src": "/og-image.png", "dest": "/og-image.png" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
