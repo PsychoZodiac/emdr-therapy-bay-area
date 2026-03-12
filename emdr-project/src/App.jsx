@@ -1710,7 +1710,7 @@ const styles = `
 
   .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 60px 80px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(184,130,106,0.07) 0%, transparent 60%); }
-  .hero-content { max-width: 680px; position: relative; z-index: 1; }
+  .hero-content { max-width: 580px; position: relative; z-index: 1; }
   .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; display: flex; align-items: center; gap: 14px; }
   .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
   h1 { font-family: 'Playfair Display', serif; font-size: 76px; font-weight: 400; line-height: 1.05; color: var(--text); margin-bottom: 28px; }
@@ -1721,7 +1721,7 @@ const styles = `
   .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
   .btn-outline { background: none; border: 1px solid var(--border); color: var(--text); padding: 18px 40px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-  .hero-right { position: absolute; right: -40px; top: 50%; transform: translateY(-50%); opacity: 0.2; }
+  .hero-right { position: absolute; right: 80px; top: 50%; transform: translateY(-50%); opacity: 0.2; }
 
   section { padding: 100px 60px; max-width: 1100px; margin: 0 auto; }
   .section-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
