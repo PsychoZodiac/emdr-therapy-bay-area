@@ -556,6 +556,7 @@ export default function App() {
               </p>
               <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ marginBottom: "32px" }}>
                 Book directly online
+                <span style={{ marginLeft: "10px", fontSize: "11px", opacity: "0.75", letterSpacing: "0.05em" }}>↗</span>
               </a>
               <div className="contact-detail" style={{ marginTop: "32px" }}>
                 <div className="contact-detail-item">
