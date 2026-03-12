@@ -425,7 +425,7 @@ const SEO_STYLES = `
   .seo-phase-num { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); opacity: 0.5; margin-bottom: 8px; }
   .seo-phase-title { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); margin-bottom: 6px; }
   .seo-phase-desc { font-size: 11px; color: var(--muted); line-height: 1.6; font-weight: 300; }
-  .seo-about { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; margin-top: 40px; }
+  .seo-about { display: grid; grid-template-columns: 340px 1fr; gap: 56px; align-items: start; margin-top: 40px; }
   .seo-about img { width: 100%; min-height: 360px; object-fit: cover; object-position: center 15%; display: block; }
   .seo-credentials { display: flex; flex-direction: column; gap: 0; margin-top: 16px; }
   .seo-credential { font-size: 12px; color: var(--muted); padding: 8px 0; border-bottom: 1px solid var(--border); }
