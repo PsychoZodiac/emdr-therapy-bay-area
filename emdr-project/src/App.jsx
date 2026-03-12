@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 
-const fonts = `
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500&display=swap');
-`;
+const fonts = ``; // Fonts loaded via index.html for better performance
 
 const styles = `
   :root {
@@ -297,7 +295,7 @@ export default function App() {
     localStorage.setItem("emdr-theme", next ? "dark" : "light");
   };
 
-  useState(() => {
+  useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://js.hcaptcha.com/1/api.js';
     script.async = true;
@@ -305,7 +303,7 @@ export default function App() {
     document.head.appendChild(script);
     window.onCaptchaSuccess = (token) => setCaptchaToken(token);
     window.onCaptchaExpired = () => setCaptchaToken(null);
-  });
+  }, []);
 
   const handleSubmit = async () => {
     if (!formData.name || !formData.email) return;
@@ -325,8 +323,7 @@ export default function App() {
 
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
-  // Load Psychology Today verified seal script
-  useState(() => {
+  useEffect(() => {
     const ptScript = document.createElement('script');
     ptScript.type = 'text/javascript';
     ptScript.src = 'https://member.psychologytoday.com/verified-seal.js';
@@ -334,10 +331,10 @@ export default function App() {
     ptScript.setAttribute('data-id', '1134128');
     ptScript.setAttribute('data-code', 'aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy8xMy9wcm9maWxlLzExMzQxMjg/Y2FsbGJhY2s9c3hjYWxsYmFjaw==');
     document.body.appendChild(ptScript);
-  });
+  }, []);
 
   // Inject JSON-LD structured data for SEO
-  useState(() => {
+  useEffect(() => {
     const schema = {
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
@@ -387,7 +384,7 @@ export default function App() {
     script.type = 'application/ld+json';
     script.text = JSON.stringify(schema);
     document.head.appendChild(script);
-  });
+  }, []);
 
   return (
     <>
@@ -484,7 +481,7 @@ export default function App() {
         <div className="section-label">About</div>
         <div className="about-grid">
           <div className="about-left">
-            <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" />
+            <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" width="600" height="800" />
             <div className="credentials">
               <div className="credential"><strong>Licensed LMFT</strong> — California</div>
               <div className="credential"><strong>EMDR Trained</strong> — EMDRIA-approved</div>
