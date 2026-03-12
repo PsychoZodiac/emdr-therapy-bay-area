@@ -1752,7 +1752,7 @@ const styles = `
 
   .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 72px; align-items: start; }
   .about-left { display: flex; flex-direction: column; }
-  .about-left img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; }
+  .about-left img { width: 100%; aspect-ratio: 4/4; object-fit: cover; object-position: center 15%; display: block; }
   .credentials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; margin-bottom: 16px; }
   .cred-tag { font-size: 11px; color: var(--muted); padding: 5px 11px; border: 1px solid var(--border); letter-spacing: 0.03em; font-weight: 300; white-space: nowrap; }
   .about-content { display: flex; flex-direction: column; }
