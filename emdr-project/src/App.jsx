@@ -195,9 +195,67 @@ const styles = `
   .crisis-bar { background: var(--ink2); border-top: 1px solid var(--border); padding: 16px 60px; text-align: center; font-size: 13px; color: var(--muted); transition: var(--transition); }
   .crisis-bar strong { color: var(--text); }
 
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 60;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--ink);
+    z-index: 55;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    transition: var(--transition);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-menu .mobile-cta {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 14px 32px;
+    margin-top: 8px;
+  }
+
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
     .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
     .hero { padding: 100px 24px 60px; }
     h1 { font-size: 44px; }
     .hero-right { display: none; }
@@ -278,6 +336,7 @@ export default function App() {
   const [submitted, setSubmitted] = useState(false);
   const [captchaToken, setCaptchaToken] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   // Dark mode toggle — persist preference
   useEffect(() => {
@@ -323,6 +382,11 @@ export default function App() {
 
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
+  const closeMobile = (id) => {
+    setMobileOpen(false);
+    setTimeout(() => scrollTo(id), 10);
+  };
+
   useEffect(() => {
     const ptScript = document.createElement('script');
     ptScript.type = 'text/javascript';
@@ -335,7 +399,8 @@ export default function App() {
 
   // Inject JSON-LD structured data for SEO
   useEffect(() => {
-    const schema = {
+    // MedicalBusiness schema
+    const bizSchema = {
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
       "name": "Bayside Wellness & Counseling - EMDR Therapy",
@@ -380,10 +445,101 @@ export default function App() {
         "https://www.baysidewellnessandcounseling.com"
       ]
     };
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify(schema);
-    document.head.appendChild(script);
+
+    // Person schema — strengthens E-E-A-T signals
+    const personSchema = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Marcus Ghiasi",
+      "jobTitle": "Licensed Marriage and Family Therapist",
+      "description": "LMFT and founder of Bayside Wellness & Counseling. Specializes in EMDR therapy for trauma, anxiety, depression, grief, and life transitions via telehealth throughout California.",
+      "url": "https://emdrtherapybayarea.com",
+      "image": "https://emdrtherapybayarea.com/marcus.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Oakland",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "license",
+          "name": "Licensed Marriage and Family Therapist (LMFT)",
+          "recognizedBy": { "@type": "Organization", "name": "California Board of Behavioral Sciences" }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "certification",
+          "name": "EMDR Trained Therapist",
+          "recognizedBy": { "@type": "Organization", "name": "EMDR International Association (EMDRIA)" }
+        }
+      ],
+      "worksFor": {
+        "@type": "MedicalBusiness",
+        "name": "Bayside Wellness & Counseling",
+        "url": "https://www.baysidewellnessandcounseling.com"
+      },
+      "sameAs": [
+        "https://www.psychologytoday.com/profile/1134128",
+        "https://www.baysidewellnessandcounseling.com"
+      ]
+    };
+
+    // FAQPage schema — enables rich results in Google search
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are you currently accepting new clients?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — I am currently accepting new clients for telehealth therapy throughout California. The best way to get started is to book a free 15-minute consultation so we can see if we are a good fit before committing to anything." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you accept insurance?",
+          "acceptedAnswer": { "@type": "Answer", "text": "My practice is private pay, which means I do not bill insurance directly. I can provide a superbill that you can submit to your insurance company for potential out-of-network reimbursement. Many clients with PPO plans recoup a meaningful portion of the cost this way." }
+        },
+        {
+          "@type": "Question",
+          "name": "What are your session rates?",
+          "acceptedAnswer": { "@type": "Answer", "text": "$240 for a 45-minute session, $320 for a 60-minute session. I am private pay and provide a superbill after each session — many clients with PPO plans recoup a portion of the cost through out-of-network benefits." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does an EMDR session actually feel like?",
+          "acceptedAnswer": { "@type": "Answer", "text": "EMDR is not a passive process — it asks you to stay present with difficult material, and sessions can bring up real emotion. Most people find it more manageable than they expected, but it is not always comfortable. Clients who commit to the process consistently and with good guidance often experience meaningful breakthroughs." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is EMDR different from regular talk therapy?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Talk therapy works primarily through insight and narrative. EMDR works more directly with how the nervous system stores memory. You do not need to describe traumatic events in detail — the process is less verbal and more experiential, which many people find easier and more effective for trauma work." }
+        },
+        {
+          "@type": "Question",
+          "name": "How many sessions will I need?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Most clients meet weekly for 8-16 sessions, though this varies. For more complex trauma, meeting twice a week can help maintain momentum. We will have a clearer picture after our first few sessions together." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I have to talk about my trauma in detail?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. You hold a general awareness of a memory while we do the processing work. You are not required to narrate or relive events in detail. The method works even when language falls short." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we do EMDR over telehealth?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. I work exclusively via telehealth and EMDR translates very well online. I use a specialized tool for bilateral stimulation that works through your screen. All you need is a private, comfortable space and a reliable internet connection." }
+        }
+      ]
+    };
+
+    [bizSchema, personSchema, faqSchema].forEach(schema => {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(schema);
+      document.head.appendChild(script);
+    });
   }, []);
 
   return (
@@ -408,8 +564,20 @@ export default function App() {
             </div>
           </button>
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="nav-cta">Book a consult</a>
+          <button className={mobileOpen ? "nav-hamburger open" : "nav-hamburger"} onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
+            <span /><span /><span />
+          </button>
         </div>
       </nav>
+
+      {/* Mobile menu overlay */}
+      <div className={mobileOpen ? "mobile-menu open" : "mobile-menu"}>
+        <a href="#emdr" onClick={(e) => { e.preventDefault(); closeMobile("emdr"); }}>What is EMDR</a>
+        <a href="#about" onClick={(e) => { e.preventDefault(); closeMobile("about"); }}>About</a>
+        <a href="#faq" onClick={(e) => { e.preventDefault(); closeMobile("faq"); }}>FAQ</a>
+        <a href="#contact" onClick={(e) => { e.preventDefault(); closeMobile("contact"); }}>Contact</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mobile-cta" onClick={() => setMobileOpen(false)}>Book a consult</a>
+      </div>
 
       <div className="hero">
         <div className="hero-content">
