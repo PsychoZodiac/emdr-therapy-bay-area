@@ -722,7 +722,7 @@ function SEOConditionPage({ data, bookingUrl }) {
 
 // ─── MAIN APP ────────────────────────────────────────────────────────────────
 
-
+const fonts = ``; // Fonts loaded via index.html for better performance
 
 const styles = `
   :root {
