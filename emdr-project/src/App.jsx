@@ -400,322 +400,1189 @@ SEO_CONDITIONS.forEach(p => { SEO_PAGE_MAP[`/${p.slug}`] = { type: "condition", 
 
 // ─── SEO LANDING PAGE TEMPLATE ───────────────────────────────────────────────
 
+// Shared "is it right for you" items and FAQs injected into each page's data
+
+// Location pages — unique isForYou + faqs per region type
+// Condition pages — unique isForYou + faqs per condition
+
+// Add isForYou + faqs to each location
+SEO_LOCATIONS.forEach(p => {
+  const isOnline = p.isOnline;
+  const city = p.city;
+  const region = p.region;
+
+  // Shared telehealth FAQ used by all location pages
+  const telehealthFaq = { q: "Can you really do EMDR effectively over video?", a: "Yes — and this is one of the most common questions I get. EMDR via telehealth has been well-studied and produces outcomes comparable to in-person work. The bilateral stimulation tool I use works through your screen. All you need is a private space and a reliable internet connection. Many clients actually prefer the comfort of being in their own environment." };
+  const insuranceFaq = { q: "Do you accept insurance?", a: "I'm an out-of-network provider. Sessions are $240 for 45 minutes and $320 for 60 minutes. Many clients use out-of-network benefits or HSA/FSA funds. I can provide a superbill for reimbursement." };
+  const sessionCountFaq = { q: "How many sessions does EMDR take?", a: "It depends on what we're working on. Some focused issues resolve in 6–12 sessions. Complex trauma or longstanding patterns may take longer. I don't keep people in therapy longer than they need to be." };
+  const worseFaq = { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two after early sessions. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." };
+  const licenseFaq = { q: "Are you licensed to see clients in California?", a: "Yes. I hold California LMFT license #158475 and am authorized to practice throughout the state via telehealth. You don't need to be in the same city or county — just in California." };
+  const fitFaq = { q: "What if I'm not sure EMDR is right for me?", a: "That's exactly what the free 15-minute consultation is for. We talk briefly about what's going on, I explain how I work, and you can ask anything. There's no pressure and no obligation. Many people arrive uncertain and leave with a clear sense of whether this is the right fit." };
+
+  p.isForYou = isOnline ? [
+    "You've tried talk therapy before and felt like you were going in circles",
+    "Something from the past keeps showing up in your present — in your body, your relationships, your reactions",
+    "You're high-functioning on the outside but exhausted by what you're carrying inside",
+    "You want a structured, evidence-based approach — not open-ended conversation for its own sake",
+    "You're comfortable meeting via video and want the flexibility of working from home",
+    "You're ready to do real work, not just feel heard",
+  ] : [
+    `You're in ${city} or ${region} and want a therapist you don't have to commute to`,
+    "You've tried talk therapy before and felt like you were just spinning your wheels",
+    "Something from the past keeps showing up in your present — in your body, your relationships, your reactions",
+    "You're high-functioning on the outside but exhausted by what you're carrying inside",
+    "You want a structured, evidence-based approach — not open-ended conversation for its own sake",
+    "You're ready to do real work, not just feel heard",
+  ];
+
+  p.faqs = [
+    telehealthFaq,
+    insuranceFaq,
+    sessionCountFaq,
+    fitFaq,
+  ];
+});
+
+// Add isForYou + faqs to each condition
+const CONDITION_DATA = {
+  "emdr-for-trauma": {
+    isForYou: [
+      "You've tried talking about it and it hasn't shifted — you can tell the story but you still feel it",
+      "Your nervous system is stuck in a state of alert even when you're safe",
+      "Certain situations, sounds, or smells trigger a reaction you can't control",
+      "You're managing day-to-day but the weight of what happened is always there",
+      "You don't want to have to describe every detail of what happened to get better",
+      "You're ready to actually process it, not just cope with it",
+    ],
+    faqs: [
+      { q: "Do I have to talk about what happened in detail?", a: "No — and for many trauma survivors, this is the most important thing to know about EMDR. You don't need to narrate or retell your experience at length. You hold the memory in mind while we do the bilateral stimulation. The processing happens internally. Many people find this is what makes EMDR bearable when other approaches weren't." },
+      { q: "What if I've had trauma for a long time — is it too late?", a: "No. The nervous system doesn't have an expiration date for healing. EMDR works with memories regardless of how old they are. In fact, some of the most significant shifts I've seen in this work have happened with people processing events from 20 or 30 years ago." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How is EMDR different from other trauma therapies?", a: "Most talk-based trauma therapies work through narrative and insight — you talk about what happened and try to make meaning of it. EMDR works differently: it targets how the memory is stored in the nervous system and helps the brain complete the processing it couldn't finish at the time. For many people, this reaches places that talking alone couldn't." },
+    ],
+  },
+  "emdr-for-ptsd": {
+    isForYou: [
+      "You meet the criteria for PTSD or suspect you do — hypervigilance, flashbacks, avoidance, emotional numbing",
+      "You've been told EMDR is the gold standard for PTSD and want to try it",
+      "You're tired of managing symptoms and want to address the source",
+      "You don't want to have to retell what happened in detail to get better",
+      "You're ready for something that actually has evidence behind it",
+      "You want a therapist who takes PTSD seriously and knows how to work with it",
+    ],
+    faqs: [
+      { q: "Is EMDR actually proven to work for PTSD?", a: "Yes — EMDR is recognized as a first-line treatment for PTSD by the WHO, APA, American Psychiatric Association, and the VA. It's one of the most extensively researched trauma treatments available. The evidence base is strong and consistent across populations, including combat veterans, survivors of sexual trauma, and first responders." },
+      { q: "Do I have to have a formal PTSD diagnosis to work with you?", a: "No. A diagnosis can be useful context, but it's not required. What matters is what you're experiencing — the symptoms, the triggers, the impact on your life. We'll assess together in the consultation and first sessions what's going on and what approach makes the most sense." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How long does EMDR take for PTSD?", a: "For single-incident PTSD — one specific traumatic event — significant improvement often happens within 8–16 sessions. Complex or developmental trauma takes longer. I'll be honest with you about what I'm seeing as we go and won't keep you in therapy longer than necessary." },
+    ],
+  },
+  "emdr-for-complex-ptsd": {
+    isForYou: [
+      "Your trauma wasn't one event — it was ongoing, relational, or happened during childhood",
+      "You struggle with emotional regulation, self-worth, or feeling safe in relationships",
+      "You've been in therapy before and made progress, but something still feels stuck at a deeper level",
+      "You have a fragmented or painful relationship with your own identity",
+      "Standard talk therapy has helped somewhat but hasn't reached the roots",
+      "You want a therapist who understands the difference between PTSD and C-PTSD",
+    ],
+    faqs: [
+      { q: "How is C-PTSD different from PTSD?", a: "PTSD typically develops from a specific traumatic event or series of events. C-PTSD develops from prolonged, repeated trauma — especially in childhood or within close relationships. It affects identity, self-worth, emotional regulation, and attachment in ways that go beyond the classic PTSD symptom picture. EMDR treatment for C-PTSD is more gradual and requires careful stabilization work before processing begins." },
+      { q: "Is EMDR safe for complex trauma?", a: "Yes, when done carefully. With C-PTSD, we spend more time in the early phases — building stabilization resources and ensuring you have the capacity to process without becoming overwhelmed. I don't rush this. The preparation work is itself therapeutic, and we don't begin active processing until you're genuinely ready." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How long does treatment take for C-PTSD?", a: "Longer than single-incident trauma, and I'll be honest with you about that upfront. Complex trauma treatment is typically measured in months, not weeks. Progress is real and meaningful throughout — it's not a matter of waiting until the end to feel better. But this kind of work takes the time it takes, and I won't rush it." },
+    ],
+  },
+  "emdr-for-childhood-trauma": {
+    isForYou: [
+      "What happened in your childhood is showing up in your adult life in ways you can't fully explain",
+      "You have beliefs about yourself — not being enough, not being safe, not deserving love — that feel bone-deep",
+      "Your relationships follow patterns you can see but can't seem to break",
+      "You've done some therapy and gained insight, but insight alone hasn't changed how you feel",
+      "You don't want to spend years talking about your childhood — you want something to actually shift",
+      "You're ready to address the roots, not just the symptoms",
+    ],
+    faqs: [
+      { q: "Do I have to remember my childhood clearly for EMDR to work?", a: "No. EMDR doesn't require detailed or chronological memories. We work with what's available — images, body sensations, emotions, fragments. Incomplete memories can still be processed effectively. You don't need to reconstruct a precise narrative." },
+      { q: "What if my childhood wasn't 'bad enough' to explain how I feel?", a: "This is one of the most common things I hear, and it deserves a direct answer: you don't need to have survived something dramatic for it to have left a mark. Emotional neglect, inconsistent parenting, feeling like a burden, chronic criticism — these shape the nervous system just as surely as more obvious traumas. Your experience is valid regardless of how it compares to someone else's." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How is working with childhood trauma different from other trauma work?", a: "Childhood trauma is often more diffuse — it's less about specific events and more about the cumulative effect of an environment. We typically need more time in the preparation phase, identifying the beliefs and body sensations that carry the charge before targeting specific memories. The work is gradual and thorough." },
+    ],
+  },
+  "emdr-for-sexual-trauma": {
+    isForYou: [
+      "Something happened that you haven't fully processed — recently or long ago",
+      "It's affecting your relationships, your sense of safety, or your relationship with your own body",
+      "You're not ready or willing to describe what happened in detail to a therapist",
+      "You've been managing it alone and it's taking more energy than you have",
+      "You want a therapist who understands sexual trauma specifically and won't push you faster than you're ready",
+      "You're ready to start healing, on your terms",
+    ],
+    faqs: [
+      { q: "Do I have to describe what happened?", a: "No — and for survivors of sexual trauma, this is often the most important thing to know. EMDR does not require you to narrate what happened. You hold the memory in mind while we do the bilateral stimulation. The processing happens internally. You are in control of how much you share and when." },
+      { q: "What if I'm not sure what happened counts as trauma?", a: "If it affected you, it matters. You don't need to meet a legal or clinical definition of assault for an experience to have left a mark on your nervous system. Many survivors minimize their own experiences. In our work, what matters is what you're carrying — not how it compares to anyone else's story." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How do you approach safety in the therapeutic relationship?", a: "Carefully and explicitly. We discuss boundaries, pacing, and your level of control at every stage. You can slow down, pause, or stop at any point. I take the therapeutic relationship seriously, and I understand that trust — especially for survivors of interpersonal trauma — is built slowly and must be earned." },
+    ],
+  },
+  "emdr-for-medical-trauma": {
+    isForYou: [
+      "A medical experience — diagnosis, procedure, hospitalization, or close call — left you more shaken than you expected",
+      "You're now anxious about medical appointments, your body, or health in ways you weren't before",
+      "The physical experience has healed but something else hasn't",
+      "You feel like you should be over it by now, but you're not",
+      "You want to address the psychological aftermath of what your body went through",
+      "You're ready to actually process it rather than just push through",
+    ],
+    faqs: [
+      { q: "Is medical trauma really 'trauma' in the clinical sense?", a: "Yes. Medical trauma — including frightening diagnoses, painful or invasive procedures, ICU stays, or witnessing a medical emergency — meets the clinical criteria for trauma and can produce PTSD symptoms. The fact that the trauma occurred in a medical context doesn't make it less real or less treatable." },
+      { q: "What if my anxiety is specifically about future medical care?", a: "This is very common after medical trauma, and EMDR addresses it directly. We work with both the past experiences that created the fear and the anticipated future ones — a technique called future template installation — so you can approach necessary medical care without being overwhelmed." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Can EMDR help even if the medical issue is ongoing?", a: "Yes. You don't have to be fully recovered or medically stable to benefit from EMDR. We can work with what has already happened — the fear, the helplessness, the specific memories — even if you're still in the middle of a medical situation. Many people find that processing the psychological component helps them engage more clearly with their ongoing care." },
+    ],
+  },
+  "emdr-for-accident-trauma": {
+    isForYou: [
+      "You've been in an accident or experienced an injury and haven't felt like yourself since",
+      "You're hypervigilant, easily startled, or anxious in situations that remind you of it",
+      "The physical recovery is complete or underway, but something in your nervous system is still reacting",
+      "You're avoiding driving, certain roads, or activities you used to do without thinking",
+      "You feel like you should be over it but you're not, and you're frustrated by that",
+      "You want to address the psychological aftermath, not just the physical one",
+    ],
+    faqs: [
+      { q: "Can EMDR help with accident-related phobias like driving anxiety?", a: "Yes — this is one of EMDR's most well-documented applications. We work with the specific memories from the accident that are fueling the avoidance and anxiety, and often use future template installation to help you re-approach the feared situation with a different nervous system response." },
+      { q: "What if the accident was minor — does it still count?", a: "Absolutely. The severity of an accident doesn't determine whether it was traumatic. What matters is how your nervous system responded. A minor fender-bender can be just as psychologically impactful as a serious collision, depending on the circumstances and your history. Your response is valid regardless of the objective severity." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How quickly can accident trauma resolve with EMDR?", a: "Single-incident trauma like accidents often responds relatively quickly to EMDR. Many clients see significant improvement within 6–12 sessions. Of course, this depends on the severity of the accident, whether there were pre-existing vulnerabilities, and the extent of any ongoing physical recovery." },
+    ],
+  },
+  "emdr-for-first-responders": {
+    isForYou: [
+      "You've seen things that most people never will, and you carry that weight",
+      "The job has changed you — and not entirely in ways you chose",
+      "You're noticing hypervigilance, emotional numbing, or difficulty being present at home",
+      "Talking about it to someone who doesn't understand the work feels pointless",
+      "You're not looking for sympathy — you're looking for something that actually works",
+      "You're ready to deal with what you've accumulated before it costs you more",
+    ],
+    faqs: [
+      { q: "Do you understand first responder culture?", a: "I do — and I know that trust is earned, not assumed. I work with firefighters, paramedics, law enforcement, and ER clinicians who need a therapist who won't flinch at what they describe, won't pathologize the work, and won't push them to process in ways that feel incompatible with who they are. EMDR is well-suited for this population precisely because it doesn't require you to verbally process at length." },
+      { q: "Is EMDR effective for the kind of repeated, cumulative trauma first responders experience?", a: "Yes. EMDR was originally developed for single-incident trauma, but its application has expanded significantly. For cumulative, occupational trauma — the layered, repetitive exposure that first responders experience — EMDR addresses both specific critical incidents and the underlying nervous system state that develops over a career." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Is telehealth appropriate for this kind of work?", a: "For many first responders, telehealth is actually preferable — you don't have to be seen walking into a therapist's office, you can schedule around shifts, and you can be in your own space. The clinical work is the same. I've found that some clients are more open in a telehealth format precisely because of the privacy it affords." },
+    ],
+  },
+  "emdr-for-anxiety": {
+    isForYou: [
+      "You've tried the breathing exercises, the CBT worksheets, the meditation apps — and you're still anxious",
+      "Your anxiety spikes in specific situations and you can't always explain why",
+      "It shows up in your body — tight chest, racing heart, difficulty sleeping — not just your thoughts",
+      "You're high-functioning, but it costs you more than it should",
+      "You want to understand where it actually comes from, not just learn to cope with it",
+      "You're ready for an approach that goes deeper than symptom management",
+    ],
+    faqs: [
+      { q: "How is EMDR different from CBT for anxiety?", a: "CBT works by identifying and challenging anxious thought patterns. EMDR goes a level deeper — it targets the specific memories and experiences that created those patterns in the first place. For many people with anxiety, EMDR produces change that cognitive work alone couldn't reach, because it addresses the root rather than the branches." },
+      { q: "What if I don't know why I'm anxious?", a: "That's actually very common, and it's fine. We start with what you're experiencing now — the sensations, the triggers, the beliefs — and work backward from there. You don't need to arrive with a clear origin story. The work often reveals connections that weren't obvious at the start." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two after early sessions. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How many sessions does it take to see results for anxiety?", a: "Many clients notice meaningful shifts within 6–10 sessions. For anxiety specifically, results can come relatively quickly when we identify the core memories and beliefs driving it. That said, it depends on the complexity and history. I'll be honest with you about what I'm seeing as we go." },
+    ],
+  },
+  "emdr-for-panic-attacks": {
+    isForYou: [
+      "You've had at least one panic attack and are now afraid of having another",
+      "You're avoiding situations, places, or activities because of what might happen",
+      "The panic feels completely out of your control and you can't predict when it will hit",
+      "You've been to the ER or had your heart checked and everything came back normal",
+      "You're tired of white-knuckling through situations that most people handle easily",
+      "You want to address why your nervous system is responding this way, not just manage it when it happens",
+    ],
+    faqs: [
+      { q: "Can EMDR actually stop panic attacks?", a: "EMDR doesn't target panic attacks directly — it targets the underlying memories, triggers, and nervous system patterns that produce them. For many clients, when those roots are addressed, the panic attacks reduce significantly in frequency and intensity, and some resolve entirely. The goal is to change what's driving the response, not just manage the response itself." },
+      { q: "What if my panic attacks don't seem connected to any trauma?", a: "Panic is often connected to experiences that don't feel 'traumatic' in an obvious way — a moment of humiliation, a time you felt out of control, an early experience of illness or fear. EMDR helps identify these connections even when they're not immediately obvious. You don't need to arrive with a clear explanation." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Do you teach coping strategies for panic attacks?", a: "Yes — and this happens before any processing work begins. The preparation phase of EMDR involves building stabilization resources, including tools for managing acute anxiety and panic between sessions. You won't start processing without a toolkit to support you outside of our work." },
+    ],
+  },
+  "emdr-for-social-anxiety": {
+    isForYou: [
+      "Social situations cost you significantly more energy than they seem to cost other people",
+      "You're hyper-aware of how you're coming across and replay interactions afterward",
+      "The anxiety is specific — certain situations trigger it more than others",
+      "You've read about social anxiety, you understand the cognitive patterns, but understanding hasn't made it go away",
+      "You suspect there are specific experiences that made you this way — and you want to address those",
+      "You're tired of organizing your life around avoidance",
+    ],
+    faqs: [
+      { q: "Why does EMDR work for social anxiety when CBT hasn't?", a: "CBT is effective for many people with social anxiety, but it works primarily at the level of thoughts. EMDR works at the level of the specific memories — moments of humiliation, rejection, or judgment — that trained your nervous system to respond with fear in social situations. When those memories are processed, the threat response often diminishes in ways that cognitive restructuring alone couldn't achieve." },
+      { q: "What if I can't identify specific memories that caused my social anxiety?", a: "You don't need to. We can begin with the sensations and beliefs you experience in anxiety-provoking situations and work back from there. EMDR often surfaces relevant memories during the process itself. Arriving with a clear causal story isn't necessary." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Can I work on specific feared situations — like public speaking or job interviews?", a: "Yes. EMDR uses a technique called future template installation that specifically targets anticipated feared situations. Once we've processed the underlying memories, we can also work on rewiring your nervous system's response to the specific situations that trigger you most." },
+    ],
+  },
+  "emdr-for-phobias": {
+    isForYou: [
+      "You have a fear that is out of proportion to the actual danger and you know it",
+      "The phobia is affecting your life — what you can do, where you can go, how you feel",
+      "Telling yourself it's irrational hasn't made it go away",
+      "You've tried exposure and it helped somewhat, but the fear is still there underneath",
+      "You want to address what's driving the fear, not just learn to tolerate it",
+      "You're ready for something more efficient than years of gradual exposure",
+    ],
+    faqs: [
+      { q: "How does EMDR work for phobias specifically?", a: "EMDR targets the memory network underlying the phobia — often a specific experience that taught your nervous system to associate the feared object or situation with danger. By processing that network, the threat response diminishes. Unlike exposure therapy, EMDR doesn't require you to repeatedly face the feared thing — it works with the memory of the experience." },
+      { q: "Can EMDR work for any type of phobia?", a: "EMDR has been applied effectively to a wide range of phobias — flying, needles, heights, animals, driving, and more. Phobias that can be traced to a specific originating experience tend to respond particularly well. Even phobias without a clear origin often respond, because EMDR can target the general memory network associated with the fear." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How quickly do phobias resolve with EMDR?", a: "Specific phobias are among the issues that respond most efficiently to EMDR. Many clients see significant or complete resolution in 3–8 sessions when the phobia is linked to identifiable experiences. Results vary, but phobias are generally one of the more tractable presentations in EMDR work." },
+    ],
+  },
+  "emdr-for-health-anxiety": {
+    isForYou: [
+      "You're frequently worried that something is seriously wrong with your body",
+      "You seek reassurance — from doctors, from Google, from people around you — and it only helps briefly",
+      "The fear ramps up when you notice a new symptom or hear about someone else's illness",
+      "You have a history of illness, a difficult medical experience, or a loss that may be driving the fear",
+      "You understand intellectually that you're probably fine, but the fear doesn't respond to logic",
+      "You want to address the root of the anxiety, not just reassure yourself through it over and over",
+    ],
+    faqs: [
+      { q: "What's the connection between health anxiety and past experiences?", a: "Health anxiety often has roots in specific experiences — a serious illness of your own or a loved one, a frightening medical event, a loss, or an environment where illness was a frequent source of stress or unpredictability. EMDR identifies and processes those experiences rather than just targeting the anxious thoughts they produce." },
+      { q: "Will EMDR help me stop seeking reassurance?", a: "That's the goal, yes — but we approach it differently than traditional CBT. Rather than working directly on the reassurance-seeking behavior, EMDR works on the underlying fear that drives it. When the fear loses its charge, the need to seek reassurance typically diminishes on its own." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What if my health anxiety is partly realistic — I do have a health condition?", a: "EMDR can help even when there is a genuine health concern. We can work on the anxiety component — the disproportionate fear, the hypervigilance, the difficulty tolerating uncertainty — without dismissing the real aspects of your situation. The goal is a calibrated response to your health, not toxic positivity." },
+    ],
+  },
+  "emdr-for-perfectionism": {
+    isForYou: [
+      "You set extremely high standards for yourself and feel devastated when you don't meet them",
+      "Procrastination, avoidance, or all-or-nothing thinking are getting in your way",
+      "The drive to perform is exhausting and it doesn't feel like a choice",
+      "Underneath the perfectionism is a fear — of failure, judgment, or not being enough",
+      "You've achieved a lot, but it doesn't feel like enough and you can't explain why",
+      "You want to understand where this came from and actually change it, not just manage it",
+    ],
+    faqs: [
+      { q: "Is perfectionism really something EMDR can address?", a: "Yes. Perfectionism is often rooted in specific early experiences — environments where approval was conditional, mistakes were punished, or worth was tied to achievement. EMDR targets those root experiences, which shifts the underlying belief system rather than just the behaviors it produces. Many clients are surprised by how much changes when the roots are addressed." },
+      { q: "What if my perfectionism is also driving my success — I don't want to lose that?", a: "This is a real concern and worth addressing directly. The goal of EMDR isn't to make you stop caring about quality or achievement — it's to free you from the fear that drives perfectionism. Most clients find that when the anxiety underneath settles, their work actually improves because it's no longer contaminated by dread." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How is EMDR different from coaching or CBT for perfectionism?", a: "Coaching works on behavior and strategy. CBT works on thought patterns. EMDR works on the memories and experiences that installed the core beliefs driving the perfectionism. For many people, the beliefs are the hardest thing to shift — and EMDR reaches them at a level that surface-level interventions often can't." },
+    ],
+  },
+  "emdr-for-depression": {
+    isForYou: [
+      "The heaviness isn't just sadness — it's a disconnection from yourself, your relationships, your sense of possibility",
+      "Medication has helped somewhat but something is still underneath it",
+      "You can function but everything costs more than it should",
+      "You suspect there are specific experiences — losses, wounds, or long-held beliefs — driving the depression",
+      "Talk therapy has provided insight but the depression hasn't lifted",
+      "You're ready to try something that goes deeper than what you've already done",
+    ],
+    faqs: [
+      { q: "How does EMDR address depression — isn't it mainly for trauma?", a: "EMDR was originally developed for trauma, but research has expanded its application significantly. Depression is often maintained by unprocessed grief, negative core beliefs, and painful memories — all of which EMDR addresses directly. For many people, especially those with trauma histories, EMDR reaches a layer of the depression that talk therapy and medication alone couldn't touch." },
+      { q: "Can I do EMDR if I'm on antidepressants?", a: "Yes. Medication and EMDR are compatible and often used together. Some clinicians believe that medication can actually support EMDR work by providing a degree of stabilization. We'll discuss your current treatment and what makes sense in your particular situation." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What if my depression doesn't seem connected to any specific event?", a: "Depression often doesn't have one clear origin — it can develop from an accumulation of experiences, a pervasive early environment, or losses that were never fully grieved. EMDR works with whatever is available: the beliefs, the body sensations, the emotional memories. A clear causal story isn't required." },
+    ],
+  },
+  "emdr-for-persistent-depression": {
+    isForYou: [
+      "The depression isn't acute — it's a low-level constant that's been there so long it feels like personality",
+      "You've tried antidepressants, talk therapy, lifestyle changes — and nothing has fully lifted it",
+      "You've normalized the heaviness because you don't remember feeling any other way",
+      "There's a part of you that suspects something deeper is maintaining it",
+      "You want to address the roots, not just manage symptoms indefinitely",
+      "You're ready to try something that goes further than what you've already done",
+    ],
+    faqs: [
+      { q: "Why might EMDR work when other treatments haven't?", a: "Persistent depressive disorder often has deep roots — early relational experiences, long-held negative beliefs about the self, or accumulated losses that were never fully processed. These roots don't always respond to medication or cognitive approaches because they're held at a level below conscious thought. EMDR addresses them directly." },
+      { q: "Is it too late to try EMDR if I've had depression for decades?", a: "No. The nervous system retains the capacity for change regardless of how long a pattern has been in place. Some of the most significant shifts I've seen in this work have come in people who had been depressed for 20 years or more. Duration doesn't determine outcome." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How long does EMDR take for persistent depression?", a: "This is honest work that takes real time. We're not treating a single event but a pervasive condition with deep roots. Treatment is often measured in months rather than weeks, and progress tends to be gradual — but meaningful and cumulative. I'll be transparent with you about what I'm seeing as we go." },
+    ],
+  },
+  "emdr-for-postpartum-depression": {
+    isForYou: [
+      "You're in the postpartum period and something is wrong — more than baby blues, more than tiredness",
+      "You feel disconnected from your baby, your partner, or yourself",
+      "The gap between what you expected to feel and what you actually feel is painful",
+      "You feel guilty about how you're feeling, which makes everything worse",
+      "You may have a difficult birth experience that's still affecting you",
+      "You want support that takes what you're going through seriously without judgment",
+    ],
+    faqs: [
+      { q: "Is EMDR safe in the postpartum period?", a: "Yes. EMDR is considered safe for postpartum depression and anxiety. We take particular care with pacing and stabilization — the postpartum period already carries a lot, and we don't add to the burden. The work is adapted to where you are physically, emotionally, and logistically as a new parent." },
+      { q: "What if my postpartum depression is connected to a difficult birth experience?", a: "Birth trauma is a specific and real form of trauma that EMDR addresses effectively. Many cases of postpartum depression have a birth trauma component — fear, loss of control, medical complications, or the gap between what you hoped for and what happened. We can work with both the depression and the birth experience." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Can I do EMDR if I'm breastfeeding or on postpartum medication?", a: "Yes. EMDR is a non-pharmacological intervention and has no interaction with breastfeeding or postpartum medications. If you're taking medication, that's fine — EMDR and medication are compatible and often complement each other well." },
+    ],
+  },
+  "emdr-for-grief": {
+    isForYou: [
+      "You've lost someone important and the grief isn't moving — it's stuck",
+      "The loss was complicated by circumstances, relationship history, or things left unsaid",
+      "You feel pressure to be 'over it' by now, and you're not",
+      "Grief is bleeding into everything — your work, your relationships, your sense of self",
+      "You've tried talking about it and it helps, but something deeper hasn't shifted",
+      "You want to process the loss in a way that allows you to carry it differently",
+    ],
+    faqs: [
+      { q: "How does EMDR work with grief specifically?", a: "EMDR isn't about eliminating grief — it's about removing the traumatic charge from grief so you can mourn naturally. When grief is stuck, it's often because specific memories are frozen in a state of acute pain. EMDR helps process those memories so they can be held with sadness rather than ongoing trauma." },
+      { q: "What if my grief is complicated — I had a difficult relationship with who I lost?", a: "Complicated grief often involves ambivalence, guilt, or anger alongside the loss — and EMDR can hold all of that. In fact, complicated grief often responds particularly well to EMDR because it addresses the specific memories and beliefs that are tangled up with the loss, not just the grief itself." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Is there a right time to start EMDR after a loss?", a: "There's no universal answer. In the acute phase of grief, stabilization and support are often more appropriate than active processing. Once you have some basic stability — weeks to months after the loss, depending on the circumstances — EMDR can be very effective. We'll assess this together in the consultation." },
+    ],
+  },
+  "emdr-for-complicated-grief": {
+    isForYou: [
+      "The grief is not fading with time — it's as acute now as it was in the beginning",
+      "You're having trouble accepting the reality of the loss",
+      "Guilt, anger, or regret are tangled up with the sadness in ways you can't separate",
+      "The loss was sudden, violent, or traumatic in some way",
+      "You feel like part of you is frozen at the moment of the loss",
+      "Standard grief support hasn't reached what needs to be reached",
+    ],
+    faqs: [
+      { q: "What is complicated grief and how do I know if I have it?", a: "Complicated grief — also called prolonged grief disorder — is grief that has become stuck rather than evolving over time. Signs include intense longing and sorrow that doesn't diminish, difficulty accepting the loss, feeling like life is meaningless without the person, and significant functional impairment. If grief is still as acute 6–12 months after the loss as it was in the beginning, that's worth addressing directly." },
+      { q: "Why is EMDR particularly suited for complicated grief?", a: "Complicated grief often has a traumatic component — the memories of the loss, or the circumstances around it, carry an acute charge that interferes with natural mourning. EMDR addresses that traumatic charge directly, which is often what allows grief to begin moving again after it has been stuck." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Does EMDR help with the specific memories of the loss — like being present at a death?", a: "Yes. Specific traumatic memories — being present at a death, receiving a devastating phone call, witnessing suffering — are exactly what EMDR is designed to process. These memories, when frozen in a state of acute distress, can be processed so that they can be remembered with sadness rather than ongoing trauma." },
+    ],
+  },
+  "emdr-for-anticipatory-grief": {
+    isForYou: [
+      "Someone you love is dying or seriously ill, and you're already grieving",
+      "You're trying to be present for them while also managing your own fear and pain",
+      "You're aware of the loss coming and don't know how to prepare for it",
+      "The anticipatory grief is interfering with your ability to be with them now",
+      "You feel guilty for grieving someone who is still alive",
+      "You want support that helps you hold the complexity of what you're experiencing",
+    ],
+    faqs: [
+      { q: "Is anticipatory grief a real clinical concern?", a: "Absolutely. Anticipatory grief — the grief that begins before a loss — is well-documented and can be as intense as grief after a death. The difference is that you're grieving while still trying to be present for someone you love, which creates a particular kind of strain. It deserves real support, not just reassurance." },
+      { q: "How can EMDR help when the loss hasn't happened yet?", a: "EMDR can help with the fear, helplessness, and distress of the anticipated loss — including past experiences with loss or death that may be intensifying the current fear. We can also work on building your capacity to be present for what's coming rather than being overwhelmed by it." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Can I continue working with you after the loss occurs?", a: "Yes. Many clients begin working with me during anticipatory grief and continue into the bereavement period. Continuity of the therapeutic relationship during this transition can be very meaningful, and I'm committed to supporting clients through the full arc of what they're experiencing." },
+    ],
+  },
+  "emdr-for-pet-loss": {
+    isForYou: [
+      "You've lost a pet and the grief is real — more than people around you seem to understand",
+      "You feel embarrassed by the intensity of what you're feeling, but you can't talk yourself out of it",
+      "Your pet was a primary source of comfort, companionship, or routine, and that's gone",
+      "The circumstances of the loss — a difficult euthanasia decision, an accident, or a sudden death — are haunting you",
+      "You want to grieve fully without being told it was 'just an animal'",
+      "You're ready to process this with someone who takes it seriously",
+    ],
+    faqs: [
+      { q: "Is pet loss grief something therapy can actually help with?", a: "Yes — and I take it seriously. Pet loss can be one of the most significant losses a person experiences. Animals are family, and their absence disrupts daily rhythms, sources of comfort, and sometimes an entire sense of home. EMDR processes this grief with the same care and thoroughness I bring to any other loss." },
+      { q: "What if the circumstances of the loss — like a euthanasia decision — are what I'm struggling with most?", a: "That's very common. Decisions about euthanasia carry enormous weight — the responsibility, the uncertainty, the guilt. EMDR can target the specific memories and beliefs around that decision, processing the guilt and distress so you can hold the decision with peace rather than ongoing anguish." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Do I need to justify why this loss was so significant?", a: "No. You don't need to explain or defend the depth of your grief to me. The relationship you had with your pet was real. The loss is real. That's enough." },
+    ],
+  },
+  "emdr-for-life-transitions": {
+    isForYou: [
+      "You're in the middle of a significant change — chosen or not — and you feel unmoored",
+      "The transition is bringing up more than just practical challenges",
+      "Your sense of identity, purpose, or belonging is in question",
+      "You're grieving what was, even if what's coming is better",
+      "The anxiety or grief feels disproportionate to what's happening on the surface",
+      "You want support that addresses the emotional depth of the change, not just strategies for adapting",
+    ],
+    faqs: [
+      { q: "How does EMDR help with life transitions — isn't it mainly for trauma?", a: "EMDR addresses any experience that the nervous system has processed incompletely — and major transitions often carry more weight than their surface appearance suggests. The grief of an ending, the fear of the unknown, the disruption of identity — these can all be processed through EMDR, often more effectively than through talk therapy alone." },
+      { q: "What if the transition is positive — like a promotion or a new relationship?", a: "Positive transitions can be just as destabilizing as difficult ones. A new relationship may activate old attachment wounds. A promotion may surface deep-seated fears of failure or exposure. EMDR works with whatever the transition is activating, regardless of whether the change itself is objectively good." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How many sessions does this kind of work typically take?", a: "Transition work varies considerably. Some people come for 8–12 sessions focused on a specific transition and feel significantly better. Others use the transition as an entry point into deeper work on longstanding patterns. We'll assess what makes sense for you as we go." },
+    ],
+  },
+  "emdr-for-burnout": {
+    isForYou: [
+      "You're not just tired — you're depleted in a way that rest doesn't fix",
+      "The work that used to matter doesn't anymore — or you can't access why it did",
+      "You've been running on empty for longer than you can remember",
+      "Setting limits has always felt hard, and you don't fully understand why",
+      "There are beliefs underneath the burnout — about worth, about what you owe others — that you haven't examined",
+      "You want to recover, but you also want to understand how you got here so it doesn't happen again",
+    ],
+    faqs: [
+      { q: "How is EMDR relevant to burnout — isn't it for trauma?", a: "Burnout and trauma are often more connected than people realize. Many people who burn out have deep-seated beliefs about worth, obligation, and self-sacrifice that were formed early in life. EMDR addresses those beliefs at their roots rather than just teaching coping strategies for the current state of depletion." },
+      { q: "Can EMDR help me figure out why I can't set limits?", a: "Yes — this is some of the most meaningful work I do. The inability to set limits is rarely a skills deficit. It's usually rooted in beliefs and early experiences: that your worth depends on what you give, that saying no is dangerous, that your needs matter less than others'. EMDR targets those roots." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Do I need to take time off work to do this kind of therapy?", a: "Not necessarily. We work around your schedule via telehealth, and the processing happens in sessions. Many clients do this work while continuing to work — though if you're in severe burnout, reducing your load where possible is usually worth discussing. That's a conversation we can have." },
+    ],
+  },
+  "emdr-for-career-transitions": {
+    isForYou: [
+      "You're in a career transition — voluntary or forced — and it's bringing up more than just practical concerns",
+      "Your identity was tied to your work, and without it you're not sure who you are",
+      "The transition is activating fear, shame, or grief that feels disproportionate",
+      "You want to move forward clearly, not from anxiety or scarcity",
+      "There are deeper questions about worth, purpose, and belonging underneath the career question",
+      "You want support that addresses the emotional dimension of the change, not just the strategic one",
+    ],
+    faqs: [
+      { q: "How is EMDR relevant to a career transition?", a: "Career transitions activate some of the deepest fears and beliefs people carry — about worth, about failure, about whether they deserve good things. EMDR targets those underlying beliefs rather than just the surface-level anxiety about the transition itself. Many clients find that what they thought was a career question was actually a deeper question about identity and self-worth." },
+      { q: "What if I was laid off or fired — can EMDR help with that?", a: "Yes. Involuntary job loss can be genuinely traumatic — sudden, disorienting, and often accompanied by shame. EMDR can process the specific experience of the loss as well as the beliefs it activated. The goal is to help you approach what's next from a grounded place rather than from the wound." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Can EMDR help me figure out what I actually want to do next?", a: "EMDR isn't career coaching, but it frequently unlocks clarity. When the fear, shame, and old beliefs are processed, many clients find they can hear themselves more clearly — what they actually value, what they've been avoiding, what kind of work would actually fit who they are. The clarity often follows the processing." },
+    ],
+  },
+  "emdr-for-self-worth": {
+    isForYou: [
+      "The belief that you're not enough — not smart enough, not good enough, not lovable enough — feels fundamental",
+      "You can list your accomplishments but they don't touch the feeling",
+      "The belief shows up in your body, not just your thoughts",
+      "You've tried affirmations, journaling, and cognitive work — and the core belief is still there",
+      "You suspect this goes back a long way",
+      "You want to shift the belief at its root, not just manage it",
+    ],
+    faqs: [
+      { q: "Why doesn't positive thinking fix negative self-beliefs?", a: "Because negative core beliefs aren't primarily cognitive — they're held in the body and the nervous system, encoded through experiences that happened before language or logic were fully developed. Positive thinking operates at the level of the rational mind. EMDR operates at the level where the beliefs are actually stored." },
+      { q: "How does EMDR change a belief like 'I'm not enough'?", a: "We identify the specific experiences that installed and reinforced the belief — often going back to childhood. EMDR processes those experiences so they no longer carry the charge that maintains the belief. A more accurate positive belief is then explicitly strengthened. Most people are surprised by how much can shift." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How long does it take to shift a core belief with EMDR?", a: "It depends on how deeply the belief is rooted and how many experiences are feeding it. Some people experience meaningful shifts in a handful of sessions targeting the key memories. Others with more complex histories take longer. But core beliefs are not fixed — they change through EMDR in ways that other approaches often can't reach." },
+    ],
+  },
+  "emdr-for-midlife-transitions": {
+    isForYou: [
+      "You're somewhere in midlife and something has shifted — a reckoning you didn't fully see coming",
+      "You're questioning choices you made, paths you didn't take, or whether the life you've built is really yours",
+      "Grief, restlessness, or a loss of meaning are present in a way that's hard to name",
+      "The usual ways of pushing through aren't working the way they used to",
+      "You want support that takes midlife seriously as its own distinct challenge",
+      "You're ready to do the inner work, not just the outer reorganization",
+    ],
+    faqs: [
+      { q: "Is midlife crisis a real clinical phenomenon?", a: "The term 'midlife crisis' is often mocked, but the underlying experience is real and clinically significant. Midlife frequently brings a confrontation with mortality, regret, unfulfilled longings, and a changed relationship to time — all of which can produce genuine distress. EMDR helps process the grief and reassessment that this life stage often surfaces." },
+      { q: "What if I can't identify anything specific to work on — it's more of a general malaise?", a: "That's common in midlife work. We start with what you're experiencing — the restlessness, the grief, the questions — and the specific memories and beliefs that are fueling them often emerge through the process. You don't need to arrive with a clear target." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Can EMDR help with regret specifically?", a: "Yes. Regret — when it's acute or persistent — often has a traumatic quality: a frozen moment, a belief about what you deserve, a narrative about the self that closes off possibility. EMDR can process the specific memories and beliefs that sustain regret, which often opens up a different relationship to the past and the future." },
+    ],
+  },
+  "emdr-for-aging": {
+    isForYou: [
+      "You're in a later chapter of life and grappling with questions that deserve real engagement, not platitudes",
+      "Grief, fear of death, regret, or a sense of unfinished business is present",
+      "You're watching your body change in ways that are confronting your sense of self",
+      "There are things from your past that you haven't fully processed and don't want to carry into the end of your life",
+      "You want to find genuine meaning in what has been and what remains",
+      "You're ready to do this work with honesty and courage",
+    ],
+    faqs: [
+      { q: "Is EMDR appropriate for older adults?", a: "Yes. EMDR has been used effectively with adults across the full lifespan, including older adults. The approach is adapted to the individual, and there is no age at which the nervous system loses its capacity for processing and healing. In fact, many older adults find EMDR particularly valuable because of the accumulated experiences that can be addressed." },
+      { q: "Can EMDR help with fear of death?", a: "Fear of death, and the existential anxiety that comes with aging, are areas where EMDR can be genuinely helpful. We work with the specific fears, memories, and beliefs that carry the most charge — often including past experiences with loss or death that are intensifying the current fear. The goal is not to eliminate the awareness of mortality but to hold it with more equanimity." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What about grief for losses that have accumulated over a lifetime?", a: "EMDR is well-suited for this kind of accumulated grief — the losses of people, capacities, roles, and possibilities that gather over a lifetime. We work with what carries the most charge rather than trying to process everything. Many clients find that addressing a few key losses creates movement across a broader landscape of grief." },
+    ],
+  },
+  "emdr-for-relationship-trauma": {
+    isForYou: [
+      "A relationship — past or present — has left marks that are showing up in your current life",
+      "You recognize patterns you can't seem to break, even when you understand them intellectually",
+      "You find it hard to trust, to be close, or to feel safe with people who matter to you",
+      "The relationship involved emotional abuse, control, or chronic invalidation",
+      "What happened doesn't feel like trauma in the dramatic sense, but it's had a lasting effect",
+      "You want to process what happened at a depth that talking about it alone hasn't reached",
+    ],
+    faqs: [
+      { q: "Does relationship trauma 'count' as trauma in the EMDR sense?", a: "Absolutely. Emotional abuse, coercive control, chronic invalidation, and the slower wound of a relationship that consistently communicated that you weren't enough — these all meet the clinical threshold for trauma. The fact that it was relational rather than event-based doesn't make it less real or less treatable." },
+      { q: "Can EMDR help me stop repeating relationship patterns?", a: "This is one of EMDR's most powerful applications. Relationship patterns are driven by beliefs and memories, not just habits. When we process the experiences that formed the pattern — often going back to early attachment relationships — the pattern loses its automatic quality. Change becomes genuinely possible, not just intellectually understood." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What if I'm still in the relationship or recently left it?", a: "Both are workable. If you're still in a difficult relationship, we can build the internal resources and clarity that support better decision-making. If you've recently left, we can address both the acute distress and the deeper patterns the relationship activated. Where you are in the process shapes how we approach the work." },
+    ],
+  },
+  "emdr-for-attachment-issues": {
+    isForYou: [
+      "Closeness in relationships feels either suffocating or desperately needed — sometimes both",
+      "You find yourself either avoiding intimacy or becoming anxious when it's threatened",
+      "The patterns in your relationships feel out of your control, even when you can see them clearly",
+      "Your early experiences with caregivers were inconsistent, neglectful, or frightening",
+      "You understand attachment theory but understanding hasn't changed how you react",
+      "You want to change not just your behavior but your nervous system's response to closeness",
+    ],
+    faqs: [
+      { q: "Can EMDR change attachment patterns formed in childhood?", a: "Yes — this is some of the most transformative work EMDR can do. Attachment patterns are learned responses, formed through repeated experiences with early caregivers. EMDR targets the specific memories and experiences that formed the pattern. When those are processed, the nervous system's automatic response to closeness and threat genuinely changes." },
+      { q: "Do I need to remember specific childhood events for this to work?", a: "No. We work with whatever is available — emotional memories, body sensations, patterns you notice in current relationships. The processing doesn't require a clear autobiographical narrative. EMDR often surfaces relevant material during the process itself." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How is EMDR different from attachment-focused talk therapy?", a: "Attachment-focused talk therapy works through the therapeutic relationship itself — using the consistent, attuned experience of therapy to provide corrective emotional experiences. EMDR does this too, but adds a processing component that directly targets the memories and experiences that formed the insecure attachment. For many people, the combination is more powerful than either approach alone." },
+    ],
+  },
+  "emdr-for-divorce": {
+    isForYou: [
+      "You're going through or recovering from a divorce or separation and it's harder than you expected",
+      "Your sense of identity, your daily life, and your sense of the future have all been disrupted",
+      "There's grief, anger, or shame that you haven't been able to fully process",
+      "The divorce is activating older wounds — about worth, love, or whether you're enough",
+      "You're trying to function, parent, or work while also holding a tremendous amount of pain",
+      "You want support that goes deeper than practical adjustment",
+    ],
+    faqs: [
+      { q: "How does EMDR help with divorce specifically?", a: "Divorce involves multiple layers of loss — the relationship itself, the shared life, the future you imagined, sometimes a shared identity. EMDR can process the specific memories and losses that carry the most acute charge, as well as the older beliefs the divorce may have activated — about your worth, your lovability, your capacity to make good decisions." },
+      { q: "What if the divorce was the right decision but I'm still grieving?", a: "That's completely normal and worth addressing directly. Knowing a decision was right doesn't eliminate grief. EMDR isn't about convincing you that things are fine — it's about processing the genuine loss, the specific memories, and the grief that comes with the ending of a significant chapter, regardless of whether the ending was necessary." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Can EMDR help me co-parent more effectively?", a: "Indirectly, yes. When the acute distress, reactivity, and grief are processed, most people find they have more access to their own judgment and regulation in difficult co-parenting situations. The goal isn't to eliminate all conflict but to allow you to show up with more clarity and less reactivity." },
+    ],
+  },
+  "emdr-for-betrayal-trauma": {
+    isForYou: [
+      "Someone you trusted deeply violated that trust — through infidelity, deception, or a significant betrayal",
+      "The discovery shattered your sense of reality and what you thought you knew",
+      "You're cycling between disbelief, rage, grief, and numbness",
+      "The intrusive thoughts, hypervigilance, and inability to trust won't let up",
+      "You want to process what happened without it defining the rest of your life",
+      "You're ready to address this at a depth that talking about it over and over hasn't reached",
+    ],
+    faqs: [
+      { q: "Is betrayal trauma actually trauma in the clinical sense?", a: "Yes. Betrayal trauma — especially from a primary attachment figure — meets the clinical criteria for trauma and can produce PTSD-like symptoms: intrusive thoughts, hypervigilance, emotional dysregulation, and avoidance. The shattering of trust and reality that comes with betrayal is a genuine traumatic injury." },
+      { q: "Can EMDR help even if I'm still in the relationship?", a: "Yes. EMDR isn't a verdict on the relationship — it addresses the traumatic injury regardless of the relational outcome. Whether you're working to rebuild the relationship or leave it, processing the betrayal itself is valuable. EMDR helps you access your own clarity rather than react from the wound." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How long does betrayal trauma take to process?", a: "It varies considerably depending on the nature and duration of the betrayal, your history, and what else the betrayal activated. Many clients notice meaningful shifts within 10–16 sessions. For betrayals that connect to older attachment wounds, the work may take longer. I'll be honest with you about what I'm seeing as we go." },
+    ],
+  },
+  "emdr-for-codependency": {
+    isForYou: [
+      "Your sense of okay-ness depends heavily on how others around you are doing",
+      "You find it extremely difficult to set limits or prioritize your own needs",
+      "You've been described as a caretaker, a fixer, or someone who gives too much",
+      "Underneath the caretaking is anxiety — about what happens if you stop",
+      "You can see the pattern but you can't seem to stop it",
+      "You want to understand where it came from and change it at the root",
+    ],
+    faqs: [
+      { q: "Where does codependency come from?", a: "Codependency is typically a learned adaptation — it developed in an environment where attuning to others' needs was necessary for safety, approval, or love. Often it developed in childhood, in families with addiction, emotional instability, or chronic unpredictability. EMDR identifies and processes the specific experiences that made this pattern necessary." },
+      { q: "Can EMDR really change a pattern this ingrained?", a: "Yes — and this is one of EMDR's strongest applications. Patterns that feel like personality are often adaptive responses that were learned and can be unlearned, when the underlying experiences that made them necessary are processed. The pattern doesn't have to be permanent." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What does change actually look like — will I become less caring?", a: "No. The goal isn't to make you indifferent to others — it's to give you the ability to care from a place of genuine choice rather than anxiety. Most clients find that when the fear underneath the caretaking is processed, they actually become more effective and present in relationships, not less." },
+    ],
+  },
+  "emdr-for-negative-beliefs": {
+    isForYou: [
+      "There are things you believe about yourself that feel true at a bone-deep level — and that you can't think your way out of",
+      "Beliefs like 'I'm not enough,' 'I'm fundamentally flawed,' or 'I'm not safe' feel more real than any evidence to the contrary",
+      "You've tried journaling, affirmations, and cognitive work — the belief is still there",
+      "The belief shows up in your body, not just your thoughts",
+      "You want to change what you feel about yourself, not just what you think",
+      "You're ready to go to where these beliefs actually live",
+    ],
+    faqs: [
+      { q: "Why can't I just think my way out of a negative belief?", a: "Because negative core beliefs aren't stored primarily in the rational mind — they're held in the body and nervous system, encoded through experiences that predate sophisticated cognitive processing. Affirmations and logical reframes operate at the wrong level. EMDR works at the level where the beliefs are actually stored and maintained." },
+      { q: "How does EMDR change a core belief?", a: "We identify the specific experiences that installed and reinforced the belief. EMDR processes those experiences so they no longer carry the charge that maintains the belief. A more accurate positive belief is then explicitly strengthened during the session. Most people are surprised that they can feel different in a way they didn't after years of trying to think differently." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What if I don't know where the belief came from?", a: "You don't need to know. We can begin with the belief itself — how it feels in your body, when it shows up most strongly, what memories it's connected to — and the EMDR process often surfaces the relevant experiences. A clear origin story isn't required for the work to be effective." },
+    ],
+  },
+  "emdr-for-shame": {
+    isForYou: [
+      "There's something about you — or something that happened — that carries a particular weight of shame",
+      "The shame isn't just embarrassment — it's a deep sense that something is fundamentally wrong with you",
+      "You've been carrying this alone, often for a long time",
+      "Talking about it in detail feels impossible or too exposing",
+      "The shame is affecting your relationships, your self-expression, or your capacity to be seen",
+      "You want to heal it without having to fully disclose it",
+    ],
+    faqs: [
+      { q: "Do I have to fully disclose what I'm ashamed of?", a: "No — and for many people working with shame, this is the most important thing to know. EMDR does not require detailed verbal disclosure. You hold the experience in mind during the bilateral stimulation; you don't need to narrate it. Many people find this is what makes EMDR bearable for shame work when other approaches weren't." },
+      { q: "Where does shame come from?", a: "Shame is typically relational in origin — it develops through experiences of being rejected, humiliated, exposed, or made to feel fundamentally flawed by people who mattered. EMDR identifies and processes those experiences, which shifts shame at its roots rather than just addressing the surface-level feelings." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What does it feel like when shame is processed?", a: "Most clients describe it as a shift in the felt sense of the experience — it can still be remembered, but it no longer carries the same charge. The sense of being fundamentally wrong or exposed diminishes. Many people describe feeling lighter, or being able to hold the experience with more compassion for themselves." },
+    ],
+  },
+  "emdr-for-imposter-syndrome": {
+    isForYou: [
+      "You're accomplished by most measures, but you live with a persistent fear of being found out",
+      "You attribute your success to luck, timing, or other people — rarely to yourself",
+      "Praise and recognition don't land — they create more anxiety about living up to expectations",
+      "The fear of exposure is affecting your willingness to take on new challenges",
+      "You've analyzed the pattern intellectually and understand it, but it hasn't changed",
+      "You want to actually feel like you belong in the rooms you're in",
+    ],
+    faqs: [
+      { q: "Where does imposter syndrome come from?", a: "Imposter syndrome typically has roots in early experiences of conditional approval — environments where love or acceptance depended on performance, where nothing was ever quite good enough, or where standing out felt dangerous. EMDR targets those root experiences rather than just the thought patterns they produce." },
+      { q: "Can EMDR help when the stakes are high — like for executives or high performers?", a: "Yes — and I work with this population specifically. High performers often carry the most acute imposter syndrome precisely because the stakes are higher and the scrutiny is greater. EMDR provides an efficient, structured approach to addressing the underlying beliefs without requiring extensive verbal processing or time away from demanding professional lives." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What's the difference between healthy humility and imposter syndrome?", a: "Healthy humility is an accurate assessment of what you know and don't know. Imposter syndrome is a pervasive, distorted fear of exposure that operates regardless of evidence. The difference shows up in the body — healthy humility doesn't produce the same visceral fear of discovery that imposter syndrome does. EMDR targets the fear, not the humility." },
+    ],
+  },
+  "emdr-for-first-responders-therapy": {
+    isForYou: [
+      "You've seen things that most people never will, and you carry that weight",
+      "The job has changed you in ways you didn't choose",
+      "You're noticing hypervigilance, emotional numbing, or difficulty being present off-duty",
+      "Talking about it to someone who doesn't understand the work feels pointless",
+      "You're not looking for sympathy — you're looking for something that actually works",
+      "You're ready to address what you've accumulated before it costs you more",
+    ],
+    faqs: [
+      { q: "Do you understand first responder culture?", a: "I do — and I know that trust is earned, not assumed. I work with firefighters, paramedics, law enforcement, and ER clinicians who need a therapist who won't flinch, won't pathologize the work, and won't push them to process in ways that feel incompatible with who they are. EMDR is well-suited for this population precisely because it doesn't require you to verbally process at length." },
+      { q: "Is EMDR effective for the kind of repeated, cumulative trauma first responders experience?", a: "Yes. EMDR addresses both specific critical incidents and the underlying nervous system state that develops over a career of repeated exposure. The approach adapts to the layered, occupational nature of first responder trauma rather than treating it like a single event." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Is telehealth appropriate for this kind of work?", a: "For many first responders, telehealth is actually preferable — you don't have to be seen walking into a therapist's office, you can schedule around shifts, and you can be in your own space. The clinical work is the same. I've found that some clients are more open in a telehealth format precisely because of the privacy it affords." },
+    ],
+  },
+  "emdr-for-executives": {
+    isForYou: [
+      "You perform at the highest level professionally, but something beneath the surface is costing you",
+      "The pressure, isolation, or stakes of your role are taking a toll you haven't fully addressed",
+      "You're carrying something from your past — or from the work — that's affecting you more than you let on",
+      "You want an efficient, structured approach that respects your time and intelligence",
+      "You need absolute confidentiality and a therapist who understands high-performance environments",
+      "You're ready to do the inner work that your outer success has made easier to avoid",
+    ],
+    faqs: [
+      { q: "How is EMDR suited for executives specifically?", a: "EMDR is structured, evidence-based, and efficient — qualities that resonate with high performers who don't have patience for open-ended process. It addresses specific targets rather than wandering through general discussion. Many executives find it more compatible with how they approach problems in other domains: identify the issue, apply an effective method, measure the change." },
+      { q: "What kinds of things do executives typically bring to this work?", a: "The range is broad: imposter syndrome and fear of exposure, burnout and the beliefs that drive it, leadership-related trauma (being in charge during a crisis, a significant professional failure, managing others' suffering), family-of-origin patterns showing up in leadership style, and the relational cost of sustained high performance. Often what brings someone in is one thing, and what we work on is something deeper." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How do you handle confidentiality?", a: "With absolute seriousness. Everything shared in our sessions is protected by HIPAA and California confidentiality law. I do not disclose who my clients are. For executives who are concerned about privacy, telehealth actually offers additional protection — no waiting room, no chance of being seen." },
+    ],
+  },
+  "emdr-for-bipoc-clients": {
+    isForYou: [
+      "You're navigating multiple cultural identities and the specific stressors that come with that",
+      "Intergenerational trauma, systemic racism, or cultural displacement is part of what you're carrying",
+      "You want a therapist who doesn't require you to educate them about your experience",
+      "You've had experiences with providers who were well-meaning but didn't really get it",
+      "The cultural dimension of your experience is inseparable from your mental health",
+      "You want affirming, culturally grounded care that sees you in full context",
+    ],
+    faqs: [
+      { q: "What does culturally affirming EMDR care actually look like?", a: "It means your cultural context, intergenerational history, and the systemic forces you navigate are understood as real and relevant — not pathologized, not minimized, not treated as background. As a second-generation Persian American, I bring my own experience of navigating multiple cultural identities to this work. I don't require you to explain your experience before we can get to it." },
+      { q: "Can EMDR address racial trauma?", a: "Yes. Racial trauma — including experiences of discrimination, microaggressions, systemic injustice, and the cumulative effect of navigating a world not built for you — meets the clinical criteria for trauma and responds to EMDR. We address it with the same seriousness as any other form of trauma." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What about intergenerational trauma — can EMDR help with that?", a: "Yes. Intergenerational trauma — the transmission of unprocessed pain, adaptive patterns, and nervous system responses across generations — is increasingly well-understood clinically. EMDR addresses both the experiences you carry from your own life and the older wounds that were passed down. Many BIPOC clients find this framing resonates with what they've always known intuitively." },
+    ],
+  },
+  "lgbtq-affirming-emdr-therapy": {
+    isForYou: [
+      "You want a therapist where you don't have to manage their comfort with your identity",
+      "Minority stress, family rejection, or identity-based trauma is part of what you're carrying",
+      "Coming out, identity formation, or navigating a world that isn't always safe has left marks",
+      "You've had experiences with providers who were technically accepting but not truly affirming",
+      "Your identity is inseparable from your mental health, and you want a therapist who understands that",
+      "You want fully knowledgeable, genuinely affirming care",
+    ],
+    faqs: [
+      { q: "What does fully affirming EMDR care actually mean?", a: "It means your identity is not treated as a problem to be explored or a variable to be bracketed — it's understood as a real and valid aspect of who you are. I'm knowledgeable about LGBTQ+ specific stressors, the research on minority stress, and the ways that navigating heteronormative and cisnormative environments creates real psychological burden. You don't have to explain yourself before we can get to the work." },
+      { q: "Can EMDR address identity-based trauma specifically?", a: "Yes. Experiences of rejection, violence, harassment, or discrimination based on identity meet the clinical criteria for trauma and respond to EMDR. The cumulative effect of minority stress — the ongoing experience of navigating a world that isn't built for you — can also be addressed, not just individual incidents." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What about family rejection — can EMDR help with that?", a: "Yes. Family rejection is one of the most significant risk factors for mental health challenges in LGBTQ+ individuals, and it can leave deep wounds around worth, belonging, and lovability. EMDR addresses those wounds at their roots — the specific experiences and the beliefs they installed — rather than just supporting you to cope with the loss." },
+    ],
+  },
+  "emdr-for-new-parents": {
+    isForYou: [
+      "The transition to parenthood has been harder than you expected or than people around you seem to find it",
+      "You're experiencing postpartum depression, anxiety, or a disconnection you can't explain",
+      "The birth experience was frightening, traumatic, or not what you hoped for",
+      "Your sense of identity has shifted in ways that feel disorienting or frightening",
+      "You're trying to care for a new person while not being able to care for yourself",
+      "You want support that takes what you're going through seriously without judgment",
+    ],
+    faqs: [
+      { q: "Is EMDR safe in the postpartum period?", a: "Yes. EMDR is considered safe and effective for postpartum depression, anxiety, and birth trauma. We take particular care with pacing and stabilization — the postpartum period carries a lot, and we don't add to the burden. The work is adapted to where you are physically, emotionally, and logistically." },
+      { q: "What if my main struggle is birth trauma, not depression?", a: "Birth trauma is a specific and real form of trauma that EMDR addresses very effectively. Fear during delivery, loss of control, medical complications, or the gap between what you hoped for and what happened — these are all treatable with EMDR. Many clients find significant relief in just a few sessions targeting the birth experience." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Can I do telehealth sessions with a baby at home?", a: "Yes — and telehealth is often the only practical option for new parents. We can be flexible about scheduling, and you don't have to arrange childcare or leave the house. The clinical work is the same. You just need a private space for the session itself, even if that's a bedroom or a parked car." },
+    ],
+  },
+  "emdr-for-prenatal-mental-health": {
+    isForYou: [
+      "You're pregnant and experiencing anxiety, depression, or fear that feels like more than normal nerves",
+      "Past trauma, loss, or difficult pregnancy experiences are affecting this pregnancy",
+      "You're worried about your capacity to parent or about repeating patterns from your own childhood",
+      "The enormity of what's coming is activating things you haven't fully dealt with",
+      "You want support during pregnancy that takes your mental health as seriously as your physical health",
+      "You're ready to address this now rather than waiting until after the birth",
+    ],
+    faqs: [
+      { q: "Is EMDR safe during pregnancy?", a: "Yes. EMDR is a non-pharmacological intervention with no known risks during pregnancy. Many pregnant clients find it particularly valuable precisely because it doesn't involve medication. We adapt the approach as needed — including modifications to the bilateral stimulation — to ensure you're comfortable throughout." },
+      { q: "Can EMDR help with fear of childbirth?", a: "Yes — this is called tokophobia in clinical terms, and EMDR addresses it effectively. Whether the fear is rooted in a previous birth experience, a specific fear of pain or loss of control, or older experiences, EMDR targets the specific memories and beliefs driving the fear and can significantly reduce it before delivery." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What if I had a previous pregnancy loss — can EMDR help with that?", a: "Yes. Pregnancy loss — miscarriage, stillbirth, or termination — can be profoundly traumatic, and the grief and fear it produces often intensifies in subsequent pregnancies. EMDR can process the loss itself as well as the anxiety it generates in the current pregnancy, helping you be more present for what's happening now." },
+    ],
+  },
+  "emdr-therapy-for-men": {
+    isForYou: [
+      "You've been carrying something for a long time and you're tired of it",
+      "Talking about feelings in an open-ended way sounds unappealing — you want something structured and direct",
+      "You're high-functioning but something is affecting you more than you let on",
+      "You've resisted therapy because it seemed designed for a different kind of person",
+      "You don't need someone to tell you your feelings are valid — you need something that actually works",
+      "You're ready to deal with this efficiently and get on with your life",
+    ],
+    faqs: [
+      { q: "Why does EMDR resonate with men who haven't benefited from talk therapy?", a: "EMDR is structured and target-focused — you're not expected to free-associate or process out loud for an hour. The bilateral stimulation does much of the work internally. Many men find this more compatible with how they approach problems in other areas of their lives: identify what needs to be addressed, apply an effective method, assess the result. Less talking, more processing." },
+      { q: "Do I have to talk about my feelings extensively?", a: "No. EMDR doesn't require extended verbal processing of emotions. You hold the target in mind during the bilateral stimulation — the processing is largely internal. You share what's useful for the work, but there's no requirement to narrate your emotional experience at length." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "What do men typically bring to EMDR?", a: "The range is broad: trauma (combat, accidents, childhood, first responder work), anxiety and anger that feels out of proportion to situations, relationship difficulties, burnout, depression that's been masked by overwork, and the particular weight of feeling like you're not allowed to struggle. Many men come in with one presenting concern and discover that what's underneath it is something they've been carrying for decades." },
+    ],
+  },
+  "emdr-therapy-for-adults": {
+    isForYou: [
+      "You're an adult carrying the weight of experiences — past or present — that are affecting your life",
+      "You've considered therapy but weren't sure what approach would actually help",
+      "Something has shifted recently that made you realize you don't want to keep going the way you've been going",
+      "You're ready for an evidence-based approach that goes deeper than coping strategies",
+      "You want to work with a therapist who takes your time seriously and knows what they're doing",
+      "You're ready to actually address what's getting in the way",
+    ],
+    faqs: [
+      { q: "What kinds of issues does EMDR address?", a: "EMDR was originally developed for trauma and PTSD, but its applications have expanded significantly. I use EMDR to address trauma of all kinds, anxiety, depression, grief, burnout, negative core beliefs, phobias, relationship patterns, shame, and the aftermath of difficult life experiences. If something from the past is affecting your present, EMDR is likely relevant." },
+      { q: "How is EMDR different from regular therapy?", a: "Regular talk therapy works primarily through insight, narrative, and the therapeutic relationship. EMDR adds a processing component — bilateral stimulation — that directly targets how memories and beliefs are stored in the nervous system. For many people, EMDR reaches things that years of talk therapy couldn't, because it operates at a different level." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How do I know if EMDR is right for me?", a: "The free 15-minute consultation is designed to answer exactly this question. We talk about what's going on and whether EMDR is a good fit. I'll be honest with you if I think a different approach would serve you better. There's no pressure and no obligation." },
+    ],
+  },
+  "emdr-vs-talk-therapy": {
+    isForYou: [
+      "You've done talk therapy and found it helpful but incomplete — something still feels stuck",
+      "You want to understand what EMDR actually does differently before committing to it",
+      "You've heard that EMDR is more efficient and want to know if that's true",
+      "You have something specific — a trauma, a belief, a pattern — that talk therapy hasn't resolved",
+      "You're not opposed to talk therapy, you just want to know if there's something better for your situation",
+      "You're ready to make an informed decision about what kind of help to seek",
+    ],
+    faqs: [
+      { q: "Does EMDR replace talk therapy or complement it?", a: "Both, depending on the situation. EMDR integrates talking — history-taking, case conceptualization, processing what comes up. But it adds a processing component that talk therapy doesn't have. For some people, EMDR is their primary modality. For others, it's used in combination with ongoing talk therapy. I integrate EMDR within a broader therapeutic relationship, not as a standalone protocol." },
+      { q: "Is EMDR better than talk therapy?", a: "For trauma, the evidence strongly favors EMDR — it's consistently faster and produces comparable or superior outcomes. For other presentations, the comparison is more nuanced. EMDR reaches certain things that talk therapy can't, but talk therapy reaches things that EMDR doesn't. The right approach depends on what you're working on and what your history is." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How long does EMDR take compared to talk therapy?", a: "For specific traumas or phobias, EMDR is typically significantly faster — weeks to months rather than years. For more complex presentations, the timelines are more comparable. The efficiency of EMDR comes from its ability to produce change at the level of memory storage rather than just insight and understanding." },
+    ],
+  },
+  "emdr-vs-cbt": {
+    isForYou: [
+      "You've tried CBT and found it helpful but incomplete — the thoughts changed but something else didn't",
+      "You want to understand what EMDR does that CBT doesn't before deciding",
+      "You've heard that EMDR works at a deeper level and want to know if that's true",
+      "Something specific — a trauma, a phobia, a core belief — hasn't responded to cognitive approaches",
+      "You're not opposed to CBT, you just want to know if there's something more appropriate for your situation",
+      "You're ready to make an informed decision about your care",
+    ],
+    faqs: [
+      { q: "What does EMDR do that CBT can't?", a: "CBT works at the level of cognition — it identifies distorted thoughts and replaces them with more accurate ones. EMDR works at the level of memory storage — it targets how experiences are encoded in the nervous system. For many people, changing the thought isn't enough because the belief isn't primarily cognitive. EMDR reaches the body-level encoding that CBT doesn't address." },
+      { q: "Is EMDR evidence-based like CBT?", a: "Yes. EMDR has a robust evidence base — it's recognized by the WHO, APA, VA, and American Psychiatric Association. For PTSD specifically, EMDR has comparable or superior outcomes to trauma-focused CBT in the research literature, and typically in fewer sessions." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "Can I do EMDR if I've already done a lot of CBT?", a: "Absolutely — and many clients come to EMDR after significant CBT work. The cognitive understanding they've developed through CBT often enhances the EMDR work. They arrive knowing their patterns and beliefs; EMDR addresses the level underneath that CBT didn't reach." },
+    ],
+  },
+  "what-to-expect-in-emdr": {
+    isForYou: [
+      "You're curious about EMDR but don't know enough about it to decide if it's right for you",
+      "You've heard it's effective but the description sounds strange and you want it demystified",
+      "You want to know what actually happens in a session before committing to one",
+      "You're worried it will feel overwhelming or out of control",
+      "You want honest information, not marketing language",
+      "You're ready to make an informed decision",
+    ],
+    faqs: [
+      { q: "What actually happens during an EMDR session?", a: "After history-taking and preparation in early sessions, an active EMDR session involves: identifying a specific memory or target; noticing the associated image, belief, emotion, and body sensation; and then engaging in bilateral stimulation — typically following a moving dot on the screen with your eyes — while holding the target in mind. The processing happens during the sets of bilateral stimulation. Between sets, you briefly report what's coming up. The therapist guides the direction based on what you share." },
+      { q: "Is EMDR like hypnosis?", a: "No. You are fully conscious and in control throughout. You're not in a trance, you're not told what to think or feel, and you can stop at any point. The bilateral stimulation facilitates the brain's natural processing mechanism — it doesn't put you under or make you suggestible. Many people are surprised by how present and aware they feel during EMDR." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How will I know if EMDR is working?", a: "The most common sign is that the memory loses its charge — it can still be recalled, but it no longer produces the same emotional or physical intensity. Negative beliefs shift: 'I am not safe' becomes genuinely less true-feeling, not just intellectually challenged. Most people notice this shift happening during sessions, not just in retrospect." },
+    ],
+  },
+};
+
+// Inject condition-specific data
+SEO_CONDITIONS.forEach(p => {
+  const data = CONDITION_DATA[p.slug];
+  if (data) {
+    p.isForYou = data.isForYou;
+    p.faqs = data.faqs;
+  } else {
+    // Fallback for any missing
+    p.isForYou = [
+      "You've tried other approaches and something is still stuck",
+      "It's showing up in your body, your relationships, or your ability to be present",
+      "You're ready for an evidence-based approach that goes deeper than coping strategies",
+      "You don't want to spend years in therapy to feel meaningfully different",
+      "You want to work with someone who knows what they're doing",
+      "You're ready to actually address what's getting in the way",
+    ];
+    p.faqs = [
+      { q: "Do I have to describe everything in detail?", a: "No. EMDR does not require you to narrate or retell your experiences at length. The processing happens internally during the bilateral stimulation. You share what's useful for the work — nothing more." },
+      { q: "How is EMDR different from talk therapy?", a: "Talk therapy works through insight and narrative. EMDR adds bilateral stimulation that directly targets how memories and beliefs are stored in the nervous system. For many people, EMDR reaches things that talk therapy couldn't, because it operates at a different level." },
+      { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." },
+      { q: "How long does it take to see results?", a: "It depends on what we're working on. Some focused issues resolve in 6–12 sessions. Complex or longstanding patterns take longer. I'll be honest with you about what I'm seeing as we go and won't keep you in therapy longer than you need to be." },
+    ];
+  }
+});
+
 const SEO_STYLES = `
-  .seo-page { min-height: 100vh; background: var(--ink); color: var(--text); font-family: 'Jost', sans-serif; }
-  .seo-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; background: var(--nav-bg); border-bottom: 1px solid var(--border); }
-  .seo-nav-logo { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 400; color: var(--gold); letter-spacing: 0.03em; line-height: 1.2; text-decoration: none; display: block; }
-  .seo-nav-logo span { display: block; font-size: 11px; letter-spacing: 0.12em; opacity: 0.7; margin-top: 2px; font-family: 'Jost', sans-serif; font-weight: 300; color: var(--text); }
-  .seo-hero { padding: 160px 60px 80px; max-width: 860px; margin: 0 auto; }
-  .seo-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 14px; }
-  .seo-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
-  .seo-h1 { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 400; line-height: 1.08; color: var(--text); margin-bottom: 28px; }
-  .seo-h1 em { font-style: italic; color: var(--gold); }
-  .seo-intro { font-size: 18px; line-height: 1.8; color: var(--muted); font-weight: 300; max-width: 720px; margin-bottom: 48px; }
-  .seo-cta-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 80px; }
-  .seo-divider { border: none; border-top: 1px solid var(--border); margin: 0 60px; }
-  .seo-section { max-width: 860px; margin: 0 auto; padding: 72px 60px; }
-  .seo-section-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
-  .seo-section-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
-  .seo-h2 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 400; line-height: 1.1; color: var(--text); margin-bottom: 24px; }
-  .seo-h2 em { font-style: italic; color: var(--gold); }
-  .seo-body { font-size: 16px; line-height: 1.85; color: var(--muted); font-weight: 300; margin-bottom: 20px; }
-  .seo-body strong { color: var(--text); font-weight: 500; }
-  .seo-phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 40px; }
-  .seo-phase { padding: 24px 20px; border: 1px solid var(--border); background: rgba(184,130,106,0.03); }
-  .seo-phase-num { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); opacity: 0.5; margin-bottom: 8px; }
-  .seo-phase-title { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); margin-bottom: 6px; }
-  .seo-phase-desc { font-size: 11px; color: var(--muted); line-height: 1.6; font-weight: 300; }
-  .seo-about { display: grid; grid-template-columns: 340px 1fr; gap: 56px; align-items: start; margin-top: 40px; }
-  .seo-about img { width: 100%; min-height: 360px; object-fit: cover; object-position: center 15%; display: block; }
-  .seo-credentials { display: flex; flex-direction: column; gap: 0; margin-top: 16px; }
-  .seo-credential { font-size: 12px; color: var(--muted); padding: 8px 0; border-bottom: 1px solid var(--border); }
-  .seo-credential:first-child { border-top: 1px solid var(--border); }
-  .seo-credential strong { color: var(--text); font-weight: 500; }
-  .seo-about-text p { font-size: 15px; line-height: 1.85; color: var(--muted); font-weight: 300; margin-bottom: 16px; }
-  .seo-about-text p strong { color: var(--text); font-weight: 500; }
-  .seo-cta-section { background: var(--ink2); padding: 72px 60px; text-align: center; }
-  .seo-cta-section h2 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 400; color: var(--text); margin-bottom: 16px; }
-  .seo-cta-section h2 em { font-style: italic; color: var(--gold); }
-  .seo-cta-section p { font-size: 16px; color: var(--muted); font-weight: 300; margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; }
-  .seo-footer { padding: 40px 60px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-  .seo-footer-logo { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--gold); text-decoration: none; }
-  .seo-footer-logo span { display: block; font-size: 11px; opacity: 0.6; margin-top: 2px; font-family: 'Jost', sans-serif; font-weight: 300; color: var(--muted); }
-  .seo-footer-note { font-size: 11px; color: var(--muted); max-width: 400px; line-height: 1.6; }
-  .seo-crisis { background: var(--ink2); border-top: 1px solid var(--border); padding: 14px 60px; text-align: center; font-size: 12px; color: var(--muted); }
-  .seo-crisis strong { color: var(--text); }
-  @media (max-width: 768px) {
-    .seo-nav { padding: 18px 24px; }
-    .seo-hero { padding: 120px 24px 60px; }
-    .seo-h1 { font-size: 36px; }
-    .seo-section { padding: 56px 24px; }
-    .seo-divider { margin: 0 24px; }
-    .seo-phases { grid-template-columns: 1fr 1fr; }
-    .seo-about { grid-template-columns: 1fr; }
-    .seo-cta-section { padding: 56px 24px; }
-    .seo-footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
-    .seo-crisis { padding: 14px 24px; }
+  .seo-page { min-height:100vh; background:var(--ink); color:var(--text); font-family:'Jost',sans-serif; }
+  .seo-nav { position:sticky; top:0; z-index:50; padding:18px 60px; display:flex; justify-content:space-between; align-items:center; background:var(--nav-bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px); }
+  .seo-logo { text-decoration:none; }
+  .seo-logo-name { font-family:'Playfair Display',serif; font-size:15px; color:var(--gold); letter-spacing:0.02em; }
+  .seo-logo-sub { font-size:10px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; margin-top:2px; font-weight:300; }
+  .seo-hero { padding:80px 60px 72px; max-width:900px; border-bottom:1px solid var(--border); }
+  .seo-eyebrow { font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; display:flex; align-items:center; gap:14px; }
+  .seo-eyebrow::before { content:''; display:inline-block; width:32px; height:1px; background:var(--gold); flex-shrink:0; }
+  .seo-h1 { font-family:'Playfair Display',serif; font-size:52px; font-weight:400; line-height:1.07; color:var(--text); margin-bottom:24px; }
+  .seo-h1 em { font-style:italic; color:var(--gold); }
+  .seo-hero-sub { font-size:17px; line-height:1.78; color:var(--muted); font-weight:300; max-width:640px; margin-bottom:16px; }
+  .seo-hero-meta { font-size:12px; color:var(--gold); letter-spacing:0.05em; margin-bottom:36px; display:flex; gap:20px; flex-wrap:wrap; opacity:0.85; }
+  .seo-section { padding:72px 60px; max-width:900px; border-bottom:1px solid var(--border); }
+  .seo-section.alt { background:var(--ink2); }
+  .seo-h2 { font-family:'Playfair Display',serif; font-size:38px; font-weight:400; line-height:1.1; color:var(--text); margin-bottom:40px; }
+  .seo-h2 em { font-style:italic; color:var(--gold); }
+  .seo-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+  .seo-grid-item { padding:24px 28px; border-top:1px solid var(--border); display:flex; gap:16px; align-items:flex-start; }
+  .seo-grid-item:nth-child(odd) { border-right:1px solid var(--border); }
+  .seo-arrow { color:var(--gold); font-size:15px; margin-top:2px; flex-shrink:0; }
+  .seo-grid-text { font-size:15px; line-height:1.7; color:var(--text); font-weight:300; margin:0; }
+  .seo-cta-inline { margin-top:40px; padding-top:32px; border-top:1px solid var(--border); display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  .seo-cta-note { font-size:12px; color:var(--muted); font-weight:300; }
+  .seo-steps { display:flex; flex-direction:column; }
+  .seo-step { display:grid; grid-template-columns:80px 1fr; border-top:1px solid var(--border); padding:32px 0; }
+  .seo-step-num { font-family:'Playfair Display',serif; font-size:32px; color:var(--gold); opacity:0.35; line-height:1; }
+  .seo-step-title { font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--text); margin-bottom:10px; }
+  .seo-step-body { font-size:15px; line-height:1.75; color:var(--muted); font-weight:300; margin:0; }
+  .seo-about-grid { display:grid; grid-template-columns:300px 1fr; gap:56px; align-items:start; }
+  .seo-about-img { width:100%; display:block; object-fit:cover; object-position:center 15%; min-height:360px; }
+  .seo-about-body p { font-size:15px; line-height:1.8; color:var(--muted); font-weight:300; margin-bottom:14px; }
+  .seo-about-body p strong { color:var(--text); font-weight:500; }
+  .seo-pills { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+  .seo-pill { font-size:11px; padding:5px 12px; border:1px solid var(--border); color:var(--muted); letter-spacing:0.04em; }
+  .seo-rates { border:1px solid var(--border); padding:20px 24px; margin-bottom:24px; }
+  .seo-rates-row { display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--border); }
+  .seo-rates-row:last-of-type { border-bottom:none; }
+  .seo-rates-label { font-size:13px; color:var(--muted); font-weight:300; }
+  .seo-rates-price { font-family:'Playfair Display',serif; font-size:20px; color:var(--text); }
+  .seo-rates-note { font-size:11px; color:var(--muted); line-height:1.6; margin:12px 0 0; font-weight:300; }
+  .seo-faq-item { border-top:1px solid var(--border); }
+  .seo-faq-btn { width:100%; text-align:left; padding:22px 0; display:flex; justify-content:space-between; align-items:center; background:none; border:none; cursor:pointer; }
+  .seo-faq-q { font-size:16px; font-weight:400; color:var(--text); line-height:1.4; padding-right:24px; font-family:'Jost',sans-serif; }
+  .seo-faq-icon { color:var(--gold); font-size:20px; flex-shrink:0; font-weight:300; transition:transform 0.2s; }
+  .seo-faq-a { padding-bottom:24px; font-size:15px; line-height:1.8; color:var(--muted); font-weight:300; max-width:640px; }
+  .seo-booking { padding:80px 60px; background:#3D2D26; text-align:center; }
+  .seo-booking h2 { font-family:'Playfair Display',serif; font-size:42px; font-weight:400; color:#FAF7F4; margin-bottom:16px; line-height:1.1; }
+  .seo-booking h2 em { color:#C9967E; font-style:italic; }
+  .seo-booking p { font-size:16px; color:rgba(250,247,244,0.65); font-weight:300; margin:0 auto 36px; max-width:480px; line-height:1.7; }
+  .seo-booking-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:28px; }
+  .seo-booking-contacts { display:flex; gap:28px; justify-content:center; flex-wrap:wrap; }
+  .seo-booking-contact { font-size:13px; color:rgba(250,247,244,0.45); text-decoration:none; letter-spacing:0.04em; }
+  .seo-booking-contact:hover { color:rgba(250,247,244,0.7); }
+  .seo-footer { padding:32px 60px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .seo-footer-note { font-size:11px; color:var(--muted); max-width:400px; line-height:1.6; margin:0; }
+  .seo-footer-back { font-size:12px; color:var(--gold); text-decoration:none; }
+  .seo-crisis { background:var(--ink2); border-top:1px solid var(--border); padding:12px 60px; text-align:center; font-size:11px; color:var(--muted); }
+  .seo-crisis strong { color:var(--text); }
+  .btn-seo-gold { background:var(--gold); color:white; padding:14px 36px; font-family:'Jost',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; display:inline-block; border:none; cursor:pointer; transition:background 0.2s; }
+  .btn-seo-gold:hover { background:var(--gold-light); }
+  .btn-seo-gold-lg { padding:16px 44px; font-size:13px; }
+  @media(max-width:768px){
+    .seo-nav{padding:16px 24px;}
+    .seo-hero{padding:60px 24px 56px;}
+    .seo-h1{font-size:36px;}
+    .seo-section{padding:56px 24px;}
+    .seo-grid{grid-template-columns:1fr;}
+    .seo-grid-item:nth-child(odd){border-right:none;}
+    .seo-about-grid{grid-template-columns:1fr;}
+    .seo-booking{padding:56px 24px;}
+    .seo-footer{padding:28px 24px;flex-direction:column;align-items:flex-start;}
+    .seo-crisis{padding:12px 24px;}
   }
 `;
 
-const SEO_PHASES = [
-  { num: "01", title: "History & Planning", desc: "We explore your history and identify targets for processing." },
-  { num: "02", title: "Preparation", desc: "You learn stabilization techniques and what to expect." },
-  { num: "03", title: "Assessment", desc: "We identify specific memories and beliefs to target." },
-  { num: "04", title: "Desensitization", desc: "Bilateral stimulation processes the memory and reduces its charge." },
-  { num: "05", title: "Installation", desc: "A positive belief is strengthened to replace the limiting one." },
-  { num: "06", title: "Body Scan", desc: "We check for residual tension and close the session safely." },
-  { num: "07", title: "Reevaluation", desc: "We review progress and adjust our approach as you grow." },
-  { num: "08", title: "Integration", desc: "New insights and relief become part of daily life." },
+const SEO_STEPS = [
+  { num: "01", title: "Free 15-min consultation", body: "We talk briefly about what's going on and whether EMDR is a good fit. No forms, no intake paperwork yet — just a real conversation. You can ask anything." },
+  { num: "02", title: "History & preparation", body: "The first full sessions are about understanding your history and building the stabilization skills you'll need. No processing happens until you feel ready and grounded." },
+  { num: "03", title: "Active processing", body: "We target specific memories and beliefs using bilateral stimulation. Sessions are 45 or 60 minutes, via video. Most people notice real shifts within a handful of sessions." },
 ];
 
-function SEOLocationPage({ data, bookingUrl }) {
-  const { city, region, isOnline } = data;
-  const locationPhrase = isOnline ? `throughout California` : `in ${city} and ${region}`;
-  const locationPhraseShort = isOnline ? `California` : `${city}, CA`;
+function SEONav({ bookingUrl }) {
+  return (
+    <nav className="seo-nav">
+      <a href="/" className="seo-logo">
+        <div className="seo-logo-name">EMDR Therapy Bay Area</div>
+        <div className="seo-logo-sub">Marcus Ghiasi, LMFT</div>
+      </a>
+      <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consult</a>
+    </nav>
+  );
+}
 
+function SEOIsItRight({ items }) {
+  return (
+    <section className="seo-section">
+      <div className="seo-eyebrow">Is this right for you?</div>
+      <h2 className="seo-h2">You might be a good fit <em>if...</em></h2>
+      <div className="seo-grid">
+        {items.map((item, i) => (
+          <div className="seo-grid-item" key={i}>
+            <span className="seo-arrow">→</span>
+            <p className="seo-grid-text">{item}</p>
+          </div>
+        ))}
+      </div>
+      <div className="seo-cta-inline">
+        <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Schedule a free 15-min consultation</a>
+        <span className="seo-cta-note">No obligation. Takes 2 minutes to book.</span>
+      </div>
+    </section>
+  );
+}
+
+function SEOWhatToExpect() {
+  return (
+    <section className="seo-section alt">
+      <div className="seo-eyebrow">What to expect</div>
+      <h2 className="seo-h2">Three steps, <em>no surprises.</em></h2>
+      <div className="seo-steps">
+        {SEO_STEPS.map(s => (
+          <div className="seo-step" key={s.num}>
+            <div className="seo-step-num">{s.num}</div>
+            <div>
+              <div className="seo-step-title">{s.title}</div>
+              <p className="seo-step-body">{s.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function SEOAbout({ locationPhrase }) {
   useEffect(() => {
-    document.title = `EMDR Therapy ${isOnline ? "Online" : `in ${city}`} | Marcus Ghiasi, LMFT`;
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", `EMDR therapy ${locationPhrase}. Marcus Ghiasi, LMFT — trauma, anxiety, depression, grief. Telehealth. Free 15-min consultation.`);
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "MedicalBusiness",
-      "name": `EMDR Therapy ${locationPhraseShort} — Marcus Ghiasi, LMFT`,
-      "url": `https://emdrtherapybayarea.com/${data.slug}`,
-      "telephone": "(415) 857-5799",
-      "areaServed": locationPhraseShort,
-      "medicalSpecialty": "EMDR Therapy",
+    const existing = document.getElementById("pt-badge-script-seo");
+    if (existing) return;
+    const script = document.createElement("script");
+    script.id = "pt-badge-script-seo";
+    script.src = "https://member.psychologytoday.com/verified-seal.js";
+    script.setAttribute("data-badge", "13");
+    script.setAttribute("data-id", "1134128");
+    script.setAttribute("data-code", "aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy8xMy9wcm9maWxlLzExMzQxMjg/Y2FsbGJhY2s9c3hjYWxsYmFjaw==");
+    document.body.appendChild(script);
+    return () => {
+      const s = document.getElementById("pt-badge-script-seo");
+      if (s) document.body.removeChild(s);
     };
-    const s = document.createElement("script");
-    s.type = "application/ld+json";
-    s.text = JSON.stringify(schema);
-    document.head.appendChild(s);
-    return () => { document.head.removeChild(s); };
   }, []);
 
   return (
-    <div className="seo-page">
-      <nav className="seo-nav">
-        <a href="/" className="seo-nav-logo">
-          EMDR Therapy Bay Area
-          <span>Marcus Ghiasi, LMFT</span>
-        </a>
-        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="nav-cta">Book a consult</a>
-      </nav>
-
-      <div className="seo-hero">
-        <div className="seo-eyebrow">EMDR Therapy · {locationPhraseShort} · Telehealth</div>
-        <h1 className="seo-h1">
-          EMDR Therapy {isOnline ? "Online" : `in ${city}`}<br />
-          <em>{isOnline ? "Available Throughout California" : `Serving ${region}`}</em>
-        </h1>
-        <p className="seo-intro">
-          If you are looking for EMDR therapy {locationPhrase}, you have found the right place. I am Marcus Ghiasi, a Licensed Marriage and Family Therapist (LMFT #158475) specializing in EMDR for trauma, anxiety, depression, grief, and life transitions. My practice is fully virtual — which means I can work with clients {locationPhrase} without anyone having to commute.
-        </p>
-        <div className="seo-cta-row">
-          <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn-gold">Schedule a free consultation</a>
-          <a href="/" className="btn-outline">Learn more about my practice</a>
+    <section className="seo-section">
+      <div className="seo-eyebrow">About</div>
+      <h2 className="seo-h2">Marcus <em>Ghiasi,</em> LMFT</h2>
+      <div className="seo-about-grid">
+        <div>
+          <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" width="400" height="533" loading="lazy" className="seo-about-img" />
         </div>
-      </div>
-
-      <hr className="seo-divider" />
-
-      <div className="seo-section">
-        <div className="seo-section-label">What is EMDR</div>
-        <h2 className="seo-h2">A therapy that works<br /><em>below the surface.</em></h2>
-        <p className="seo-body">
-          <strong>EMDR (Eye Movement Desensitization and Reprocessing)</strong> is an evidence-based therapy recognized by the WHO, APA, and VA as a gold-standard treatment for trauma. It works through bilateral stimulation — guided eye movements or tapping — to help your brain reprocess stuck memories and release their emotional charge.
-        </p>
-        <p className="seo-body">
-          When something traumatic happens, the brain can store the memory in a fragmented, dysregulated way. EMDR helps <strong>complete the natural processing cycle</strong> it could not finish at the time — so the past loses its grip on your present life. No detailed retelling required.
-        </p>
-        <p className="seo-body">
-          Because my practice is fully telehealth, EMDR therapy {locationPhrase} is accessible wherever you are — your home, your office, anywhere private and comfortable. The bilateral stimulation tool I use works seamlessly through your screen.
-        </p>
-        <div className="seo-phases">
-          {SEO_PHASES.map(p => (
-            <div className="seo-phase" key={p.num}>
-              <div className="seo-phase-num">{p.num}</div>
-              <div className="seo-phase-title">{p.title}</div>
-              <div className="seo-phase-desc">{p.desc}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <hr className="seo-divider" />
-
-      <div className="seo-section">
-        <div className="seo-section-label">About</div>
-        <h2 className="seo-h2">Marcus <em>Ghiasi,</em> LMFT</h2>
-        <div className="seo-about">
-          <div>
-            <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" width="400" height="533" loading="lazy" />
-            <div className="seo-credentials">
-              <div className="seo-credential"><strong>LMFT</strong> #158475 — California</div>
-              <div className="seo-credential"><strong>EMDR Trained</strong> — EMDRIA</div>
-              <div className="seo-credential"><strong>MA</strong> Counseling Psychology — USF</div>
-              <div className="seo-credential"><strong>BA</strong> Psychology — SF State</div>
-              <div className="seo-credential"><strong>10+ Years</strong> experience</div>
-              <div className="seo-credential"><strong>Telehealth</strong> — California-wide</div>
-            </div>
+        <div className="seo-about-body">
+          <p>I&apos;m a licensed Marriage and Family Therapist (LMFT #158475) and the founder of <strong>Bayside Wellness &amp; Counseling</strong>, based in Oakland. I&apos;ve been doing this work for over 10 years.</p>
+          <p>I specialize in EMDR because I&apos;ve seen it create change that talk therapy alone couldn&apos;t reach — and I work entirely via telehealth so I can see clients {locationPhrase || "throughout California"}.</p>
+          <div className="seo-pills">
+            {["LMFT #158475","EMDRIA Trained","MA — USF","BA — SF State","10+ Years","Telehealth CA"].map(c => (
+              <span key={c} className="seo-pill">{c}</span>
+            ))}
           </div>
-          <div className="seo-about-text">
-            <p>
-              I am a licensed Marriage and Family Therapist and the founder of <strong>Bayside Wellness &amp; Counseling</strong>, based in Oakland, California. I have been working with adults navigating trauma, anxiety, depression, grief, and the weight of lives that have been harder than they should have been for over <strong>10 years</strong>.
-            </p>
-            <p>
-              I specialize in EMDR because I have seen it create change that talk therapy alone could not reach. My practice is fully virtual — I work with clients {locationPhrase} and bring the same care and attentiveness to a telehealth session that I would to an in-person one.
-            </p>
-            <p>
-              The first step is a free 15-minute consultation. No pressure, no obligation — just a chance to see if we are a good fit.
-            </p>
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ marginTop: "8px", display: "inline-block" }}>Book your free consultation</a>
+          <div className="seo-rates">
+            <div className="seo-rates-row"><span className="seo-rates-label">45-minute session</span><span className="seo-rates-price">$240</span></div>
+            <div className="seo-rates-row"><span className="seo-rates-label">60-minute session</span><span className="seo-rates-price">$320</span></div>
+            <p className="seo-rates-note">Private pay. Superbill provided — many PPO clients recoup a portion through out-of-network benefits. HSA/FSA accepted.</p>
+          </div>
+          <div style={{ display: "flex", gap: "20px", alignItems: "center", flexWrap: "wrap", marginTop: "24px" }}>
+            <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consultation</a>
+            <div className="sxc-profile" data-badge="13" data-id="1134128" style={{ display: "inline-block" }}></div>
           </div>
         </div>
       </div>
+    </section>
+  );
+}
 
-      <div className="seo-cta-section">
-        <h2>Ready to <em>begin?</em></h2>
-        <p>The first step is a free 15-minute consultation — a chance to ask questions and see if we are a good fit. No obligation, no pressure.</p>
-        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn-gold">Schedule a free consultation</a>
+function SEOFaq({ faqs }) {
+  const [open, setOpen] = useState(null);
+  return (
+    <section className="seo-section">
+      <div className="seo-eyebrow">Common questions</div>
+      <h2 className="seo-h2">Before you <em>reach out.</em></h2>
+      <div>
+        {faqs.map((faq, i) => (
+          <div className="seo-faq-item" key={i}>
+            <button className="seo-faq-btn" onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}>
+              <span className="seo-faq-q">{faq.q}</span>
+              <span className="seo-faq-icon" style={{ transform: open === i ? "rotate(45deg)" : "none" }}>+</span>
+            </button>
+            {open === i && <div className="seo-faq-a">{faq.a}</div>}
+          </div>
+        ))}
+        <div style={{ borderTop: "1px solid var(--border)" }} />
       </div>
+    </section>
+  );
+}
 
-      <footer className="seo-footer">
-        <a href="/" className="seo-footer-logo">
-          EMDR Therapy Bay Area
-          <span>Marcus Ghiasi, LMFT · (415) 857-5799</span>
-        </a>
-        <p className="seo-footer-note">Licensed Marriage &amp; Family Therapist in California (LMFT #158475). Telehealth practice serving clients {locationPhrase}. Part of Bayside Wellness &amp; Counseling, 2323 Broadway, Oakland CA 94612.</p>
-        <a href="/" style={{ fontSize: "12px", color: "var(--muted)" }}>← Back to main site</a>
-      </footer>
-      <div className="seo-crisis">
-        <strong>In crisis?</strong> Call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline) — free, confidential, 24/7.
+function SEOBooking() {
+  return (
+    <div className="seo-booking">
+      <h2>Ready to <em>begin?</em></h2>
+      <p>The first step is a free 15-minute consultation. No forms, no pressure — just a real conversation about whether this is the right fit.</p>
+      <div className="seo-booking-btns">
+        <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold btn-seo-gold-lg">Book your free consultation</a>
+      </div>
+      <div className="seo-booking-contacts">
+        <a href="tel:4158575799" className="seo-booking-contact">(415) 857-5799</a>
+        <span style={{ color: "rgba(250,247,244,0.2)" }}>·</span>
+        <a href="mailto:hello@baysidewellnessandcounseling.com" className="seo-booking-contact">hello@baysidewellnessandcounseling.com</a>
       </div>
     </div>
   );
 }
 
-function SEOConditionPage({ data, bookingUrl }) {
-  const { title, condition, category, intro, slug } = data;
+function SEOFooter({ locationPhrase }) {
+  return (
+    <>
+      <footer className="seo-footer">
+        <a href="/" className="seo-logo">
+          <div className="seo-logo-name">EMDR Therapy Bay Area</div>
+          <div className="seo-logo-sub">Marcus Ghiasi, LMFT · (415) 857-5799</div>
+        </a>
+        <p className="seo-footer-note">Licensed LMFT in California (#158475). Telehealth practice{locationPhrase ? ` serving clients ${locationPhrase}` : " serving clients throughout California"}. Part of Bayside Wellness &amp; Counseling, 2323 Broadway, Oakland CA 94612.</p>
+        <a href="/" className="seo-footer-back">← Main site</a>
+      </footer>
+      <div className="seo-crisis">
+        <strong>In crisis?</strong> Call or text <strong>988</strong> — Suicide &amp; Crisis Lifeline, free &amp; confidential, 24/7.
+      </div>
+    </>
+  );
+}
+
+function SEOLocationPage({ data, bookingUrl }) {
+  const { city, region, isOnline, isForYou, faqs, slug } = data;
+  const locationPhrase = isOnline ? "throughout California" : `in ${city} and ${region}`;
+  const locationPhraseShort = isOnline ? "California" : `${city}, CA`;
 
   useEffect(() => {
-    document.title = `${title} | Marcus Ghiasi, LMFT — Bay Area`;
+    const pageTitle = `EMDR Therapy ${isOnline ? "Online" : `in ${city}`} | Marcus Ghiasi, LMFT`;
+    const pageDesc = `EMDR therapy ${locationPhrase}. Marcus Ghiasi, LMFT #158475 — trauma, anxiety, depression, grief. Telehealth. Free 15-min consultation.`;
+    const pageUrl = `https://emdrtherapybayarea.com/${slug}`;
+    document.title = pageTitle;
+
+    // Meta description
     const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", `${title} via telehealth throughout California. Marcus Ghiasi, LMFT #158475 — evidence-based EMDR therapy. Free 15-min consultation.`);
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "MedicalTherapy",
-      "name": title,
-      "url": `https://emdrtherapybayarea.com/${slug}`,
-      "provider": { "@type": "Person", "name": "Marcus Ghiasi", "jobTitle": "Licensed Marriage and Family Therapist" },
-    };
+    if (desc) desc.setAttribute("content", pageDesc);
+
+    // Canonical
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
+    canonical.href = pageUrl;
+
+    // OG tags
+    const ogTags = { "og:title": pageTitle, "og:description": pageDesc, "og:url": pageUrl, "og:type": "website", "twitter:title": pageTitle, "twitter:description": pageDesc };
+    const injected = [];
+    Object.entries(ogTags).forEach(([prop, content]) => {
+      const attr = prop.startsWith("twitter:") ? "name" : "property";
+      let el = document.querySelector(`meta[${attr}="${prop}"]`);
+      if (!el) { el = document.createElement("meta"); el.setAttribute(attr, prop); document.head.appendChild(el); injected.push(el); }
+      el.setAttribute("content", content);
+    });
+
+    // JSON-LD schema
+    const schema = { "@context": "https://schema.org", "@type": "MedicalBusiness", "name": `EMDR Therapy ${locationPhraseShort} — Marcus Ghiasi, LMFT`, "url": pageUrl, "telephone": "(415) 857-5799", "areaServed": locationPhraseShort, "medicalSpecialty": "EMDR Therapy" };
     const s = document.createElement("script");
     s.type = "application/ld+json";
     s.text = JSON.stringify(schema);
     document.head.appendChild(s);
-    return () => { document.head.removeChild(s); };
+
+    return () => {
+      document.head.removeChild(s);
+      if (canonical) canonical.href = "https://emdrtherapybayarea.com";
+      injected.forEach(el => document.head.removeChild(el));
+    };
   }, []);
 
   return (
     <div className="seo-page">
-      <nav className="seo-nav">
-        <a href="/" className="seo-nav-logo">
-          EMDR Therapy Bay Area
-          <span>Marcus Ghiasi, LMFT</span>
-        </a>
-        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="nav-cta">Book a consult</a>
-      </nav>
+      <SEONav bookingUrl={bookingUrl} />
+      <div className="seo-hero">
+        <div className="seo-eyebrow">EMDR Therapy · {locationPhraseShort} · Telehealth</div>
+        <h1 className="seo-h1">
+          EMDR Therapy<br />
+          {isOnline ? <em>Online in California</em> : <><em>in {city}</em> — via telehealth</>}
+        </h1>
+        <p className="seo-hero-sub">I&apos;m Marcus Ghiasi, a licensed Marriage and Family Therapist specializing in EMDR for trauma, anxiety, depression, and grief. I work entirely via telehealth — which means I can see clients {locationPhrase} without anyone having to drive to an office.</p>
+        <div className="seo-hero-meta">
+          <span>LMFT #158475</span><span>·</span>
+          <span>EMDRIA-trained</span><span>·</span>
+          <span>10+ years experience</span><span>·</span>
+          <span>Free 15-min consult</span>
+        </div>
+        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consultation →</a>
+      </div>
+      <SEOIsItRight items={isForYou || []} />
+      <SEOWhatToExpect />
+      <SEOAbout locationPhrase={locationPhrase} />
+      <SEOFaq faqs={faqs || []} />
+      <SEOBooking />
+      <SEOFooter locationPhrase={locationPhrase} />
+    </div>
+  );
+}
 
+function SEOConditionPage({ data, bookingUrl }) {
+  const { title, condition, category, intro, isForYou, faqs, slug } = data;
+
+  useEffect(() => {
+    const pageTitle = `${title} | Marcus Ghiasi, LMFT — Bay Area`;
+    const pageDesc = `${title} via telehealth throughout California. Marcus Ghiasi, LMFT #158475 — evidence-based EMDR therapy. Free 15-min consultation.`;
+    const pageUrl = `https://emdrtherapybayarea.com/${slug}`;
+    document.title = pageTitle;
+
+    // Meta description
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", pageDesc);
+
+    // Canonical
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
+    canonical.href = pageUrl;
+
+    // OG tags
+    const ogTags = { "og:title": pageTitle, "og:description": pageDesc, "og:url": pageUrl, "og:type": "website", "twitter:title": pageTitle, "twitter:description": pageDesc };
+    const injected = [];
+    Object.entries(ogTags).forEach(([prop, content]) => {
+      const attr = prop.startsWith("twitter:") ? "name" : "property";
+      let el = document.querySelector(`meta[${attr}="${prop}"]`);
+      if (!el) { el = document.createElement("meta"); el.setAttribute(attr, prop); document.head.appendChild(el); injected.push(el); }
+      el.setAttribute("content", content);
+    });
+
+    // JSON-LD schema
+    const schema = { "@context": "https://schema.org", "@type": "MedicalTherapy", "name": title, "url": pageUrl, "provider": { "@type": "Person", "name": "Marcus Ghiasi", "jobTitle": "Licensed Marriage and Family Therapist" } };
+    const s = document.createElement("script");
+    s.type = "application/ld+json";
+    s.text = JSON.stringify(schema);
+    document.head.appendChild(s);
+
+    return () => {
+      document.head.removeChild(s);
+      if (canonical) canonical.href = "https://emdrtherapybayarea.com";
+      injected.forEach(el => document.head.removeChild(el));
+    };
+  }, []);
+
+  return (
+    <div className="seo-page">
+      <SEONav bookingUrl={bookingUrl} />
       <div className="seo-hero">
         <div className="seo-eyebrow">{category} · Telehealth · California-wide</div>
-        <h1 className="seo-h1">
-          {title.includes("—") || title.includes("?")
-            ? <>{title.split(/[—?]/)[0]}<em>{title.includes("—") ? "—" : "?"}{title.split(/[—?]/)[1]}</em></>
-            : <>{title}</>
-          }
-        </h1>
-        <p className="seo-intro">{intro}</p>
-        <div className="seo-cta-row">
-          <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn-gold">Schedule a free consultation</a>
-          <a href="/" className="btn-outline">Learn more about my practice</a>
+        <h1 className="seo-h1">{title}</h1>
+        <p className="seo-hero-sub">{intro}</p>
+        <div className="seo-hero-meta">
+          <span>LMFT #158475</span><span>·</span>
+          <span>EMDRIA-trained</span><span>·</span>
+          <span>10+ years experience</span><span>·</span>
+          <span>Free 15-min consult</span>
         </div>
+        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consultation →</a>
       </div>
-
-      <hr className="seo-divider" />
-
-      <div className="seo-section">
-        <div className="seo-section-label">The approach</div>
-        <h2 className="seo-h2">How EMDR works for<br /><em>{condition}</em></h2>
-        <p className="seo-body">
-          <strong>EMDR (Eye Movement Desensitization and Reprocessing)</strong> is an evidence-based therapy recognized by the WHO, APA, and VA. It works through bilateral stimulation — guided eye movements or tapping — to help the brain reprocess stuck memories and release their emotional charge. Unlike talk therapy, EMDR does not require you to describe difficult experiences in detail.
-        </p>
-        <p className="seo-body">
-          For {condition.toLowerCase()}, EMDR works by identifying the specific memories, beliefs, and nervous system responses that are keeping you stuck — and processing them directly. The result is not just symptom relief, but a genuine shift in how the past lives in the present.
-        </p>
-        <p className="seo-body">
-          My practice is <strong>fully telehealth</strong>, which means I work with clients throughout California. All you need is a private space and a reliable internet connection. The bilateral stimulation I use translates seamlessly to an online format.
-        </p>
-        <div className="seo-phases">
-          {SEO_PHASES.map(p => (
-            <div className="seo-phase" key={p.num}>
-              <div className="seo-phase-num">{p.num}</div>
-              <div className="seo-phase-title">{p.title}</div>
-              <div className="seo-phase-desc">{p.desc}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <hr className="seo-divider" />
-
-      <div className="seo-section">
-        <div className="seo-section-label">About</div>
-        <h2 className="seo-h2">Marcus <em>Ghiasi,</em> LMFT</h2>
-        <div className="seo-about">
-          <div>
-            <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" width="400" height="533" loading="lazy" />
-            <div className="seo-credentials">
-              <div className="seo-credential"><strong>LMFT</strong> #158475 — California</div>
-              <div className="seo-credential"><strong>EMDR Trained</strong> — EMDRIA</div>
-              <div className="seo-credential"><strong>MA</strong> Counseling Psychology — USF</div>
-              <div className="seo-credential"><strong>BA</strong> Psychology — SF State</div>
-              <div className="seo-credential"><strong>10+ Years</strong> experience</div>
-              <div className="seo-credential"><strong>Telehealth</strong> — California-wide</div>
-            </div>
-          </div>
-          <div className="seo-about-text">
-            <p>
-              I am a licensed Marriage and Family Therapist and the founder of <strong>Bayside Wellness &amp; Counseling</strong>, based in Oakland, California. I have been working with adults navigating {condition.toLowerCase()}, trauma, and a range of other concerns for over <strong>10 years</strong>.
-            </p>
-            <p>
-              I specialize in EMDR because I have seen it create change that talk therapy alone could not reach — especially for the kinds of concerns that feel stuck no matter how much insight or effort a person brings to them.
-            </p>
-            <p>
-              The first step is a free 15-minute consultation. No pressure, no obligation.
-            </p>
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ marginTop: "8px", display: "inline-block" }}>Book your free consultation</a>
-          </div>
-        </div>
-      </div>
-
-      <div className="seo-cta-section">
-        <h2>Ready to <em>begin?</em></h2>
-        <p>The first step is a free 15-minute consultation — a chance to ask questions and see if we are a good fit. No obligation, no pressure.</p>
-        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn-gold">Schedule a free consultation</a>
-      </div>
-
-      <footer className="seo-footer">
-        <a href="/" className="seo-footer-logo">
-          EMDR Therapy Bay Area
-          <span>Marcus Ghiasi, LMFT · (415) 857-5799</span>
-        </a>
-        <p className="seo-footer-note">Licensed Marriage &amp; Family Therapist in California (LMFT #158475). Telehealth practice serving clients throughout California. Part of Bayside Wellness &amp; Counseling, 2323 Broadway, Oakland CA 94612.</p>
-        <a href="/" style={{ fontSize: "12px", color: "var(--muted)" }}>← Back to main site</a>
-      </footer>
-      <div className="seo-crisis">
-        <strong>In crisis?</strong> Call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline) — free, confidential, 24/7.
-      </div>
+      <SEOIsItRight items={isForYou || []} />
+      <SEOWhatToExpect />
+      <SEOAbout locationPhrase="throughout California" />
+      <SEOFaq faqs={faqs || []} />
+      <SEOBooking />
+      <SEOFooter />
     </div>
   );
 }
