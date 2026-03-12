@@ -394,8 +394,8 @@ export default function App() {
       <style>{fonts + styles}</style>
 
       <nav>
-        <a href="https://www.baysidewellnessandcounseling.com" target="_blank" rel="noopener noreferrer" className="nav-logo">
-          Bayside Wellness &amp; Counseling
+        <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="nav-logo">
+          EMDR Therapy Bay Area
           <span>Marcus Ghiasi, LMFT</span>
         </a>
         <div className="nav-right">
@@ -505,6 +505,13 @@ export default function App() {
               My practice is fully virtual. I work with clients across California, and I bring the same care and attentiveness to a telehealth session that I would to an in-person one. If you are ready to do real work, I am ready to meet you there.
             </p>
             <div className="pt-button-wrap">
+              <p style={{ fontSize: "13px", color: "var(--muted)", fontWeight: "300", marginBottom: "24px" }}>
+                This practice is part of{" "}
+                <a href="https://www.baysidewellnessandcounseling.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold)", textDecoration: "none", borderBottom: "1px solid var(--border)" }}>
+                  Bayside Wellness &amp; Counseling
+                </a>
+                , a virtual therapy practice serving clients throughout California.
+              </p>
               <a
                 href="https://www.psychologytoday.com/profile/1134128"
                 target="_blank"
