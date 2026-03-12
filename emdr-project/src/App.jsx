@@ -9,7 +9,7 @@ const styles = `
     --gold: #B8826A;
     --gold-light: #C9967E;
     --text: #3D2D26;
-    --muted: #8A7060;
+    --muted: #6B5448;
     --border: rgba(184,130,106,0.22);
     --nav-bg: rgba(250,247,244,0.97);
     --form-bg: rgba(255,255,255,0.8);
@@ -27,6 +27,22 @@ const styles = `
     --nav-bg: rgba(26,22,20,0.97);
     --form-bg: rgba(255,255,255,0.06);
   }
+
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 24px;
+    background: var(--gold);
+    color: white;
+    padding: 12px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    z-index: 999;
+    transition: top 0.2s;
+  }
+  .skip-link:focus { top: 24px; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -547,6 +563,8 @@ export default function App() {
     <>
       <style>{fonts + styles}</style>
 
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+
       <nav>
         <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="nav-logo">
           EMDR Therapy Bay Area
@@ -580,7 +598,7 @@ export default function App() {
         <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mobile-cta" onClick={() => setMobileOpen(false)}>Book a consult</a>
       </div>
 
-      <div className="hero">
+      <div className="hero" id="main-content">
         <div className="hero-content">
           <div className="hero-eyebrow">EMDR Therapy · Oakland, CA · Telehealth</div>
           <h1>Heal what<br />words <em>alone</em><br />cannot reach.</h1>
