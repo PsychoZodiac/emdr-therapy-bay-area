@@ -2318,19 +2318,6 @@ export default function App() {
                 <span className="cred-tag">Telehealth · CA-wide</span>
                 <span className="cred-tag">Free 15-min consult</span>
               </div>
-              <a
-                href="https://www.psychologytoday.com/profile/1134128"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pt-button-link"
-                style={{ marginTop: "16px" }}
-              >
-                <svg className="pt-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="40" height="40" rx="4" fill="#0e5e6e"/>
-                  <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="13" fontFamily="serif" fontWeight="bold">PT</text>
-                </svg>
-                Verified on Psychology Today
-              </a>
             </div>
           </div>
           <div className="about-content">
@@ -2346,13 +2333,25 @@ export default function App() {
             </p>
 
             <div className="pt-button-wrap">
-              <p style={{ fontSize: "13px", color: "var(--muted)", fontWeight: "300", marginBottom: "0" }}>
+              <p style={{ fontSize: "13px", color: "var(--muted)", fontWeight: "300", marginBottom: "20px" }}>
                 This practice is part of{" "}
                 <a href="https://www.baysidewellnessandcounseling.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold)", textDecoration: "none", borderBottom: "1px solid var(--border)" }}>
                   Bayside Wellness &amp; Counseling
                 </a>
                 , a virtual therapy practice serving clients throughout California.
               </p>
+              <a
+                href="https://www.psychologytoday.com/profile/1134128"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pt-button-link"
+              >
+                <svg className="pt-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="40" height="40" rx="4" fill="#0e5e6e"/>
+                  <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="13" fontFamily="serif" fontWeight="bold">PT</text>
+                </svg>
+                Verified on Psychology Today
+              </a>
             </div>
           </div>
         </div>
