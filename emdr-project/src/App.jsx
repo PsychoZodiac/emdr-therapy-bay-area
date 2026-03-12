@@ -406,7 +406,8 @@ export default function App() {
       "name": "Bayside Wellness & Counseling - EMDR Therapy",
       "description": "EMDR therapy for trauma, anxiety, depression, grief, and life transitions. Telehealth sessions available throughout California.",
       "url": "https://emdrtherapybayarea.com",
-      "telephone": "",
+      "telephone": "(415) 857-5799",
+      "email": "hello@baysidewellnessandcounseling.com",
       "priceRange": "$$",
       "image": "https://emdrtherapybayarea.com/marcus.jpg",
       "address": {
@@ -725,6 +726,14 @@ export default function App() {
               </a>
               <div className="contact-detail" style={{ marginTop: "32px" }}>
                 <div className="contact-detail-item">
+                  <span className="contact-detail-label">Phone</span>
+                  <span className="contact-detail-value">(415) 857-5799</span>
+                </div>
+                <div className="contact-detail-item">
+                  <span className="contact-detail-label">Email</span>
+                  <span className="contact-detail-value">hello@baysidewellnessandcounseling.com</span>
+                </div>
+                <div className="contact-detail-item">
                   <span className="contact-detail-label">Location</span>
                   <span className="contact-detail-value">Telehealth — California-wide</span>
                 </div>
@@ -804,6 +813,8 @@ export default function App() {
         <a href="https://www.baysidewellnessandcounseling.com" target="_blank" rel="noopener noreferrer" className="footer-logo">
           Bayside Wellness &amp; Counseling
           <span>Marcus Ghiasi, LMFT</span>
+          <span style={{ fontSize: "12px", color: "var(--muted)", fontFamily: "'Jost', sans-serif", fontWeight: "300", letterSpacing: "0.04em", marginTop: "6px", opacity: "1" }}>(415) 857-5799</span>
+          <span style={{ fontSize: "12px", color: "var(--muted)", fontFamily: "'Jost', sans-serif", fontWeight: "300", letterSpacing: "0.04em", marginTop: "2px", opacity: "1" }}>hello@baysidewellnessandcounseling.com</span>
         </a>
         <p className="footer-note">A Bayside Wellness &amp; Counseling practice. Licensed Marriage &amp; Family Therapist in California. 2323 Broadway, Oakland CA 94612. This website is for informational purposes only and does not constitute a therapeutic relationship.</p>
         <p style={{ fontSize: "12px", color: "var(--muted)" }}>emdrtherapybayarea.com</p>
