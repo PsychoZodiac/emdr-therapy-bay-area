@@ -1750,18 +1750,18 @@ const styles = `
   .condition-name { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); margin-bottom: 10px; }
   .condition-desc { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
-  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 72px; align-items: stretch; }
-  .about-left { display: flex; flex-direction: column; justify-content: space-between; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 72px; align-items: start; }
+  .about-left { display: flex; flex-direction: column; }
   .about-left img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; }
   .credentials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; margin-bottom: 16px; }
   .cred-tag { font-size: 11px; color: var(--muted); padding: 5px 11px; border: 1px solid var(--border); letter-spacing: 0.03em; font-weight: 300; white-space: nowrap; }
-  .about-content { display: flex; flex-direction: column; justify-content: space-between; }
+  .about-content { display: flex; flex-direction: column; }
   .about-content h2 { margin-bottom: 32px; }
   .about-content p { font-size: 16px; line-height: 1.85; color: var(--muted); font-weight: 300; margin-bottom: 20px; }
   .about-content p:last-of-type { margin-bottom: 0; }
   .about-content p strong { color: var(--text); font-weight: 500; }
   .about-left-bottom { display: flex; flex-direction: column; }
-  .pt-button-wrap { margin-top: auto; padding-top: 40px; border-top: 1px solid var(--border); }
+  .pt-button-wrap { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border); }
   .pt-button-link { display: inline-flex; align-items: center; gap: 12px; border: 1px solid var(--border); padding: 16px 24px; color: var(--text); text-decoration: none; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.2s; }
   .pt-button-link:hover { border-color: var(--gold); color: var(--gold); }
   .pt-logo { width: 20px; height: 20px; opacity: 0.6; }
