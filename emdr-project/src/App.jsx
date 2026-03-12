@@ -1761,7 +1761,7 @@ const styles = `
   .about-content p:last-of-type { margin-bottom: 0; }
   .about-content p strong { color: var(--text); font-weight: 500; }
   .about-left-bottom { display: flex; flex-direction: column; }
-  .pt-button-wrap { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .pt-button-wrap { margin-top: 24px; }
   .pt-button-link { display: inline-flex; align-items: center; gap: 12px; border: 1px solid var(--border); padding: 16px 24px; color: var(--text); text-decoration: none; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.2s; }
   .pt-button-link:hover { border-color: var(--gold); color: var(--gold); }
   .pt-logo { width: 20px; height: 20px; opacity: 0.6; }
