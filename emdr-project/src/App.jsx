@@ -321,13 +321,6 @@ const SEO_CONDITIONS = [
   },
   // Population
   {
-    slug: "emdr-for-first-responders-therapy",
-    condition: "First Responders",
-    category: "Population",
-    title: "EMDR Therapy for First Responders",
-    intro: "First responders carry what others cannot imagine — the accumulated weight of crisis, loss, and exposure to human suffering at its most acute. Standard talk therapy often falls short for this population. EMDR works with the nervous system directly, in a way that matches the nature of the work and the weight it leaves behind."
-  },
-  {
     slug: "emdr-for-executives",
     condition: "Executives & High Performers",
     category: "Population",
@@ -727,16 +720,7 @@ function SEOConditionPage({ data, bookingUrl }) {
   );
 }
 
-// ─── ROUTER ──────────────────────────────────────────────────────────────────
-
-function Router({ bookingUrl }) {
-  const path = window.location.pathname;
-  const match = SEO_PAGE_MAP[path];
-  if (!match) return null; // fall through to main App
-  if (match.type === "location") return <SEOLocationPage data={match.data} bookingUrl={bookingUrl} />;
-  if (match.type === "condition") return <SEOConditionPage data={match.data} bookingUrl={bookingUrl} />;
-  return null;
-}
+// ─── MAIN APP ────────────────────────────────────────────────────────────────
 
 
 
@@ -1092,28 +1076,6 @@ const FAQS = [
 
 
 export default function App() {
-  const seoMatch = SEO_PAGE_MAP[window.location.pathname];
-  if (seoMatch) {
-    return (
-      <>
-        <style>{`
-          :root { --ink:#FAF7F4; --ink2:#F3EDE6; --gold:#B8826A; --gold-light:#C9967E; --text:#3D2D26; --muted:#6B5448; --border:rgba(184,130,106,0.22); --nav-bg:rgba(250,247,244,0.97); --form-bg:rgba(255,255,255,0.8); --transition:background 0.3s ease,color 0.3s ease,border-color 0.3s ease; }
-          [data-theme="dark"] { --ink:#1A1614; --ink2:#221E1B; --gold:#C9967E; --gold-light:#D9AA96; --text:#EDE8E3; --muted:#A89080; --border:rgba(201,150,126,0.18); --nav-bg:rgba(26,22,20,0.97); }
-          * { box-sizing:border-box; margin:0; padding:0; }
-          html { scroll-behavior:smooth; }
-          body { background:var(--ink); color:var(--text); font-family:'Jost',sans-serif; }
-          *:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
-          .btn-gold { background:var(--gold); color:white; padding:16px 36px; border:none; font-family:'Jost',sans-serif; font-size:13px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.25s; text-decoration:none; display:inline-block; }
-          .btn-gold:hover { background:var(--gold-light); transform:translateY(-2px); }
-          .btn-outline { background:none; border:1px solid var(--border); color:var(--text); padding:16px 36px; font-family:'Jost',sans-serif; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; text-decoration:none; display:inline-block; }
-          .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
-          .nav-cta { background:none; border:1px solid var(--gold); color:var(--gold); padding:10px 24px; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; text-decoration:none; display:inline-block; }
-          .nav-cta:hover { background:var(--gold); color:white; }
-        `}{SEO_STYLES}</style>
-        <Router bookingUrl={BOOKING_URL} />
-      </>
-    );
-  }
   const [openFaq, setOpenFaq] = useState(null);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", concern: "", message: "", _honeypot: "" });
   const [submitted, setSubmitted] = useState(false);
@@ -1121,6 +1083,8 @@ export default function App() {
   const [formErrors, setFormErrors] = useState({});
   const [darkMode, setDarkMode] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const isSeoPage = !!SEO_PAGE_MAP[window.location.pathname];
 
   // Dark mode toggle — persist preference
   useEffect(() => {
@@ -1342,6 +1306,32 @@ export default function App() {
       document.head.appendChild(script);
     });
   }, []);
+
+  if (isSeoPage) {
+    const seoMatch = SEO_PAGE_MAP[window.location.pathname];
+    return (
+      <>
+        <style>{`
+          :root { --ink:#FAF7F4; --ink2:#F3EDE6; --gold:#B8826A; --gold-light:#C9967E; --text:#3D2D26; --muted:#6B5448; --border:rgba(184,130,106,0.22); --nav-bg:rgba(250,247,244,0.97); --transition:background 0.3s ease,color 0.3s ease,border-color 0.3s ease; }
+          [data-theme="dark"] { --ink:#1A1614; --ink2:#221E1B; --gold:#C9967E; --gold-light:#D9AA96; --text:#EDE8E3; --muted:#A89080; --border:rgba(201,150,126,0.18); --nav-bg:rgba(26,22,20,0.97); }
+          * { box-sizing:border-box; margin:0; padding:0; }
+          html { scroll-behavior:smooth; }
+          body { background:var(--ink); color:var(--text); font-family:'Jost',sans-serif; }
+          *:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+          .btn-gold { background:var(--gold); color:white; padding:16px 36px; border:none; font-family:'Jost',sans-serif; font-size:13px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.25s; text-decoration:none; display:inline-block; }
+          .btn-gold:hover { background:var(--gold-light); transform:translateY(-2px); }
+          .btn-outline { background:none; border:1px solid var(--border); color:var(--text); padding:16px 36px; font-family:'Jost',sans-serif; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; text-decoration:none; display:inline-block; }
+          .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+          .nav-cta { background:none; border:1px solid var(--gold); color:var(--gold); padding:10px 24px; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; text-decoration:none; display:inline-block; }
+          .nav-cta:hover { background:var(--gold); color:white; }
+        `}{SEO_STYLES}</style>
+        {seoMatch.type === "location"
+          ? <SEOLocationPage data={seoMatch.data} bookingUrl={BOOKING_URL} />
+          : <SEOConditionPage data={seoMatch.data} bookingUrl={BOOKING_URL} />
+        }
+      </>
+    );
+  }
 
   return (
     <>
