@@ -482,7 +482,7 @@ export default function App() {
         {
           "@type": "EducationalOccupationalCredential",
           "credentialCategory": "license",
-          "name": "Licensed Marriage and Family Therapist (LMFT)",
+          "name": "Licensed Marriage and Family Therapist (LMFT #158475)",
           "recognizedBy": { "@type": "Organization", "name": "California Board of Behavioral Sciences" }
         },
         {
@@ -490,6 +490,18 @@ export default function App() {
           "credentialCategory": "certification",
           "name": "EMDR Trained Therapist",
           "recognizedBy": { "@type": "Organization", "name": "EMDR International Association (EMDRIA)" }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "Master of Arts in Counseling Psychology",
+          "recognizedBy": { "@type": "Organization", "name": "University of San Francisco" }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "Bachelor of Arts in Psychology",
+          "recognizedBy": { "@type": "Organization", "name": "San Francisco State University" }
         }
       ],
       "worksFor": {
@@ -670,9 +682,11 @@ export default function App() {
           <div className="about-left">
             <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" width="600" height="800" />
             <div className="credentials">
-              <div className="credential"><strong>Licensed LMFT</strong> — California</div>
+              <div className="credential"><strong>Licensed LMFT</strong> #158475 — California</div>
               <div className="credential"><strong>EMDR Trained</strong> — EMDRIA-approved</div>
               <div className="credential"><strong>10+ Years</strong> clinical experience</div>
+              <div className="credential"><strong>MA</strong> Counseling Psychology — USF</div>
+              <div className="credential"><strong>BA</strong> Psychology — SF State</div>
               <div className="credential"><strong>Telehealth</strong> — California-wide</div>
               <div className="credential"><strong>Free 15-min</strong> consultation</div>
             </div>
