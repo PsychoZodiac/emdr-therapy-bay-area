@@ -1504,7 +1504,7 @@ function SEOLocationPage({ data, bookingUrl }) {
         <p className="seo-hero-sub">I&apos;m Marcus Ghiasi, a licensed Marriage and Family Therapist specializing in EMDR for trauma, anxiety, depression, and grief. I work entirely via telehealth — which means I can see clients {locationPhrase} without anyone having to drive to an office.</p>
         <div className="seo-hero-meta">
           <span>LMFT #158475</span><span>·</span>
-          <span>EMDRIA-trained</span><span>·</span>
+          <span>EMDR Trained</span><span>·</span>
           <span>10+ years experience</span><span>·</span>
           <span>Free 15-min consult</span>
         </div>
@@ -1571,7 +1571,7 @@ function SEOConditionPage({ data, bookingUrl }) {
         <p className="seo-hero-sub">{intro}</p>
         <div className="seo-hero-meta">
           <span>LMFT #158475</span><span>·</span>
-          <span>EMDRIA-trained</span><span>·</span>
+          <span>EMDR Trained</span><span>·</span>
           <span>10+ years experience</span><span>·</span>
           <span>Free 15-min consult</span>
         </div>
@@ -1750,19 +1750,18 @@ const styles = `
   .condition-name { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); margin-bottom: 10px; }
   .condition-desc { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
-  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 72px; align-items: start; }
-  .about-left { display: flex; flex-direction: column; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 72px; align-items: stretch; }
+  .about-left { display: flex; flex-direction: column; justify-content: space-between; }
   .about-left img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; }
-  .credentials { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
-  .credential { display: flex; align-items: center; gap: 14px; font-size: 13px; color: var(--muted); padding: 10px 0; border-bottom: 1px solid var(--border); }
-  .credential:first-child { border-top: 1px solid var(--border); }
-  .credential strong { color: var(--text); font-weight: 500; }
-  .about-content { display: flex; flex-direction: column; }
+  .credentials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; margin-bottom: 16px; }
+  .cred-tag { font-size: 11px; color: var(--muted); padding: 5px 11px; border: 1px solid var(--border); letter-spacing: 0.03em; font-weight: 300; white-space: nowrap; }
+  .about-content { display: flex; flex-direction: column; justify-content: space-between; }
   .about-content h2 { margin-bottom: 32px; }
   .about-content p { font-size: 16px; line-height: 1.85; color: var(--muted); font-weight: 300; margin-bottom: 20px; }
   .about-content p:last-of-type { margin-bottom: 0; }
   .about-content p strong { color: var(--text); font-weight: 500; }
-  .pt-button-wrap { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .about-left-bottom { display: flex; flex-direction: column; }
+  .pt-button-wrap { margin-top: auto; padding-top: 40px; border-top: 1px solid var(--border); }
   .pt-button-link { display: inline-flex; align-items: center; gap: 12px; border: 1px solid var(--border); padding: 16px 24px; color: var(--text); text-decoration: none; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.2s; }
   .pt-button-link:hover { border-color: var(--gold); color: var(--gold); }
   .pt-logo { width: 20px; height: 20px; opacity: 0.6; }
@@ -2310,14 +2309,28 @@ export default function App() {
         <div className="about-grid">
           <div className="about-left">
             <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" width="600" height="800" />
-            <div className="credentials">
-              <div className="credential"><strong>Licensed LMFT</strong> #158475 — California</div>
-              <div className="credential"><strong>EMDR Trained</strong> — EMDRIA-approved</div>
-              <div className="credential"><strong>10+ Years</strong> clinical experience</div>
-              <div className="credential"><strong>MA</strong> Counseling Psychology — USF</div>
-              <div className="credential"><strong>BA</strong> Psychology — SF State</div>
-              <div className="credential"><strong>Telehealth</strong> — California-wide</div>
-              <div className="credential"><strong>Free 15-min</strong> consultation</div>
+            <div className="about-left-bottom">
+              <div className="credentials">
+                <span className="cred-tag">LMFT #158475</span>
+                <span className="cred-tag">EMDR Trained</span>
+                <span className="cred-tag">10+ years experience</span>
+                <span className="cred-tag">MA Counseling Psychology</span>
+                <span className="cred-tag">Telehealth · CA-wide</span>
+                <span className="cred-tag">Free 15-min consult</span>
+              </div>
+              <a
+                href="https://www.psychologytoday.com/profile/1134128"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pt-button-link"
+                style={{ marginTop: "16px" }}
+              >
+                <svg className="pt-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="40" height="40" rx="4" fill="#0e5e6e"/>
+                  <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="13" fontFamily="serif" fontWeight="bold">PT</text>
+                </svg>
+                Verified on Psychology Today
+              </a>
             </div>
           </div>
           <div className="about-content">
@@ -2331,26 +2344,15 @@ export default function App() {
             <p>
               My practice is fully virtual. I work with clients across California, and I bring the same care and attentiveness to a telehealth session that I would to an in-person one. If you are ready to do real work, I am ready to meet you there.
             </p>
+
             <div className="pt-button-wrap">
-              <p style={{ fontSize: "13px", color: "var(--muted)", fontWeight: "300", marginBottom: "24px" }}>
+              <p style={{ fontSize: "13px", color: "var(--muted)", fontWeight: "300", marginBottom: "0" }}>
                 This practice is part of{" "}
                 <a href="https://www.baysidewellnessandcounseling.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold)", textDecoration: "none", borderBottom: "1px solid var(--border)" }}>
                   Bayside Wellness &amp; Counseling
                 </a>
                 , a virtual therapy practice serving clients throughout California.
               </p>
-              <a
-                href="https://www.psychologytoday.com/profile/1134128"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pt-button-link"
-              >
-                <svg className="pt-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="40" height="40" rx="4" fill="#0e5e6e"/>
-                  <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="13" fontFamily="serif" fontWeight="bold">PT</text>
-                </svg>
-                Verified on Psychology Today
-              </a>
             </div>
           </div>
         </div>
