@@ -1721,7 +1721,7 @@ const styles = `
   .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
   .btn-outline { background: none; border: 1px solid var(--border); color: var(--text); padding: 18px 40px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-  .hero-right { position: absolute; right: 60px; top: 50%; transform: translateY(-50%); opacity: 0.1; }
+  .hero-right { position: absolute; right: -40px; top: 50%; transform: translateY(-50%); opacity: 0.2; }
 
   section { padding: 100px 60px; max-width: 1100px; margin: 0 auto; }
   .section-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
