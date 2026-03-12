@@ -1750,10 +1750,10 @@ const styles = `
   .condition-name { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); margin-bottom: 10px; }
   .condition-desc { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
-  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 72px; align-items: start; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 72px; align-items: stretch; }
   .about-left { display: flex; flex-direction: column; }
-  .about-left img { width: 100%; aspect-ratio: 4/4; object-fit: cover; object-position: center 15%; display: block; }
-  .credentials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; margin-bottom: 16px; }
+  .about-left img { width: 100%; flex: 1; object-fit: cover; object-position: center 20%; display: block; min-height: 0; }
+  .credentials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
   .cred-tag { font-size: 11px; color: var(--muted); padding: 5px 11px; border: 1px solid var(--border); letter-spacing: 0.03em; font-weight: 300; white-space: nowrap; }
   .about-content { display: flex; flex-direction: column; }
   .about-content h2 { margin-bottom: 32px; }
