@@ -44,6 +44,11 @@ const styles = `
   }
   .skip-link:focus { top: 24px; }
 
+  *:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: var(--ink); color: var(--text); font-family: 'Jost', sans-serif; transition: var(--transition); }
@@ -200,6 +205,8 @@ const styles = `
   .form-select { appearance: none; cursor: pointer; }
   .form-textarea { resize: vertical; min-height: 120px; }
   ._honeypot-field { opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1; }
+  .form-error { font-size: 11px; color: #c0392b; margin-top: 4px; letter-spacing: 0.04em; }
+  .form-input.error, .form-textarea.error { border-color: #c0392b; }
   .form-submit { background: var(--gold); color: white; padding: 18px 40px; border: none; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.25s; align-self: flex-start; }
   .form-submit:hover { background: var(--gold-light); }
   .form-success { padding: 24px; border: 1px solid var(--gold); color: var(--gold); font-size: 15px; line-height: 1.6; font-weight: 300; }
@@ -351,6 +358,7 @@ export default function App() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", concern: "", message: "", _honeypot: "" });
   const [submitted, setSubmitted] = useState(false);
   const [captchaToken, setCaptchaToken] = useState(null);
+  const [formErrors, setFormErrors] = useState({});
   const [darkMode, setDarkMode] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -381,9 +389,13 @@ export default function App() {
   }, []);
 
   const handleSubmit = async () => {
-    if (!formData.name || !formData.email) return;
+    const errors = {};
+    if (!formData.name) errors.name = "Name is required.";
+    if (!formData.email) errors.email = "Email is required.";
+    if (!captchaToken) errors.captcha = "Please complete the captcha.";
     if (formData._honeypot) return;
-    if (!captchaToken) { alert('Please complete the captcha first.'); return; }
+    if (Object.keys(errors).length > 0) { setFormErrors(errors); return; }
+    setFormErrors({});
     try {
       const res = await fetch("https://formspree.io/f/mlgwzaoq", {
         method: "POST",
@@ -589,20 +601,20 @@ export default function App() {
             <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo("faq"); }}>FAQ</a>
             <a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}>Contact</a>
           </div>
-          <button className="dark-toggle" onClick={toggleDark} aria-label="Toggle dark mode">
+          <button className="dark-toggle" onClick={toggleDark} aria-label="Toggle dark mode" aria-pressed={darkMode}>
             <div className="toggle-track">
               <div className="toggle-thumb" />
             </div>
           </button>
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="nav-cta">Book a consult</a>
-          <button className={mobileOpen ? "nav-hamburger open" : "nav-hamburger"} onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
+          <button className={mobileOpen ? "nav-hamburger open" : "nav-hamburger"} onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu" aria-expanded={mobileOpen}>
             <span /><span /><span />
           </button>
         </div>
       </nav>
 
       {/* Mobile menu overlay */}
-      <div className={mobileOpen ? "mobile-menu open" : "mobile-menu"}>
+      <div className={mobileOpen ? "mobile-menu open" : "mobile-menu"} role="dialog" aria-modal="true" aria-label="Navigation menu">
         <a href="#emdr" onClick={(e) => { e.preventDefault(); closeMobile("emdr"); }}>What is EMDR</a>
         <a href="#about" onClick={(e) => { e.preventDefault(); closeMobile("about"); }}>About</a>
         <a href="#faq" onClick={(e) => { e.preventDefault(); closeMobile("faq"); }}>FAQ</a>
@@ -733,7 +745,7 @@ export default function App() {
         <div className="faq-list">
           {FAQS.map((faq, i) => (
             <div className="faq-item" key={i}>
-              <button className="faq-q" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+              <button className="faq-q" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i}>
                 {faq.q}
                 <span className={openFaq === i ? "faq-icon open" : "faq-icon"}>+</span>
               </button>
@@ -796,12 +808,14 @@ export default function App() {
                 <div className="form">
                   <div className="form-row">
                     <div className="form-field">
-                      <label className="form-label">Your name</label>
-                      <input className="form-input" placeholder="First Last" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                      <label className="form-label" htmlFor="form-name">Your name</label>
+                      <input id="form-name" className={`form-input${formErrors.name ? " error" : ""}`} placeholder="First Last" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} aria-required="true" aria-describedby={formErrors.name ? "error-name" : undefined} />
+                      {formErrors.name && <span id="error-name" className="form-error" role="alert">{formErrors.name}</span>}
                     </div>
                     <div className="form-field">
-                      <label className="form-label">Email</label>
-                      <input className="form-input" type="email" placeholder="you@email.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                      <label className="form-label" htmlFor="form-email">Email</label>
+                      <input id="form-email" className={`form-input${formErrors.email ? " error" : ""}`} type="email" placeholder="you@email.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} aria-required="true" aria-describedby={formErrors.email ? "error-email" : undefined} />
+                      {formErrors.email && <span id="error-email" className="form-error" role="alert">{formErrors.email}</span>}
                     </div>
                   </div>
                   <div className="form-row">
@@ -829,7 +843,8 @@ export default function App() {
                   <div style={{ position: "relative" }}>
                     <input className="_honeypot-field" type="text" name="_honeypot" value={formData._honeypot} onChange={(e) => setFormData({ ...formData, _honeypot: e.target.value })} tabIndex="-1" autoComplete="off" />
                   </div>
-                  <div className="h-captcha" data-sitekey="4feca060-ae00-4ba2-ad54-7e82c9988e46" data-callback="onCaptchaSuccess" data-expired-callback="onCaptchaExpired" style={{ marginBottom: "12px" }}></div>
+                  <div className="h-captcha" data-sitekey="4feca060-ae00-4ba2-ad54-7e82c9988e46" data-callback="onCaptchaSuccess" data-expired-callback="onCaptchaExpired" style={{ marginBottom: "4px" }}></div>
+                  {formErrors.captcha && <span className="form-error" role="alert" style={{ marginBottom: "12px", display: "block" }}>{formErrors.captcha}</span>}
                   <div>
                     <button className="form-submit" onClick={handleSubmit}>Send message</button>
                     <p style={{ fontSize: "12px", color: "var(--muted)", marginTop: "12px" }}>I typically respond within one business day.</p>
