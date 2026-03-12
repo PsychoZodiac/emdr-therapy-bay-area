@@ -1754,6 +1754,7 @@ const styles = `
   .about-left { display: flex; flex-direction: column; }
   .about-left img { width: 100%; flex: 1; object-fit: cover; object-position: center 20%; display: block; min-height: 0; }
   .credentials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .credentials-mobile { display: none; }
   .cred-tag { font-size: 11px; color: var(--muted); padding: 5px 11px; border: 1px solid var(--border); letter-spacing: 0.03em; font-weight: 300; white-space: nowrap; }
   .about-content { display: flex; flex-direction: column; }
   .about-content h2 { margin-bottom: 32px; }
@@ -1874,6 +1875,8 @@ const styles = `
     .emdr-text { grid-template-columns: 1fr; }
     .emdr-phases { grid-template-columns: 1fr 1fr; }
     .about-grid { grid-template-columns: 1fr; }
+    .about-left-bottom { display: none; }
+    .credentials-mobile { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
     .conditions-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
@@ -2352,6 +2355,14 @@ export default function App() {
                 </svg>
                 Verified on Psychology Today
               </a>
+            </div>
+            <div className="credentials-mobile">
+              <span className="cred-tag">LMFT #158475</span>
+              <span className="cred-tag">EMDR Trained</span>
+              <span className="cred-tag">10+ years experience</span>
+              <span className="cred-tag">MA Counseling Psychology</span>
+              <span className="cred-tag">Telehealth · CA-wide</span>
+              <span className="cred-tag">Free 15-min consult</span>
             </div>
           </div>
         </div>
