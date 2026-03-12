@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const fonts = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500&display=swap');
@@ -13,25 +13,92 @@ const styles = `
     --text: #3D2D26;
     --muted: #8A7060;
     --border: rgba(184,130,106,0.22);
+    --nav-bg: rgba(250,247,244,0.97);
+    --form-bg: rgba(255,255,255,0.8);
+    --transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
+
+  [data-theme="dark"] {
+    --ink: #1A1614;
+    --ink2: #221E1B;
+    --gold: #C9967E;
+    --gold-light: #D9AA96;
+    --text: #EDE8E3;
+    --muted: #A89080;
+    --border: rgba(201,150,126,0.18);
+    --nav-bg: rgba(26,22,20,0.97);
+    --form-bg: rgba(255,255,255,0.06);
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--ink); color: var(--text); font-family: 'Jost', sans-serif; }
+  body { background: var(--ink); color: var(--text); font-family: 'Jost', sans-serif; transition: var(--transition); }
 
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 50;
     padding: 24px 60px;
     display: flex; justify-content: space-between; align-items: center;
-    background: rgba(250,247,244,0.97);
+    background: var(--nav-bg);
     border-bottom: 1px solid var(--border);
+    transition: var(--transition);
   }
   .nav-logo { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 400; color: var(--gold); letter-spacing: 0.03em; line-height: 1.2; text-decoration: none; display: block; }
   .nav-logo span { display: block; font-size: 11px; letter-spacing: 0.12em; opacity: 0.7; margin-top: 2px; font-family: 'Jost', sans-serif; font-weight: 300; color: var(--text); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
   .nav-links { display: flex; gap: 36px; }
   .nav-links a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text); opacity: 0.6; text-decoration: none; transition: opacity 0.2s; }
   .nav-links a:hover { opacity: 1; }
   .nav-cta { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 10px 24px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
   .nav-cta:hover { background: var(--gold); color: white; }
+
+  .dark-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+  }
+  .toggle-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s;
+    user-select: none;
+  }
+  .toggle-track {
+    width: 22px;
+    height: 40px;
+    border-radius: 11px;
+    background: #d9c4b8;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+  }
+  [data-theme="dark"] .toggle-track {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  .toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+    transition: transform 0.25s ease;
+  }
+  [data-theme="dark"] .toggle-thumb {
+    transform: translateY(18px);
+  }
 
   .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 60px 80px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(184,130,106,0.07) 0%, transparent 60%); }
@@ -66,24 +133,31 @@ const styles = `
   .phase-title { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
   .phase-desc { font-size: 12px; color: var(--muted); line-height: 1.6; font-weight: 300; }
 
-  .right-for-me { background: var(--ink2); padding: 100px 0; }
+  .right-for-me { background: var(--ink2); padding: 100px 0; transition: var(--transition); }
   .right-for-me > div { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
   .conditions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
   .condition-card { background: rgba(184,130,106,0.04); border: 1px solid var(--border); padding: 36px 32px; transition: all 0.25s; }
   .condition-card:hover { background: rgba(184,130,106,0.09); border-color: rgba(184,130,106,0.4); }
-  .condition-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+  .condition-marker { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); opacity: 0.6; margin-bottom: 20px; display: block; }
   .condition-name { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); margin-bottom: 10px; }
   .condition-desc { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
   .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 72px; align-items: start; }
   .about-left { display: flex; flex-direction: column; }
-  .credentials { display: flex; flex-direction: column; gap: 14px; }
-  .credential { display: flex; align-items: center; gap: 14px; font-size: 13px; color: var(--muted); }
-  .credential::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .about-left img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; }
+  .credentials { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+  .credential { display: flex; align-items: center; gap: 14px; font-size: 13px; color: var(--muted); padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .credential:first-child { border-top: 1px solid var(--border); }
   .credential strong { color: var(--text); font-weight: 500; }
+  .about-content { display: flex; flex-direction: column; }
+  .about-content h2 { margin-bottom: 32px; }
   .about-content p { font-size: 16px; line-height: 1.85; color: var(--muted); font-weight: 300; margin-bottom: 20px; }
-  .about-content p:last-child { margin-bottom: 0; }
+  .about-content p:last-of-type { margin-bottom: 0; }
   .about-content p strong { color: var(--text); font-weight: 500; }
+  .pt-button-wrap { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .pt-button-link { display: inline-flex; align-items: center; gap: 12px; border: 1px solid var(--border); padding: 16px 24px; color: var(--text); text-decoration: none; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.2s; }
+  .pt-button-link:hover { border-color: var(--gold); color: var(--gold); }
+  .pt-logo { width: 20px; height: 20px; opacity: 0.6; }
 
   .faq-list { margin-top: 60px; display: flex; flex-direction: column; }
   .faq-item { border-bottom: 1px solid var(--border); }
@@ -94,7 +168,7 @@ const styles = `
   .faq-icon.open { transform: rotate(45deg); }
   .faq-a { padding: 0 0 28px; font-size: 15px; color: var(--muted); line-height: 1.8; font-weight: 300; max-width: 700px; }
 
-  .contact-section { background: var(--ink2); padding: 100px 0; }
+  .contact-section { background: var(--ink2); padding: 100px 0; transition: var(--transition); }
   .contact-section > div { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
   .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; margin-top: 60px; align-items: start; }
   .contact-info p { font-size: 15px; color: var(--muted); line-height: 1.8; font-weight: 300; margin-bottom: 28px; }
@@ -106,7 +180,7 @@ const styles = `
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .form-field { display: flex; flex-direction: column; gap: 8px; }
   .form-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
-  .form-input, .form-textarea, .form-select { background: rgba(255,255,255,0.8); border: 1px solid var(--border); color: var(--text); padding: 16px 20px; font-family: 'Jost', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-input, .form-textarea, .form-select { background: var(--form-bg); border: 1px solid var(--border); color: var(--text); padding: 16px 20px; font-family: 'Jost', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
   .form-input::placeholder, .form-textarea::placeholder { color: rgba(138,112,96,0.5); }
   .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--gold); }
   .form-select { appearance: none; cursor: pointer; }
@@ -116,11 +190,11 @@ const styles = `
   .form-submit:hover { background: var(--gold-light); }
   .form-success { padding: 24px; border: 1px solid var(--gold); color: var(--gold); font-size: 15px; line-height: 1.6; font-weight: 300; }
 
-  footer { padding: 48px 60px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer { padding: 48px 60px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; background: var(--ink); transition: var(--transition); }
   .footer-logo { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--gold); line-height: 1.3; text-decoration: none; display: block; }
   .footer-logo span { display: block; font-size: 12px; opacity: 0.65; margin-top: 3px; font-family: 'Jost', sans-serif; font-weight: 300; color: var(--muted); }
   .footer-note { font-size: 12px; color: var(--muted); max-width: 400px; line-height: 1.6; }
-  .crisis-bar { background: var(--ink2); border-top: 1px solid var(--border); padding: 16px 60px; text-align: center; font-size: 13px; color: var(--muted); }
+  .crisis-bar { background: var(--ink2); border-top: 1px solid var(--border); padding: 16px 60px; text-align: center; font-size: 13px; color: var(--muted); transition: var(--transition); }
   .crisis-bar strong { color: var(--text); }
 
   @media (max-width: 768px) {
@@ -156,18 +230,30 @@ const PHASES = [
 ];
 
 const CONDITIONS = [
-  { icon: "🌀", name: "Trauma & PTSD", desc: "Single-incident trauma, complex PTSD, childhood wounds, and the effects of prolonged stress or abuse." },
-  { icon: "⚡", name: "Anxiety", desc: "Panic attacks, persistent worry, phobias, and the nervous system dysregulation that keeps you stuck in fear." },
-  { icon: "🌧️", name: "Depression", desc: "Low mood, loss of motivation, and the dark weight that disconnects you from yourself and others." },
-  { icon: "🕊️", name: "Grief & Loss", desc: "Complicated grief, loss of a loved one, or the quiet grief of a life that did not go as planned." },
-  { icon: "🌱", name: "Life Transitions", desc: "Major changes — career shifts, relationship endings, identity questions — that leave you feeling unmoored." },
-  { icon: "💭", name: "Negative Beliefs", desc: "Deep-seated beliefs like 'I am not enough' that drive patterns you cannot seem to break." },
+  { name: "Trauma & PTSD", desc: "Single-incident trauma, complex PTSD, childhood wounds, and the effects of prolonged stress or abuse." },
+  { name: "Anxiety", desc: "Panic attacks, persistent worry, phobias, and the nervous system dysregulation that keeps you stuck in fear." },
+  { name: "Depression", desc: "Low mood, loss of motivation, and the dark weight that disconnects you from yourself and others." },
+  { name: "Grief & Loss", desc: "Complicated grief, loss of a loved one, or the quiet grief of a life that did not go as planned." },
+  { name: "Life Transitions", desc: "Major changes — career shifts, relationship endings, identity questions — that leave you feeling unmoored." },
+  { name: "Negative Beliefs", desc: "Deep-seated beliefs like 'I am not enough' that drive patterns you cannot seem to break." },
 ];
 
 const FAQS = [
   {
+    q: "Are you currently accepting new clients?",
+    a: "Yes — I am currently accepting new clients for telehealth therapy throughout California. The best way to get started is to book a free 15-minute consultation so we can see if we are a good fit before committing to anything."
+  },
+  {
+    q: "Do you accept insurance?",
+    a: "My practice is private pay, which means I do not bill insurance directly. I can provide a superbill — a detailed receipt — that you can submit to your insurance company for potential out-of-network reimbursement. Many clients with PPO plans recoup a meaningful portion of the cost this way. I recommend checking with your insurer about your out-of-network mental health benefits before we begin."
+  },
+  {
+    q: "What are your session rates?",
+    a: "$240 for a 45-minute session, $320 for a 60-minute session. I am private pay and do not bill insurance directly. I provide a superbill after each session — many clients with PPO plans recoup a portion of the cost through out-of-network benefits. I recommend checking with your insurer before we begin."
+  },
+  {
     q: "What does an EMDR session actually feel like?",
-    a: "Most people describe EMDR as surprisingly gentle for how much ground it covers. You will engage in simple eye movements or tapping while briefly holding a difficult memory in mind — your brain does the heavy lifting. Many clients feel lighter after sessions, sometimes noticeably so, even if the process felt subtle in the moment."
+    a: "EMDR is not a passive process — it asks you to stay present with difficult material, and sessions can bring up real emotion. Most people find it more manageable than they expected, but it is not always comfortable either. What stands out for clients who stick with it is how much ground gets covered: breakthroughs that felt out of reach become possible when the work is done consistently and with good guidance. It is challenging in the way that meaningful things usually are."
   },
   {
     q: "How is EMDR different from regular talk therapy?",
@@ -176,10 +262,6 @@ const FAQS = [
   {
     q: "How many sessions will I need?",
     a: "Most clients meet weekly for 8-16 sessions, though this varies depending on what we are working on. For more complex or layered trauma, it can be beneficial to meet twice a week to maintain momentum and deepen the work. We will have a clearer picture of what makes sense for you after our first few sessions together."
-  },
-  {
-    q: "Is EMDR covered by insurance?",
-    a: "Because my practice is telehealth-only and private pay, I do not bill insurance directly. I can provide a superbill — a detailed receipt — that you can submit to your insurance for potential out-of-network reimbursement. Many clients recoup a portion of the cost this way."
   },
   {
     q: "Do I have to talk about my trauma in detail?",
@@ -191,11 +273,29 @@ const FAQS = [
   },
 ];
 
+
 export default function App() {
   const [openFaq, setOpenFaq] = useState(null);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", concern: "", message: "", _honeypot: "" });
   const [submitted, setSubmitted] = useState(false);
   const [captchaToken, setCaptchaToken] = useState(null);
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Dark mode toggle — persist preference
+  useEffect(() => {
+    const saved = localStorage.getItem("emdr-theme");
+    if (saved === "dark") {
+      setDarkMode(true);
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  }, []);
+
+  const toggleDark = () => {
+    const next = !darkMode;
+    setDarkMode(next);
+    document.documentElement.setAttribute("data-theme", next ? "dark" : "light");
+    localStorage.setItem("emdr-theme", next ? "dark" : "light");
+  };
 
   useState(() => {
     const script = document.createElement('script');
@@ -209,7 +309,7 @@ export default function App() {
 
   const handleSubmit = async () => {
     if (!formData.name || !formData.email) return;
-    if (formData._honeypot) return; // Bot caught
+    if (formData._honeypot) return;
     if (!captchaToken) { alert('Please complete the captcha first.'); return; }
     try {
       const res = await fetch("https://formspree.io/f/mlgwzaoq", {
@@ -298,13 +398,20 @@ export default function App() {
           Bayside Wellness &amp; Counseling
           <span>Marcus Ghiasi, LMFT</span>
         </a>
-        <div className="nav-links">
-          <a href="#emdr" onClick={(e) => { e.preventDefault(); scrollTo("emdr"); }}>What is EMDR</a>
-          <a href="#about" onClick={(e) => { e.preventDefault(); scrollTo("about"); }}>About</a>
-          <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo("faq"); }}>FAQ</a>
-          <a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}>Contact</a>
+        <div className="nav-right">
+          <div className="nav-links">
+            <a href="#emdr" onClick={(e) => { e.preventDefault(); scrollTo("emdr"); }}>What is EMDR</a>
+            <a href="#about" onClick={(e) => { e.preventDefault(); scrollTo("about"); }}>About</a>
+            <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo("faq"); }}>FAQ</a>
+            <a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}>Contact</a>
+          </div>
+          <button className="dark-toggle" onClick={toggleDark} aria-label="Toggle dark mode">
+            <div className="toggle-track">
+              <div className="toggle-thumb" />
+            </div>
+          </button>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="nav-cta">Book a consult</a>
         </div>
-        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="nav-cta">Book a consult</a>
       </nav>
 
       <div className="hero">
@@ -365,7 +472,6 @@ export default function App() {
           <div className="conditions-grid">
             {CONDITIONS.map((c) => (
               <div className="condition-card" key={c.name}>
-                <span className="condition-icon">{c.icon}</span>
                 <div className="condition-name">{c.name}</div>
                 <p className="condition-desc">{c.desc}</p>
               </div>
@@ -378,7 +484,7 @@ export default function App() {
         <div className="section-label">About</div>
         <div className="about-grid">
           <div className="about-left">
-            <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: "32px" }} />
+            <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" />
             <div className="credentials">
               <div className="credential"><strong>Licensed LMFT</strong> — California</div>
               <div className="credential"><strong>EMDR Trained</strong> — EMDRIA-approved</div>
@@ -386,14 +492,11 @@ export default function App() {
               <div className="credential"><strong>Telehealth</strong> — California-wide</div>
               <div className="credential"><strong>Free 15-min</strong> consultation</div>
             </div>
-            <div style={{ marginTop: "28px" }}>
-              <a href="https://www.psychologytoday.com/profile/1134128" className="sx-verified-seal"></a>
-            </div>
           </div>
           <div className="about-content">
             <h2>Marcus<br /><em>Ghiasi,</em> LMFT</h2>
             <p>
-              I am a licensed Marriage and Family Therapist based in Oakland, California, with over <strong>10 years of experience</strong> working with adults navigating trauma, anxiety, depression, grief, and the weight of lives that have been harder than they should have been.
+              I am a licensed Marriage and Family Therapist and the founder of Bayside Wellness &amp; Counseling, based in Oakland, California. With over <strong>10 years of experience</strong> working with adults navigating trauma, anxiety, depression, grief, and the weight of lives that have been harder than they should have been, I built Bayside around the belief that people deserve care that actually gets to the root of things.
             </p>
             <p>
               I specialize in <strong>EMDR therapy</strong> because I have seen it create change that talk therapy alone could not reach. There is something profound about watching a person's relationship to their own past shift — not through willpower or insight alone, but through the brain's own healing capacity.
@@ -401,6 +504,20 @@ export default function App() {
             <p>
               My practice is fully virtual. I work with clients across California, and I bring the same care and attentiveness to a telehealth session that I would to an in-person one. If you are ready to do real work, I am ready to meet you there.
             </p>
+            <div className="pt-button-wrap">
+              <a
+                href="https://www.psychologytoday.com/profile/1134128"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pt-button-link"
+              >
+                <svg className="pt-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="40" height="40" rx="4" fill="#0e5e6e"/>
+                  <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="13" fontFamily="serif" fontWeight="bold">PT</text>
+                </svg>
+                Verified on Psychology Today
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -444,7 +561,7 @@ export default function App() {
                 </div>
                 <div className="contact-detail-item">
                   <span className="contact-detail-label">Session Rate</span>
-                  <span className="contact-detail-value">Contact for current rates</span>
+                  <span className="contact-detail-value">$240 / 45 min · $320 / 60 min</span>
                 </div>
                 <div className="contact-detail-item">
                   <span className="contact-detail-label">Insurance</span>
