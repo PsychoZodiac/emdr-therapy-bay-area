@@ -1888,6 +1888,110 @@ const styles = `
 
 const BOOKING_URL = "https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1";
 
+const BLOG_POSTS = [
+  {
+    slug: "what-happens-in-an-emdr-session",
+    title: "What Actually Happens in an EMDR Session",
+    category: "EMDR Education",
+    date: "April 2, 2026",
+    image: "/emdr-session-blog.jpg",
+    excerpt: "Most people walk into their first EMDR session with a mental image somewhere between hypnosis and something they saw in a movie. Here is what actually happens, from preparation through processing to how the hour ends.",
+    metaTitle: "What Actually Happens in an EMDR Session | EMDR Therapy Bay Area",
+    metaDescription: "A clear, honest breakdown of what an EMDR session looks like from start to finish. What bilateral stimulation feels like, how processing works, and what to expect when you leave.",
+    content: [
+      { type: "p", text: "The first thing most people feel walking into an EMDR session is a specific kind of uncertainty. Not fear exactly. More like the feeling of being about to do something that does not have a clear script yet." },
+      { type: "p", text: "That feeling is worth addressing directly. Because EMDR therapy is one of the most misunderstood treatments in mental health, not because it is complicated, but because nothing in our cultural vocabulary prepares us for what it actually is. It is not hypnosis. It is not talk therapy with eye movements added. It is something genuinely different, and the people who benefit most from it are usually the ones who understood what they were walking into before they arrived." },
+      { type: "p", text: "This is that explanation." },
+      { type: "h2", text: "The Preparation Phase Is Not Waiting. It Is Working." },
+      { type: "p", text: "A skilled EMDR therapist does not begin processing in the first session. Before any trauma work starts, there is a preparation phase that is easy to undervalue and essential not to skip. This is where the therapeutic relationship forms, where your history gets mapped, where the specific experiences you want to address get identified, and where you build the internal resources you will need to stay regulated when difficult material surfaces." },
+      { type: "p", text: "People sometimes experience this phase as slow. It is not. It is the difference between processing trauma in a container that holds and processing it in a way that destabilizes you. The preparation is what makes the deeper work safe enough to do and effective enough to matter." },
+      { type: "h2", text: "The Moment the Session Turns" },
+      { type: "p", text: "When processing begins, your therapist will ask you to identify a specific target. Usually this is a memory or image that still carries a charge when you bring it to mind. You will name the belief it planted in you, something like \"I am not safe\" or \"I should have stopped it.\" You will locate where you feel it in your body. You will rate how distressing it feels on a scale of zero to ten." },
+      { type: "p", text: "This sounds more structured than it feels. In practice it is a quiet, focused conversation. You are not being asked to perform or produce. You are being asked to notice what is already living inside you. Most people find that part easier than they expected." },
+      { type: "h2", text: "What Bilateral Stimulation Actually Does to a Memory" },
+      { type: "p", text: "Bilateral stimulation is the technical term for the alternating left-right activation at the center of every EMDR session. In practice this usually means following your therapist's fingers with your eyes as they move back and forth across your field of vision, though some therapists use tapping or alternating sounds through headphones." },
+      { type: "p", text: "You hold the target memory loosely in awareness while the stimulation continues. Your therapist checks in every thirty seconds or so. What are you noticing? The answer might be an image, a body sensation, an emotion, a color, a fragment of something you had forgotten. There is no correct response. You simply report what arises and the processing continues." },
+      { type: "p", text: "What tends to happen next is the part that surprises people most. The memory begins to shift on its own. Not because the therapist directed it somewhere. Because the brain, given the right conditions, moves toward resolution the way a wound moves toward healing. Associations surface. The emotional intensity decreases. Something that felt immovable begins, quietly, to move." },
+      { type: "h2", text: "How the Hour Ends" },
+      { type: "p", text: "Not every EMDR session reaches resolution and a skilled therapist does not chase completion at the cost of your stability. Every session ends with closure. You leave grounded, contained, and resourced regardless of where the processing stopped." },
+      { type: "p", text: "Some people walk out lighter. Others leave with a bone-deep tiredness that feels different from exhaustion. Some feel stirred for a day or two before things settle and integrate. All of it is normal. Processing continues between sessions in ways that are quieter and harder to name, and often what shifts most happens not in the room but in the days that follow." },
+      { type: "h2", text: "The Thing EMDR Is Not" },
+      { type: "p", text: "It is not hypnosis. You are present, aware, and in complete control throughout. Nothing is implanted. Nothing is suggested. You can stop at any moment. Your therapist is not steering you toward a particular memory or a particular conclusion. The work goes where your nervous system needs it to go, which is rarely where anyone predicted it would." },
+      { type: "p", text: "It is also not a shortcut. EMDR is evidence-based and often moves faster than talk therapy alone, but speed is a byproduct of depth, not a replacement for it. The work still asks something real of you. Honesty. Presence. A willingness to stay with discomfort long enough to let it change." },
+      { type: "h2", text: "The Only Question That Matters" },
+      { type: "p", text: "If you have been carrying something that has not shifted despite genuine effort, if certain memories or triggers still feel immediate no matter how much you understand them, if you are ready to work at a level that talking alone cannot reach, then you already know why you are reading this." },
+      { type: "p", text: "The next step is a conversation. Schedule a free consultation and we will figure out together whether EMDR therapy is what you have been looking for." },
+    ]
+  },
+  {
+    slug: "why-talk-therapy-wasnt-enough",
+    title: "Why Talk Therapy Wasn't Enough and What to Try Instead",
+    category: "Trauma & Healing",
+    date: "April 9, 2026",
+    image: "/talk-therapy-blog.jpg",
+    excerpt: "You did everything right in therapy and something still has not moved. This is more common than the mental health conversation acknowledges, and it points to something important about what talk therapy can and cannot do for trauma.",
+    metaTitle: "Why Talk Therapy Wasn't Enough and What to Try Instead | EMDR Therapy Bay Area",
+    metaDescription: "If you have done real work in therapy and still feel stuck, the problem is not your effort. It is a structural limitation of the tool. Here is what EMDR therapy reaches that talking alone cannot.",
+    content: [
+      { type: "p", text: "There is a particular kind of exhaustion that comes from doing everything right in therapy and still feeling stuck." },
+      { type: "p", text: "You found a good therapist. You showed up. You did the uncomfortable work of looking honestly at your past, your patterns, the ways you move through the world and the reasons why. You built real understanding of yourself. And something, some specific thing, has still not moved." },
+      { type: "p", text: "This is more common than the mental health conversation acknowledges. And it points to something important about what talk therapy can and cannot do." },
+      { type: "h2", text: "What Talk Therapy Was Built For and Where It Ends" },
+      { type: "p", text: "Talk therapy works through language. It engages the prefrontal cortex, the part of the brain responsible for reflection, narrative, analysis, and meaning-making. Done well, this is profound work. Understanding your patterns changes how you see yourself. Naming what happened to you changes your relationship to it. The therapeutic relationship itself is healing in ways that go beyond anything discussed in the room." },
+      { type: "p", text: "But trauma does not live in the prefrontal cortex." },
+      { type: "p", text: "Trauma lives in the limbic system and the brainstem. In the parts of the brain that govern survival and operate faster than conscious thought. These are the structures that activate when a particular smell sends you somewhere you did not choose to go, when a tone of voice lands in your chest before your mind has processed a single word, when your body responds to something your thinking brain has already cleared as safe." },
+      { type: "p", text: "When those deeper structures are running a survival program, the reasoning brain often goes offline. You can narrate the trauma with precision and eloquence and the nervous system will keep running its original code. The words reach one part of the brain. The wound lives somewhere older and faster and far less interested in your analysis of it." },
+      { type: "p", text: "This is not a failure of your therapist or your effort or your intelligence. It is a structural limitation of the tool. And recognizing it is the first step toward finding what actually works." },
+      { type: "h2", text: "What EMDR Reaches That Talking Cannot" },
+      { type: "p", text: "EMDR therapy does not ask you to narrate your trauma. It asks you to hold it, lightly and briefly, while bilateral stimulation activates both hemispheres of the brain in an alternating left-right rhythm. Eye movements. Tapping. Sound. The specific method matters less than the bilateral alternation itself." },
+      { type: "p", text: "What this appears to do is engage the deeper structures of the brain where traumatic memory is held and create the conditions for that frozen material to begin moving. The leading theory draws a parallel to REM sleep, the stage during which the brain naturally processes and integrates experience. Trauma disrupts that process. EMDR therapy restarts it." },
+      { type: "p", text: "In practice this means that memories which have felt raw and present for years begin to lose their charge. The images soften. The body quiets. The beliefs that formed in the worst moments of your life, the ones that have been running quietly in the background of everything since, begin to loosen. The past starts to feel like the past." },
+      { type: "p", text: "People describe this in ways that are strikingly similar across very different histories. Smaller. Further away. Like watching something through glass instead of living inside it. Like finally being able to put something down that you did not realize you were still carrying." },
+      { type: "h2", text: "The Signs That EMDR Therapy Might Be the Right Next Step" },
+      { type: "p", text: "Talk therapy is the right tool for much of what brings people into a therapist's office. EMDR is not for everyone. But if any of this is familiar, it deserves a closer look." },
+      { type: "p", text: "You have done genuine work in therapy and specific things have not shifted. You understand your triggers but cannot change how your body responds to them. Your anxiety, hypervigilance, or emotional reactivity feels more physical than cognitive. You have a trauma history that feels locked in the body rather than processed through the mind. You want something with structure and direction rather than open-ended exploration with no clear horizon." },
+      { type: "p", text: "EMDR therapy requires real engagement. Honesty. Presence. A willingness to stay with difficult material long enough to let it move. But for people whose nervous systems are holding experiences that words alone have not released, it offers something qualitatively different from anything they have tried before." },
+      { type: "h2", text: "Nothing You Did Was Wasted" },
+      { type: "p", text: "Choosing EMDR after years of talk therapy is not an admission that the previous work failed. The self-awareness you built, the patterns you named, the relationships you repaired, the capacity for reflection you developed, all of it matters. And it tends to make EMDR more effective. You are not starting over. You are adding a tool that can reach what the previous ones were not built to reach." },
+      { type: "p", text: "If you are ready for that, schedule a free consultation. We will look at your history together and figure out whether EMDR therapy is the right next step for where you are now." },
+    ]
+  },
+  {
+    slug: "why-your-nervous-system-gets-stuck",
+    title: "Why Your Nervous System Gets Stuck and How EMDR Helps",
+    category: "Trauma & Neuroscience",
+    date: "April 16, 2026",
+    image: "/nervous-system-blog.jpg",
+    excerpt: "The symptoms that bring most people to trauma therapy are not evidence of a nervous system that failed. They are evidence of one that succeeded completely and then never received permission to stand down.",
+    metaTitle: "Why Your Nervous System Gets Stuck and How EMDR Helps | EMDR Therapy Bay Area",
+    metaDescription: "Trauma is not a character flaw. It is an incomplete biological process. Here is what happens to the nervous system during trauma, why it stays stuck, and how EMDR therapy helps it finally finish.",
+    content: [
+      { type: "p", text: "The symptoms that bring most people to trauma therapy are not evidence of a nervous system that failed. They are evidence of one that succeeded completely and then never received permission to stand down." },
+      { type: "p", text: "That single reframe changes what healing requires. And it changes, in a way that matters, how you understand yourself." },
+      { type: "h2", text: "The System That Was Built to Save You" },
+      { type: "p", text: "Your nervous system is not interested in your comfort or your productivity or your sense of peace. It has one job. Keep you alive. It has been doing that job since before you drew your first breath and it is, by any measure, extraordinarily good at it." },
+      { type: "p", text: "When it detects a threat, it mobilizes without waiting for your input. Adrenaline floods the body. The heart accelerates. Attention narrows to the source of danger. Muscles prepare for action. This happens faster than language, faster than conscious thought, faster than any decision you could deliberately make. The system is designed that way on purpose. In the moment when survival is at stake, thinking is a liability." },
+      { type: "p", text: "Under ordinary circumstances, once the threat passes, the activation discharges. You breathe. The chemicals clear. The body returns to baseline. The brain files the experience as something that happened and is now finished." },
+      { type: "p", text: "But sometimes the cycle does not complete. The threat is too sudden, too sustained, or too overwhelming for the nervous system to process in real time. The activation has nowhere to go. And so it stays, held in the body, with the brain keeping the memory flagged not as something that happened but as something that is still unfolding." },
+      { type: "p", text: "This is what trauma is. Not weakness. Not fragility. An incomplete biological process that the body has been trying to finish ever since." },
+      { type: "h2", text: "Why the Past Keeps Arriving in the Present" },
+      { type: "p", text: "A nervous system holding an unprocessed experience begins to function like a security system with a damaged sensor. Any signal that resembles the original threat, a sound, a smell, a quality of light, a posture, a particular silence, triggers the alarm. The body mobilizes. The protective response fires. All of this happens before the thinking brain has processed a single detail of what is actually in front of you." },
+      { type: "p", text: "From the outside, this looks like overreacting. From the inside, it feels like survival. Because for the nervous system, it is survival. It is not responding to what is present. It is responding to a pattern it has learned, through experience, to treat as dangerous. It is doing precisely what it was built to do." },
+      { type: "p", text: "This is why understanding your trauma intellectually does not always change how you respond to it. Insight lives in the prefrontal cortex. The alarm system lives somewhere older and faster and entirely unimpressed by your analysis of the situation. You can know, with complete clarity, that you are safe. And your body can refuse to believe it." },
+      { type: "h2", text: "What EMDR Does at the Level Where Trauma Lives" },
+      { type: "p", text: "EMDR therapy works directly with the frozen activation that talk therapy alone cannot always reach. The bilateral stimulation at the center of every EMDR session, alternating eye movements, tapping, or sound in a left-right rhythm, engages both hemispheres of the brain simultaneously in a way that allows stuck material to begin moving again." },
+      { type: "p", text: "The leading theory draws a parallel to REM sleep, the stage during which the brain naturally processes and integrates the day's experiences, filing what matters and releasing what does not. Trauma disrupts this process. EMDR therapy creates the conditions that allow it to resume, giving the nervous system the opportunity to do what it has been trying to do since the moment the experience overwhelmed it." },
+      { type: "p", text: "In practice, memories that have been running as present-tense emergencies begin to shift into the past tense where they belong. The charge decreases. The body stops bracing for something that is not coming. The alarm that has been firing for months or years, sometimes decades, gradually quiets." },
+      { type: "p", text: "The memory does not disappear. What disappears is its authority over the present moment." },
+      { type: "h2", text: "What It Feels Like When the System Finally Rests" },
+      { type: "p", text: "People who move through trauma with EMDR therapy tend to describe the change in strikingly similar terms, regardless of what they carried or how long they carried it. A quieting. A sense of space where there used to be noise. Situations that once triggered a full survival response become things they can notice, navigate, and move through. They find themselves somewhere that would previously have sent them completely offline and realize, sometimes with genuine surprise, that they are steady." },
+      { type: "p", text: "This is not the erasure of memory. It is the restoration of choice. The nervous system that has been running a survival program in the background of every moment, that has been working without rest for longer than anyone should have to endure, finally receives the update it has been waiting for." },
+      { type: "p", text: "That was then. This is now. You made it through." },
+      { type: "p", text: "If you recognize your experience in what is described here, schedule a free consultation. We can talk about where you are and what EMDR therapy might make possible for you." },
+    ]
+  }
+];
+
 const PHASES = [
   { num: "01", title: "History & Planning", desc: "We explore your history and identify targets for processing." },
   { num: "02", title: "Preparation", desc: "You learn stabilization techniques and what to expect from EMDR." },
@@ -1943,6 +2047,136 @@ const FAQS = [
   },
 ];
 
+function BlogIndex() {
+  useEffect(() => {
+    document.title = "Blog | EMDR Therapy Bay Area";
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", "Articles on EMDR therapy, trauma, anxiety, and healing from Marcus Ghiasi, LMFT.");
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
+    canonical.href = "https://emdrtherapybayarea.com/blog";
+  }, []);
+
+  return (
+    <div style={{ minHeight: "100vh", background: "var(--ink)", color: "var(--text)", fontFamily: "'Jost', sans-serif" }}>
+      <nav style={{ position: "sticky", top: 0, zIndex: 50, padding: "18px 60px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", borderBottom: "1px solid var(--border)", backdropFilter: "blur(8px)" }}>
+        <a href="/" style={{ textDecoration: "none" }}>
+          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", letterSpacing: "0.02em" }}>EMDR Therapy Bay Area</div>
+          <div style={{ fontSize: "10px", color: "var(--muted)", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "2px", fontWeight: 300 }}>Marcus Ghiasi, LMFT</div>
+        </a>
+        <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consult</a>
+      </nav>
+      <div style={{ padding: "80px 60px 40px", maxWidth: "900px" }}>
+        <div style={{ fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "20px", display: "flex", alignItems: "center", gap: "14px" }}>
+          <span style={{ display: "inline-block", width: "32px", height: "1px", background: "var(--gold)", flexShrink: 0 }}></span>
+          From the practice
+        </div>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "52px", fontWeight: 400, lineHeight: 1.07, color: "var(--text)", marginBottom: "16px" }}>Writing on <em style={{ fontStyle: "italic", color: "var(--gold)" }}>EMDR & Healing</em></h1>
+        <p style={{ fontSize: "17px", lineHeight: 1.78, color: "var(--muted)", fontWeight: 300, maxWidth: "600px", marginBottom: "64px" }}>Evidence-based perspectives on trauma, anxiety, and what actually helps. Written by Marcus Ghiasi, LMFT.</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          {BLOG_POSTS.map(post => (
+            <a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}
+              onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
+              onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
+              <img src={post.image} alt={post.title} style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }} loading="lazy" />
+              <div style={{ padding: "32px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <div>
+                  <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "12px" }}>{post.category} · {post.date}</div>
+                  <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", fontWeight: 400, color: "var(--text)", lineHeight: 1.2, marginBottom: "14px" }}>{post.title}</div>
+                  <p style={{ fontSize: "14px", lineHeight: 1.75, color: "var(--muted)", fontWeight: 300, margin: 0 }}>{post.excerpt}</p>
+                </div>
+                <div style={{ fontSize: "12px", color: "var(--gold)", letterSpacing: "0.08em", marginTop: "24px" }}>Read more →</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <footer style={{ padding: "32px 60px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginTop: "80px" }}>
+        <a href="/" style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", textDecoration: "none" }}>EMDR Therapy Bay Area</a>
+        <p style={{ fontSize: "11px", color: "var(--muted)", margin: 0 }}>Marcus Ghiasi, LMFT #158475 · Oakland, CA · Telehealth throughout California</p>
+        <a href="/" style={{ fontSize: "12px", color: "var(--gold)", textDecoration: "none" }}>← Main site</a>
+      </footer>
+      <div style={{ background: "var(--ink2)", borderTop: "1px solid var(--border)", padding: "12px 60px", textAlign: "center", fontSize: "11px", color: "var(--muted)" }}>
+        <strong style={{ color: "var(--text)" }}>In crisis?</strong> Call or text <strong style={{ color: "var(--text)" }}>988</strong> — Suicide &amp; Crisis Lifeline, free &amp; confidential, 24/7.
+      </div>
+    </div>
+  );
+}
+
+function BlogPost({ post }) {
+  useEffect(() => {
+    document.title = post.metaTitle;
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", post.metaDescription);
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
+    canonical.href = `https://emdrtherapybayarea.com/blog/${post.slug}`;
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": post.title,
+      "description": post.metaDescription,
+      "datePublished": post.date,
+      "author": { "@type": "Person", "name": "Marcus Ghiasi", "jobTitle": "Licensed Marriage and Family Therapist" },
+      "publisher": { "@type": "Organization", "name": "EMDR Therapy Bay Area", "url": "https://emdrtherapybayarea.com" },
+      "image": `https://emdrtherapybayarea.com${post.image}`,
+      "url": `https://emdrtherapybayarea.com/blog/${post.slug}`
+    };
+    const s = document.createElement("script");
+    s.type = "application/ld+json";
+    s.text = JSON.stringify(schema);
+    document.head.appendChild(s);
+    return () => { document.head.removeChild(s); };
+  }, []);
+
+  return (
+    <div style={{ minHeight: "100vh", background: "var(--ink)", color: "var(--text)", fontFamily: "'Jost', sans-serif" }}>
+      <nav style={{ position: "sticky", top: 0, zIndex: 50, padding: "18px 60px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", borderBottom: "1px solid var(--border)", backdropFilter: "blur(8px)" }}>
+        <a href="/" style={{ textDecoration: "none" }}>
+          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", letterSpacing: "0.02em" }}>EMDR Therapy Bay Area</div>
+          <div style={{ fontSize: "10px", color: "var(--muted)", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "2px", fontWeight: 300 }}>Marcus Ghiasi, LMFT</div>
+        </a>
+        <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consult</a>
+      </nav>
+
+      <div style={{ maxWidth: "740px", margin: "0 auto", padding: "72px 60px 100px" }}>
+        <a href="/blog" style={{ fontSize: "12px", color: "var(--gold)", textDecoration: "none", letterSpacing: "0.06em", display: "inline-block", marginBottom: "48px" }}>← All posts</a>
+        <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "16px" }}>{post.category} · {post.date}</div>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "48px", fontWeight: 400, lineHeight: 1.1, color: "var(--text)", marginBottom: "40px" }}>{post.title}</h1>
+        <img src={post.image} alt={post.title} style={{ width: "100%", height: "360px", objectFit: "cover", display: "block", marginBottom: "56px" }} />
+        <div style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)", marginBottom: "48px", paddingBottom: "28px", borderBottom: "1px solid var(--border)" }}>
+          By Marcus Ghiasi, LMFT · EMDR Therapy Bay Area
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+          {post.content.map((block, i) => {
+            if (block.type === "h2") return (
+              <h2 key={i} style={{ fontFamily: "'Playfair Display', serif", fontSize: "28px", fontWeight: 400, color: "var(--text)", lineHeight: 1.25, marginTop: "48px", marginBottom: "20px" }}>{block.text}</h2>
+            );
+            return (
+              <p key={i} style={{ fontSize: "17px", lineHeight: 1.85, color: "var(--muted)", fontWeight: 300, marginBottom: "22px" }}>{block.text}</p>
+            );
+          })}
+        </div>
+        <div style={{ marginTop: "72px", padding: "40px", border: "1px solid var(--border)", background: "rgba(184,130,106,0.04)" }}>
+          <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "14px" }}>Ready to begin?</div>
+          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", fontWeight: 400, color: "var(--text)", lineHeight: 1.3, marginBottom: "20px" }}>Schedule a free 15-minute consultation.</p>
+          <p style={{ fontSize: "14px", lineHeight: 1.75, color: "var(--muted)", fontWeight: 300, marginBottom: "28px" }}>No forms, no pressure. Just a real conversation about whether EMDR therapy is the right fit for where you are.</p>
+          <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book your free consultation</a>
+        </div>
+      </div>
+
+      <footer style={{ padding: "32px 60px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
+        <a href="/" style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", textDecoration: "none" }}>EMDR Therapy Bay Area</a>
+        <p style={{ fontSize: "11px", color: "var(--muted)", margin: 0 }}>Marcus Ghiasi, LMFT #158475 · Oakland, CA · Telehealth throughout California</p>
+        <a href="/" style={{ fontSize: "12px", color: "var(--gold)", textDecoration: "none" }}>← Main site</a>
+      </footer>
+      <div style={{ background: "var(--ink2)", borderTop: "1px solid var(--border)", padding: "12px 60px", textAlign: "center", fontSize: "11px", color: "var(--muted)" }}>
+        <strong style={{ color: "var(--text)" }}>In crisis?</strong> Call or text <strong style={{ color: "var(--text)" }}>988</strong> — Suicide &amp; Crisis Lifeline, free &amp; confidential, 24/7.
+      </div>
+    </div>
+  );
+}
 
 export default function App() {
   const [openFaq, setOpenFaq] = useState(null);
@@ -1954,6 +2188,8 @@ export default function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const isSeoPage = !!SEO_PAGE_MAP[window.location.pathname];
+const isBlogIndex = window.location.pathname === "/blog";
+const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/${p.slug}`);
 
   // Dark mode toggle — persist preference
   useEffect(() => {
@@ -2176,6 +2412,40 @@ export default function App() {
     });
   }, []);
 
+  if (isBlogIndex) {
+    return (
+      <>
+        <style>{`
+          :root { --ink:#FAF7F4; --ink2:#F3EDE6; --gold:#B8826A; --gold-light:#C9967E; --text:#3D2D26; --muted:#6B5448; --border:rgba(184,130,106,0.22); --nav-bg:rgba(250,247,244,0.97); }
+          [data-theme="dark"] { --ink:#1A1614; --ink2:#221E1B; --gold:#C9967E; --gold-light:#D9AA96; --text:#EDE8E3; --muted:#A89080; --border:rgba(201,150,126,0.18); --nav-bg:rgba(26,22,20,0.97); }
+          * { box-sizing:border-box; margin:0; padding:0; }
+          body { background:var(--ink); color:var(--text); font-family:'Jost',sans-serif; }
+          .btn-seo-gold { background:var(--gold); color:white; padding:14px 36px; font-family:'Jost',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; display:inline-block; border:none; cursor:pointer; }
+          .btn-seo-gold:hover { background:var(--gold-light); }
+          @media(max-width:768px){ nav { padding:16px 24px !important; } div[style*="padding: 80px 60px"] { padding:60px 24px 40px !important; } a[style*="gridTemplateColumns"] { grid-template-columns:1fr !important; } }
+        `}</style>
+        <BlogIndex />
+      </>
+    );
+  }
+
+  if (blogPostMatch) {
+    return (
+      <>
+        <style>{`
+          :root { --ink:#FAF7F4; --ink2:#F3EDE6; --gold:#B8826A; --gold-light:#C9967E; --text:#3D2D26; --muted:#6B5448; --border:rgba(184,130,106,0.22); --nav-bg:rgba(250,247,244,0.97); }
+          [data-theme="dark"] { --ink:#1A1614; --ink2:#221E1B; --gold:#C9967E; --gold-light:#D9AA96; --text:#EDE8E3; --muted:#A89080; --border:rgba(201,150,126,0.18); --nav-bg:rgba(26,22,20,0.97); }
+          * { box-sizing:border-box; margin:0; padding:0; }
+          body { background:var(--ink); color:var(--text); font-family:'Jost',sans-serif; }
+          .btn-seo-gold { background:var(--gold); color:white; padding:14px 36px; font-family:'Jost',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; display:inline-block; border:none; cursor:pointer; }
+          .btn-seo-gold:hover { background:var(--gold-light); }
+          @media(max-width:768px){ nav { padding:16px 24px !important; } div[style*="padding: 72px 60px"] { padding:48px 24px 80px !important; } h1[style*="font-size: 48px"] { font-size:32px !important; } img[style*="height: 360px"] { height:220px !important; } }
+        `}</style>
+        <BlogPost post={blogPostMatch} />
+      </>
+    );
+  }
+  
   if (isSeoPage) {
     const seoMatch = SEO_PAGE_MAP[window.location.pathname];
     return (
@@ -2219,6 +2489,7 @@ export default function App() {
             <a href="#about" onClick={(e) => { e.preventDefault(); scrollTo("about"); }}>About</a>
             <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo("faq"); }}>FAQ</a>
             <a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}>Contact</a>
+            <a href="/blog">Blog</a>
           </div>
           <button className="dark-toggle" onClick={toggleDark} aria-label="Toggle dark mode" aria-pressed={darkMode}>
             <div className="toggle-track">
@@ -2234,10 +2505,11 @@ export default function App() {
 
       {/* Mobile menu overlay */}
       <div className={mobileOpen ? "mobile-menu open" : "mobile-menu"} role="dialog" aria-modal="true" aria-label="Navigation menu">
-        <a href="#emdr" onClick={(e) => { e.preventDefault(); closeMobile("emdr"); }}>What is EMDR</a>
+       <a href="#emdr" onClick={(e) => { e.preventDefault(); closeMobile("emdr"); }}>What is EMDR</a>
         <a href="#about" onClick={(e) => { e.preventDefault(); closeMobile("about"); }}>About</a>
         <a href="#faq" onClick={(e) => { e.preventDefault(); closeMobile("faq"); }}>FAQ</a>
         <a href="#contact" onClick={(e) => { e.preventDefault(); closeMobile("contact"); }}>Contact</a>
+        <a href="/blog" onClick={() => setMobileOpen(false)}>Blog</a>
         <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mobile-cta" onClick={() => setMobileOpen(false)}>Book a consult</a>
       </div>
 
