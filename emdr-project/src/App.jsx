@@ -2066,7 +2066,7 @@ function BlogIndex() {
         </a>
         <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consult</a>
       </nav>
-      <div style={{ padding: "80px 60px 40px", maxWidth: "900px" }}>
+      <div style={{ padding: "80px 60px 40px", maxWidth: "900px", margin: "0 auto" }}>
         <div style={{ fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "20px", display: "flex", alignItems: "center", gap: "14px" }}>
           <span style={{ display: "inline-block", width: "32px", height: "1px", background: "var(--gold)", flexShrink: 0 }}></span>
           From the practice
