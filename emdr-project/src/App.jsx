@@ -2352,7 +2352,7 @@ const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/$
       },
       "sameAs": [
         "https://www.psychologytoday.com/profile/1134128",
-        "https://www.baysidewellnessandcounseling.com"
+        "https://www.baysidewellnessandcounseling.com",
         "https://www.emdria.org/directory/people/marcus-ghiasi/"
       ]
     };
