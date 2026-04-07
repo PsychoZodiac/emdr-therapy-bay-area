@@ -1485,7 +1485,27 @@ function SEOLocationPage({ data, bookingUrl }) {
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
       <SEONav bookingUrl={bookingUrl} />
-      ...rest of the JSX unchanged...
+      <div className="seo-hero">
+        <div className="seo-eyebrow">EMDR Therapy · {locationPhraseShort} · Telehealth</div>
+        <h1 className="seo-h1">
+          EMDR Therapy<br />
+          {isOnline ? <em>Online in California</em> : <><em>in {city}</em> — via telehealth</>}
+        </h1>
+        <p className="seo-hero-sub">I&apos;m Marcus Ghiasi, a licensed Marriage and Family Therapist specializing in EMDR for trauma, anxiety, depression, and grief. I work entirely via telehealth — which means I can see clients {locationPhrase} without anyone having to drive to an office.</p>
+        <div className="seo-hero-meta">
+          <span>LMFT #158475</span><span>·</span>
+          <span>EMDR Trained</span><span>·</span>
+          <span>10+ years experience</span><span>·</span>
+          <span>Free 15-min consult</span>
+        </div>
+        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consultation →</a>
+      </div>
+      <SEOIsItRight items={isForYou || []} />
+      <SEOWhatToExpect />
+      <SEOAbout locationPhrase={locationPhrase} />
+      <SEOFaq faqs={faqs || []} />
+      <SEOBooking />
+      <SEOFooter locationPhrase={locationPhrase} />
     </div>
   );
 }
