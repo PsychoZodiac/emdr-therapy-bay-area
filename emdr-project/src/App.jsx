@@ -1513,47 +1513,36 @@ function SEOLocationPage({ data, bookingUrl }) {
 function SEOConditionPage({ data, bookingUrl }) {
   const { title, condition, category, intro, isForYou, faqs, slug } = data;
 
-  useEffect(() => {
-    const pageTitle = `${title} | Marcus Ghiasi, LMFT — Bay Area`;
-    const pageDesc = `${title} via telehealth throughout California. Marcus Ghiasi, LMFT #158475 — evidence-based EMDR therapy. Free 15-min consultation.`;
-    const pageUrl = `https://emdrtherapybayarea.com/${slug}`;
-    document.title = pageTitle;
+  const pageTitle = `${title} | Marcus Ghiasi, LMFT — Bay Area`;
+  const pageDesc = `${title} via telehealth throughout California. Marcus Ghiasi, LMFT #158475 — evidence-based EMDR therapy. Free 15-min consultation.`;
+  const pageUrl = `https://emdrtherapybayarea.com/${slug}`;
 
-    // Meta description
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", pageDesc);
-
-    // Canonical
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
-    canonical.href = pageUrl;
-
-    // OG tags
-    const ogTags = { "og:title": pageTitle, "og:description": pageDesc, "og:url": pageUrl, "og:type": "website", "twitter:title": pageTitle, "twitter:description": pageDesc };
-    const injected = [];
-    Object.entries(ogTags).forEach(([prop, content]) => {
-      const attr = prop.startsWith("twitter:") ? "name" : "property";
-      let el = document.querySelector(`meta[${attr}="${prop}"]`);
-      if (!el) { el = document.createElement("meta"); el.setAttribute(attr, prop); document.head.appendChild(el); injected.push(el); }
-      el.setAttribute("content", content);
-    });
-
-    // JSON-LD schema
-    const schema = { "@context": "https://schema.org", "@type": "MedicalTherapy", "name": title, "url": pageUrl, "provider": { "@type": "Person", "name": "Marcus Ghiasi", "jobTitle": "Licensed Marriage and Family Therapist" } };
-    const s = document.createElement("script");
-    s.type = "application/ld+json";
-    s.text = JSON.stringify(schema);
-    document.head.appendChild(s);
-
-    return () => {
-      document.head.removeChild(s);
-      if (canonical) canonical.href = "https://emdrtherapybayarea.com";
-      injected.forEach(el => document.head.removeChild(el));
-    };
-  }, []);
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalTherapy",
+    "name": title,
+    "url": pageUrl,
+    "provider": {
+      "@type": "Person",
+      "name": "Marcus Ghiasi",
+      "jobTitle": "Licensed Marriage and Family Therapist"
+    }
+  };
 
   return (
     <div className="seo-page">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDesc} />
+        <link rel="canonical" href={pageUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDesc} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDesc} />
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      </Helmet>
       <SEONav bookingUrl={bookingUrl} />
       <div className="seo-hero">
         <div className="seo-eyebrow">{category} · Telehealth · California-wide</div>
