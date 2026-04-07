@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 // ─── SEO LANDING PAGE DATA ───────────────────────────────────────────────────
 
@@ -1453,11 +1454,41 @@ function SEOLocationPage({ data, bookingUrl }) {
   const locationPhrase = isOnline ? "throughout California" : `in ${city} and ${region}`;
   const locationPhraseShort = isOnline ? "California" : `${city}, CA`;
 
-  useEffect(() => {
-    const pageTitle = `EMDR Therapy ${isOnline ? "Online" : `in ${city}`} | Marcus Ghiasi, LMFT`;
-    const pageDesc = `EMDR therapy ${locationPhrase}. Marcus Ghiasi, LMFT #158475 — trauma, anxiety, depression, grief. Telehealth. Free 15-min consultation.`;
-    const pageUrl = `https://emdrtherapybayarea.com/${slug}`;
-    document.title = pageTitle;
+  const pageTitle = `EMDR Therapy ${isOnline ? "Online" : `in ${city}`} | Marcus Ghiasi, LMFT`;
+  const pageDesc = `EMDR therapy ${locationPhrase}. Marcus Ghiasi, LMFT #158475 — trauma, anxiety, depression, grief. Telehealth. Free 15-min consultation.`;
+  const pageUrl = `https://emdrtherapybayarea.com/${slug}`;
+  const robotsContent = data.noindex ? "noindex, nofollow" : "index, follow";
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": `EMDR Therapy ${locationPhraseShort} — Marcus Ghiasi, LMFT`,
+    "url": pageUrl,
+    "telephone": "(415) 857-5799",
+    "areaServed": locationPhraseShort,
+    "medicalSpecialty": "EMDR Therapy"
+  };
+
+  return (
+    <div className="seo-page">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDesc} />
+        <link rel="canonical" href={pageUrl} />
+        <meta name="robots" content={robotsContent} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDesc} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDesc} />
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      </Helmet>
+      <SEONav bookingUrl={bookingUrl} />
+      ...rest of the JSX unchanged...
+    </div>
+  );
+}
 
     // Meta description
     const desc = document.querySelector('meta[name="description"]');
