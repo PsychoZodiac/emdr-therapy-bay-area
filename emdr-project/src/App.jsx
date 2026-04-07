@@ -1468,6 +1468,16 @@ function SEOLocationPage({ data, bookingUrl }) {
     if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
     canonical.href = pageUrl;
 
+    // Robots meta tag — noindex for SoCal pages
+const robotsContent = data.noindex ? "noindex, nofollow" : "index, follow";
+let robotsMeta = document.querySelector('meta[name="robots"]');
+if (!robotsMeta) {
+  robotsMeta = document.createElement("meta");
+  robotsMeta.setAttribute("name", "robots");
+  document.head.appendChild(robotsMeta);
+}
+robotsMeta.setAttribute("content", robotsContent);
+
     // OG tags
     const ogTags = { "og:title": pageTitle, "og:description": pageDesc, "og:url": pageUrl, "og:type": "website", "twitter:title": pageTitle, "twitter:description": pageDesc };
     const injected = [];
