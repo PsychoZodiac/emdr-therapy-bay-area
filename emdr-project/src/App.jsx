@@ -2027,14 +2027,11 @@ const FAQS = [
 ];
 
 function BlogIndex() {
-  useEffect(() => {
-    document.title = "Blog | EMDR Therapy Bay Area";
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", "Articles on EMDR therapy, trauma, anxiety, and healing from Marcus Ghiasi, LMFT.");
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
-    canonical.href = "https://emdrtherapybayarea.com/blog";
-  }, []);
+  <Helmet>
+        <title>Blog | EMDR Therapy Bay Area</title>
+        <meta name="description" content="Articles on EMDR therapy, trauma, anxiety, and healing from Marcus Ghiasi, LMFT." />
+        <link rel="canonical" href="https://emdrtherapybayarea.com/blog" />
+      </Helmet>
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--ink)", color: "var(--text)", fontFamily: "'Jost', sans-serif" }}>
