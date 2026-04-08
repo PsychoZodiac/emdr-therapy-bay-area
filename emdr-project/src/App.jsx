@@ -2104,6 +2104,22 @@ function BlogPost({ post }) {
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
       <nav style={{ position: "sticky", top: 0, zIndex: 50, padding: "18px 60px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", borderBottom: "1px solid var(--border)", backdropFilter: "blur(8px)" }}>
+        <a href="/" style={{ textDecoration: "none" }}>
+          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", letterSpacing: "0.02em" }}>EMDR Therapy Bay Area</div>
+          <div style={{ fontSize: "10px", color: "var(--muted)", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "2px", fontWeight: 300 }}>Marcus Ghiasi, LMFT</div>
+        </a>
+        <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consult</a>
+      </nav>
+
+      <div style={{ maxWidth: "740px", margin: "0 auto", padding: "72px 60px 100px" }}>
+        <a href="/blog" style={{ fontSize: "12px", color: "var(--gold)", textDecoration: "none", letterSpacing: "0.06em", display: "inline-block", marginBottom: "48px" }}>← All posts</a>
+        <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "16px" }}>{post.category} · {post.date}</div>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "48px", fontWeight: 400, lineHeight: 1.1, color: "var(--text)", marginBottom: "40px" }}>{post.title}</h1>
+        <img src={post.image} alt={post.title} style={{ width: "100%", height: "360px", objectFit: "cover", display: "block", marginBottom: "56px" }} />
+        <div style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)", marginBottom: "48px", paddingBottom: "28px", borderBottom: "1px solid var(--border)" }}>
+          By Marcus Ghiasi, LMFT · EMDR Therapy Bay Area
+        </div>
+        <div style={{ dis
         
 export default function App() {
   const [openFaq, setOpenFaq] = useState(null);
