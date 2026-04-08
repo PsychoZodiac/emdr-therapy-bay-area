@@ -2104,7 +2104,6 @@ function BlogPost({ post }) {
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
       <nav style={{ position: "sticky", top: 0, zIndex: 50, padding: "18px 60px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", borderBottom: "1px solid var(--border)", backdropFilter: "blur(8px)" }}>
-        }
         
 export default function App() {
   const [openFaq, setOpenFaq] = useState(null);
