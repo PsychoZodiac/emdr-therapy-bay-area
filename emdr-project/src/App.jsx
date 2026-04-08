@@ -2223,55 +2223,170 @@ const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/$
   }, []);
 
   // Inject JSON-LD structured data for SEO
-  useEffect(() => {
-    // MedicalBusiness schema
-    const bizSchema = {
-      "@context": "https://schema.org",
-      "@type": "MedicalBusiness",
-      "name": "Bayside Wellness & Counseling - EMDR Therapy",
-      "description": "EMDR therapy for trauma, anxiety, depression, grief, and life transitions. Telehealth sessions available throughout California.",
-      "url": "https://emdrtherapybayarea.com",
-      "telephone": "(415) 857-5799",
-      "email": "hello@baysidewellnessandcounseling.com",
-      "priceRange": "$$",
-      "image": "https://emdrtherapybayarea.com/marcus.jpg",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "2323 Broadway",
-        "addressLocality": "Oakland",
-        "addressRegion": "CA",
-        "postalCode": "94612",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 37.8141,
-        "longitude": -122.2635
-      },
-      "areaServed": [
-        "Oakland, CA", "San Francisco, CA", "Berkeley, CA",
-        "Bay Area, CA", "California"
-      ],
-      "medicalSpecialty": "EMDR Therapy",
-      "availableService": [
-        { "@type": "MedicalTherapy", "name": "EMDR Therapy" },
-        { "@type": "MedicalTherapy", "name": "Trauma Therapy" },
-        { "@type": "MedicalTherapy", "name": "Anxiety Treatment" },
-        { "@type": "MedicalTherapy", "name": "Depression Therapy" },
-        { "@type": "MedicalTherapy", "name": "Grief Counseling" },
-        { "@type": "MedicalTherapy", "name": "Life Transitions Counseling" }
-      ],
-      "employee": {
-        "@type": "Person",
-        "name": "Marcus Ghiasi",
-        "jobTitle": "Licensed Marriage and Family Therapist",
-        "description": "LMFT specializing in EMDR therapy via telehealth throughout California."
-      },
-      "sameAs": [
-        "https://www.baysidewellnessandcounseling.com",
-      ]
-    };
+ useEffect(() => {
+  if (document.getElementById('schema-business')) return;
 
+  const bizSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Bayside Wellness & Counseling - EMDR Therapy",
+    "description": "EMDR therapy for trauma, anxiety, depression, grief, and life transitions. Telehealth sessions available throughout California.",
+    "url": "https://emdrtherapybayarea.com",
+    "telephone": "(415) 857-5799",
+    "email": "hello@baysidewellnessandcounseling.com",
+    "priceRange": "$$",
+    "image": "https://emdrtherapybayarea.com/marcus.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2323 Broadway",
+      "addressLocality": "Oakland",
+      "addressRegion": "CA",
+      "postalCode": "94612",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 37.8141,
+      "longitude": -122.2635
+    },
+    "areaServed": [
+      "Oakland, CA", "San Francisco, CA", "Berkeley, CA",
+      "Bay Area, CA", "California"
+    ],
+    "medicalSpecialty": "EMDR Therapy",
+    "availableService": [
+      { "@type": "MedicalTherapy", "name": "EMDR Therapy" },
+      { "@type": "MedicalTherapy", "name": "Trauma Therapy" },
+      { "@type": "MedicalTherapy", "name": "Anxiety Treatment" },
+      { "@type": "MedicalTherapy", "name": "Depression Therapy" },
+      { "@type": "MedicalTherapy", "name": "Grief Counseling" },
+      { "@type": "MedicalTherapy", "name": "Life Transitions Counseling" }
+    ],
+    "employee": {
+      "@type": "Person",
+      "name": "Marcus Ghiasi",
+      "jobTitle": "Licensed Marriage and Family Therapist",
+      "description": "LMFT specializing in EMDR therapy via telehealth throughout California."
+    },
+    "sameAs": [
+      "https://www.baysidewellnessandcounseling.com"
+    ]
+  };
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marcus Ghiasi",
+    "jobTitle": "Licensed Marriage and Family Therapist",
+    "description": "LMFT and founder of Bayside Wellness & Counseling. Specializes in EMDR therapy for trauma, anxiety, depression, grief, and life transitions via telehealth throughout California.",
+    "url": "https://emdrtherapybayarea.com",
+    "image": "https://emdrtherapybayarea.com/marcus.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Oakland",
+      "addressRegion": "CA",
+      "addressCountry": "US"
+    },
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "license",
+        "name": "Licensed Marriage and Family Therapist (LMFT #158475)",
+        "recognizedBy": { "@type": "Organization", "name": "California Board of Behavioral Sciences" }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "certification",
+        "name": "EMDR Trained Therapist",
+        "recognizedBy": { "@type": "Organization", "name": "EMDR International Association (EMDRIA)" }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "degree",
+        "name": "Master of Arts in Counseling Psychology",
+        "recognizedBy": { "@type": "Organization", "name": "University of San Francisco" }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "degree",
+        "name": "Bachelor of Arts in Psychology",
+        "recognizedBy": { "@type": "Organization", "name": "San Francisco State University" }
+      }
+    ],
+    "worksFor": {
+      "@type": "MedicalBusiness",
+      "name": "Bayside Wellness & Counseling",
+      "url": "https://www.baysidewellnessandcounseling.com"
+    },
+    "sameAs": [
+      "https://www.psychologytoday.com/profile/1134128",
+      "https://www.baysidewellnessandcounseling.com",
+      "https://www.emdria.org/directory/people/marcus-ghiasi/"
+    ]
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are you currently accepting new clients?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — I am currently accepting new clients for telehealth therapy throughout California. The best way to get started is to book a free 15-minute consultation so we can see if we are a good fit before committing to anything." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you accept insurance?",
+        "acceptedAnswer": { "@type": "Answer", "text": "My practice is private pay, which means I do not bill insurance directly. I can provide a superbill that you can submit to your insurance company for potential out-of-network reimbursement. Many clients with PPO plans recoup a meaningful portion of the cost this way." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are your session rates?",
+        "acceptedAnswer": { "@type": "Answer", "text": "$240 for a 45-minute session, $320 for a 60-minute session. I am private pay and provide a superbill after each session — many clients with PPO plans recoup a portion of the cost through out-of-network benefits." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does an EMDR session actually feel like?",
+        "acceptedAnswer": { "@type": "Answer", "text": "EMDR is not a passive process — it asks you to stay present with difficult material, and sessions can bring up real emotion. Most people find it more manageable than they expected, but it is not always comfortable. Clients who commit to the process consistently and with good guidance often experience meaningful breakthroughs." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is EMDR different from regular talk therapy?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Talk therapy works primarily through insight and narrative. EMDR works more directly with how the nervous system stores memory. You do not need to describe traumatic events in detail — the process is less verbal and more experiential, which many people find easier and more effective for trauma work." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many sessions will I need?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most clients meet weekly for 8-16 sessions, though this varies. For more complex trauma, meeting twice a week can help maintain momentum. We will have a clearer picture after our first few sessions together." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I have to talk about my trauma in detail?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. You hold a general awareness of a memory while we do the processing work. You are not required to narrate or relive events in detail. The method works even when language falls short." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can we do EMDR over telehealth?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. I work exclusively via telehealth and EMDR translates very well online. I use a specialized tool for bilateral stimulation that works through your screen. All you need is a private, comfortable space and a reliable internet connection." }
+      }
+    ]
+  };
+
+  const schemas = [
+    { id: 'schema-business', data: bizSchema },
+    { id: 'schema-person', data: personSchema },
+    { id: 'schema-faq', data: faqSchema },
+  ];
+
+  schemas.forEach(({ id, data }) => {
+    const script = document.createElement('script');
+    script.id = id;
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(data);
+    document.head.appendChild(script);
+  });
+}, []);
+  
     // Person schema — strengthens E-E-A-T signals
     const personSchema = {
       "@context": "https://schema.org",
