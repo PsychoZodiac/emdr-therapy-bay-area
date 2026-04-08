@@ -2119,7 +2119,35 @@ function BlogPost({ post }) {
         <div style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)", marginBottom: "48px", paddingBottom: "28px", borderBottom: "1px solid var(--border)" }}>
           By Marcus Ghiasi, LMFT · EMDR Therapy Bay Area
         </div>
-        <div style={{ dis
+        <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+          {post.content.map((block, i) => {
+            if (block.type === "h2") return (
+              <h2 key={i} style={{ fontFamily: "'Playfair Display', serif", fontSize: "28px", fontWeight: 400, color: "var(--text)", lineHeight: 1.25, marginTop: "48px", marginBottom: "20px" }}>{block.text}</h2>
+            );
+            return (
+              <p key={i} style={{ fontSize: "17px", lineHeight: 1.85, color: "var(--muted)", fontWeight: 300, marginBottom: "22px" }}>{block.text}</p>
+            );
+          })}
+        </div>
+        <div style={{ marginTop: "72px", padding: "40px", border: "1px solid var(--border)", background: "rgba(184,130,106,0.04)" }}>
+          <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "14px" }}>Ready to begin?</div>
+          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", fontWeight: 400, color: "var(--text)", lineHeight: 1.3, marginBottom: "20px" }}>Schedule a free 15-minute consultation.</p>
+          <p style={{ fontSize: "14px", lineHeight: 1.75, color: "var(--muted)", fontWeight: 300, marginBottom: "28px" }}>No forms, no pressure. Just a real conversation about whether EMDR therapy is the right fit for where you are.</p>
+          <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book your free consultation</a>
+        </div>
+      </div>
+
+      <footer style={{ padding: "32px 60px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
+        <a href="/" style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", textDecoration: "none" }}>EMDR Therapy Bay Area</a>
+        <p style={{ fontSize: "11px", color: "var(--muted)", margin: 0 }}>Marcus Ghiasi, LMFT #158475 · Oakland, CA · Telehealth throughout California</p>
+        <a href="/" style={{ fontSize: "12px", color: "var(--gold)", textDecoration: "none" }}>← Main site</a>
+      </footer>
+      <div style={{ background: "var(--ink2)", borderTop: "1px solid var(--border)", padding: "12px 60px", textAlign: "center", fontSize: "11px", color: "var(--muted)" }}>
+        <strong style={{ color: "var(--text)" }}>In crisis?</strong> Call or text <strong style={{ color: "var(--text)" }}>988</strong> — Suicide &amp; Crisis Lifeline, free &amp; confidential, 24/7.
+      </div>
+    </div>
+  );
+}
         
 export default function App() {
   const [openFaq, setOpenFaq] = useState(null);
