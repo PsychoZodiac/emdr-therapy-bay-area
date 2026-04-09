@@ -2269,7 +2269,9 @@ const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/$
       "description": "LMFT specializing in EMDR therapy via telehealth throughout California."
     },
     "sameAs": [
-      "https://www.baysidewellnessandcounseling.com"
+      "https://www.baysidewellnessandcounseling.com",
+      "https://www.psychologytoday.com/profile/1134128",
+  "https://www.emdria.org/directory/people/marcus-ghiasi/"
     ]
   };
 
