@@ -2488,14 +2488,6 @@ const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/$
       ]
     };
 
-    [bizSchema, personSchema, faqSchema].forEach(schema => {
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.text = JSON.stringify(schema);
-      document.head.appendChild(script);
-    });
-  }, []);
-
   if (isBlogIndex) {
     return (
       <>
