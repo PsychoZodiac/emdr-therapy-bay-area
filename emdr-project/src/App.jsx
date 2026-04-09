@@ -1939,7 +1939,7 @@ const BLOG_POSTS = [
     slug: "why-your-nervous-system-gets-stuck",
     title: "Why Your Nervous System Gets Stuck and How EMDR Helps",
     category: "Trauma & Neuroscience",
-    date: "March 9, 2026",
+    date: "March 30, 2026",
     image: "/nervous-system-blog.jpg",
     excerpt: "The symptoms that bring most people to trauma therapy are not evidence of a nervous system that failed. They are evidence of one that succeeded completely and then never received permission to stand down.",
     metaTitle: "Why Your Nervous System Gets Stuck and How EMDR Helps | EMDR Therapy Bay Area",
