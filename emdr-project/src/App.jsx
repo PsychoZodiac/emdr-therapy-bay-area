@@ -2158,6 +2158,7 @@ export default function App() {
   const isSeoPage = !!SEO_PAGE_MAP[window.location.pathname];
 const isBlogIndex = window.location.pathname === "/blog";
 const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/${p.slug}`);
+  const isKnownRoute = isSeoPage || isBlogIndex || !!blogPostMatch || window.location.pathname === "/";
 
   // Dark mode toggle — persist preference
   useEffect(() => {
@@ -2490,6 +2491,26 @@ const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/$
       ]
     };
 
+  if (!isKnownRoute) {
+  return (
+    <>
+      <style>{`
+        :root { --ink:#FAF7F4; --ink2:#F3EDE6; --gold:#B8826A; --text:#3D2D26; --muted:#6B5448; --border:rgba(184,130,106,0.22); }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        body { background:var(--ink); font-family:'Jost',sans-serif; }
+      `}</style>
+      <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--ink)" }}>
+        <div style={{ textAlign: "center", padding: "40px" }}>
+          <div style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "20px" }}>404</div>
+          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "48px", fontWeight: 400, color: "var(--text)", marginBottom: "24px", lineHeight: 1.1 }}>Page not found</h1>
+          <p style={{ fontSize: "16px", color: "var(--muted)", fontWeight: 300, marginBottom: "36px", lineHeight: 1.7 }}>The page you're looking for doesn't exist.</p>
+          <a href="/" style={{ background: "var(--gold)", color: "white", padding: "14px 36px", fontFamily: "'Jost', sans-serif", fontSize: "12px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}>← Back to home</a>
+        </div>
+      </div>
+    </>
+  );
+}
+  
   if (isBlogIndex) {
     return (
       <>
