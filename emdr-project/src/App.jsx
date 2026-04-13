@@ -1215,14 +1215,14 @@ const SEO_STYLES = `
   .seo-logo { text-decoration:none; }
   .seo-logo-name { font-family:'Playfair Display',serif; font-size:15px; color:var(--gold); letter-spacing:0.02em; }
   .seo-logo-sub { font-size:10px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; margin-top:2px; font-weight:300; }
-  .seo-hero { padding:80px 60px 72px; max-width:900px; border-bottom:1px solid var(--border); }
+  .seo-hero { padding:80px 60px 72px; max-width:900px; margin:0 auto; border-bottom:1px solid var(--border); }
   .seo-eyebrow { font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; display:flex; align-items:center; gap:14px; }
   .seo-eyebrow::before { content:''; display:inline-block; width:32px; height:1px; background:var(--gold); flex-shrink:0; }
   .seo-h1 { font-family:'Playfair Display',serif; font-size:52px; font-weight:400; line-height:1.07; color:var(--text); margin-bottom:24px; }
   .seo-h1 em { font-style:italic; color:var(--gold); }
   .seo-hero-sub { font-size:17px; line-height:1.78; color:var(--muted); font-weight:300; max-width:640px; margin-bottom:16px; }
   .seo-hero-meta { font-size:12px; color:var(--gold); letter-spacing:0.05em; margin-bottom:36px; display:flex; gap:20px; flex-wrap:wrap; opacity:0.85; }
-  .seo-section { padding:72px 60px; max-width:900px; border-bottom:1px solid var(--border); }
+  .seo-section { padding:72px 60px; max-width:900px; margin:0 auto; border-bottom:1px solid var(--border); }
   .seo-section.alt { background:var(--ink2); }
   .seo-h2 { font-family:'Playfair Display',serif; font-size:38px; font-weight:400; line-height:1.1; color:var(--text); margin-bottom:40px; }
   .seo-h2 em { font-style:italic; color:var(--gold); }
