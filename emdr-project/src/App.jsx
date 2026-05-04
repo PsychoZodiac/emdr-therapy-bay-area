@@ -2285,25 +2285,23 @@ function BlogIndex() {
           <p style={{ fontSize: "17px", lineHeight: 1.78, color: "var(--muted)", fontWeight: 300, maxWidth: "600px", marginBottom: "64px" }}>Evidence-based perspectives on trauma, anxiety, and what actually helps. Written by Marcus Ghiasi, LMFT.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
             {BLOG_POSTS.map(post => (
-<a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}
-  onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
-  onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
-  <div style={{ overflow: "hidden", height: "200px" }}>
-    <img src={post.image} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} loading="lazy" />
-  </div>
-  <div style={{ padding: "32px 36px", ...                onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
-                onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
-                <img src={post.image} alt={post.title} style={{ width: "100%", height: "200px", objectFit: "cover", objectPosition: "center", display: "block" }} loading="lazy" />
-                <div style={{ padding: "32px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                  <div>
-                    <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "12px" }}>{post.category} · {post.date}</div>
-                    <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", fontWeight: 400, color: "var(--text)", lineHeight: 1.2, marginBottom: "14px" }}>{post.title}</div>
-                    <p style={{ fontSize: "14px", lineHeight: 1.75, color: "var(--muted)", fontWeight: 300, margin: 0 }}>{post.excerpt}</p>
-                  </div>
-                  <div style={{ fontSize: "12px", color: "var(--gold)", letterSpacing: "0.08em", marginTop: "24px" }}>Read more →</div>
-                </div>
-              </a>
-            ))}
+{BLOG_POSTS.map(post => (
+  <a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}
+    onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
+    onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
+    <div style={{ overflow: "hidden", height: "200px" }}>
+      <img src={post.image} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} loading="lazy" />
+    </div>
+    <div style={{ padding: "32px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+      <div>
+        <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "12px" }}>{post.category} · {post.date}</div>
+        <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", fontWeight: 400, color: "var(--text)", lineHeight: 1.2, marginBottom: "14px" }}>{post.title}</div>
+        <p style={{ fontSize: "14px", lineHeight: 1.75, color: "var(--muted)", fontWeight: 300, margin: 0 }}>{post.excerpt}</p>
+      </div>
+      <div style={{ fontSize: "12px", color: "var(--gold)", letterSpacing: "0.08em", marginTop: "24px" }}>Read more →</div>
+    </div>
+  </a>
+))}
           </div>
         </div>
         <footer style={{ padding: "32px 60px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginTop: "80px" }}>
