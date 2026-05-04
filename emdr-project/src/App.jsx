@@ -2379,6 +2379,27 @@ const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/$
     ]
   };
 
+      const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "EMDR Therapy Bay Area",
+  "url": "https://emdrtherapybayarea.com",
+  "description": "EMDR therapy for trauma, anxiety, depression, grief, and life transitions. Telehealth sessions available throughout California.",
+  "publisher": {
+    "@type": "Person",
+    "name": "Marcus Ghiasi",
+    "jobTitle": "Licensed Marriage and Family Therapist"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://emdrtherapybayarea.com/{search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
+
   const schemas = [
     { id: 'schema-business', data: bizSchema },
     { id: 'schema-person', data: personSchema },
