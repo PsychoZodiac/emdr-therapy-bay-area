@@ -1504,6 +1504,31 @@ function SEOLocationPage({ data, bookingUrl }) {
       <SEOWhatToExpect />
       <SEOAbout locationPhrase={locationPhrase} />
       <SEOFaq faqs={faqs || []} />
+      <section className="seo-section">
+        <div className="seo-eyebrow">What I treat</div>
+        <h2 className="seo-h2">EMDR for a range of <em>concerns.</em></h2>
+        <p style={{ fontSize: "15px", lineHeight: "1.8", color: "var(--muted)", fontWeight: 300, marginBottom: "28px" }}>
+          EMDR is effective for trauma, anxiety, depression, grief, and much more. All sessions via telehealth.
+        </p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+          {[
+            ["Trauma & PTSD", "emdr-for-trauma"],
+            ["Anxiety", "emdr-for-anxiety"],
+            ["Depression", "emdr-for-depression"],
+            ["Grief & Loss", "emdr-for-grief"],
+            ["Burnout", "emdr-for-burnout"],
+            ["Relationship Trauma", "emdr-for-relationship-trauma"],
+            ["Shame", "emdr-for-shame"],
+            ["Life Transitions", "emdr-for-life-transitions"],
+          ].map(([label, condSlug]) => (
+            <a key={condSlug} href={`/${condSlug}`} style={{ fontSize: "12px", padding: "6px 14px", border: "1px solid var(--border)", color: "var(--muted)", textDecoration: "none", letterSpacing: "0.04em", transition: "all 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--gold)"; e.currentTarget.style.color = "var(--gold)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; }}>
+              {label}
+            </a>
+          ))}
+        </div>
+      </section>
       <SEOBooking />
       <SEOFooter locationPhrase={locationPhrase} />
     </div>
@@ -1561,6 +1586,31 @@ function SEOConditionPage({ data, bookingUrl }) {
       <SEOWhatToExpect />
       <SEOAbout locationPhrase="throughout California" />
       <SEOFaq faqs={faqs || []} />
+      <section className="seo-section">
+        <div className="seo-eyebrow">Service areas</div>
+        <h2 className="seo-h2">Serving clients <em>throughout the Bay Area.</em></h2>
+        <p style={{ fontSize: "15px", lineHeight: "1.8", color: "var(--muted)", fontWeight: 300, marginBottom: "28px" }}>
+          All sessions via telehealth. Available to clients throughout California, with a concentration in the Bay Area.
+        </p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+          {[
+            ["Oakland", "emdr-therapy-oakland"],
+            ["San Francisco", "emdr-therapy-san-francisco"],
+            ["Berkeley", "emdr-therapy-berkeley"],
+            ["Marin County", "emdr-therapy-marin-county"],
+            ["San Jose", "emdr-therapy-san-jose"],
+            ["Palo Alto", "emdr-therapy-palo-alto"],
+            ["Walnut Creek", "emdr-therapy-walnut-creek"],
+            ["Pleasanton", "emdr-therapy-pleasanton"],
+          ].map(([city, slug]) => (
+            <a key={slug} href={`/${slug}`} style={{ fontSize: "12px", padding: "6px 14px", border: "1px solid var(--border)", color: "var(--muted)", textDecoration: "none", letterSpacing: "0.04em", transition: "all 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--gold)"; e.currentTarget.style.color = "var(--gold)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; }}>
+              {city}
+            </a>
+          ))}
+        </div>
+      </section>
       <SEOBooking />
       <SEOFooter />
     </div>
