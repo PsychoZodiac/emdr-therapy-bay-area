@@ -2285,8 +2285,13 @@ function BlogIndex() {
           <p style={{ fontSize: "17px", lineHeight: 1.78, color: "var(--muted)", fontWeight: 300, maxWidth: "600px", marginBottom: "64px" }}>Evidence-based perspectives on trauma, anxiety, and what actually helps. Written by Marcus Ghiasi, LMFT.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
             {BLOG_POSTS.map(post => (
-              <a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}
-                onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
+<a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}
+  onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
+  onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
+  <div style={{ overflow: "hidden", height: "200px" }}>
+    <img src={post.image} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} loading="lazy" />
+  </div>
+  <div style={{ padding: "32px 36px", ...                onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
                 onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
                 <img src={post.image} alt={post.title} style={{ width: "100%", height: "200px", objectFit: "cover", objectPosition: "center", display: "block" }} loading="lazy" />
                 <div style={{ padding: "32px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
