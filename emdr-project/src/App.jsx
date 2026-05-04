@@ -2400,11 +2400,12 @@ const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/$
   }
 };
 
-  const schemas = [
-    { id: 'schema-business', data: bizSchema },
-    { id: 'schema-person', data: personSchema },
-    { id: 'schema-faq', data: faqSchema },
-  ];
+const schemas = [
+  { id: 'schema-business', data: bizSchema },
+  { id: 'schema-person', data: personSchema },
+  { id: 'schema-faq', data: faqSchema },
+  { id: 'schema-website', data: websiteSchema },
+];
 
   schemas.forEach(({ id, data }) => {
     const script = document.createElement('script');
