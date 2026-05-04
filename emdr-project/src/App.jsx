@@ -2288,7 +2288,7 @@ function BlogIndex() {
               <a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}
                 onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
                 onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
-                <img src={post.image} alt={post.title} style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }} loading="lazy" />
+                <img src={post.image} alt={post.title} style={{ width: "100%", height: "200px", objectFit: "cover", objectPosition: "center", display: "block" }} loading="lazy" />
                 <div style={{ padding: "32px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div>
                     <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "12px" }}>{post.category} · {post.date}</div>
