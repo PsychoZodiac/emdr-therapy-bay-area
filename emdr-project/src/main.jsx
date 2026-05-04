@@ -1,6 +1,9 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import App from './App.jsx'
 
-// Inside the render, add <SpeedInsights /> alongside <App />
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
