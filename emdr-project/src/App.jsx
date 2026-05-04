@@ -2330,11 +2330,20 @@ function BlogPost({ post }) {
   return (
     <div style={{ minHeight: "100vh", background: "var(--ink)", color: "var(--text)", fontFamily: "'Jost', sans-serif" }}>
       <Helmet>
-        <title>{post.metaTitle}</title>
-        <meta name="description" content={post.metaDescription} />
-        <link rel="canonical" href={`https://emdrtherapybayarea.com/blog/${post.slug}`} />
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
-      </Helmet>
+  <title>{post.metaTitle}</title>
+  <meta name="description" content={post.metaDescription} />
+  <link rel="canonical" href={`https://emdrtherapybayarea.com/blog/${post.slug}`} />
+  <meta property="og:title" content={post.metaTitle} />
+  <meta property="og:description" content={post.metaDescription} />
+  <meta property="og:image" content={`https://emdrtherapybayarea.com${post.image}`} />
+  <meta property="og:url" content={`https://emdrtherapybayarea.com/blog/${post.slug}`} />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={post.metaTitle} />
+  <meta name="twitter:description" content={post.metaDescription} />
+  <meta name="twitter:image" content={`https://emdrtherapybayarea.com${post.image}`} />
+  <script type="application/ld+json">{JSON.stringify(schema)}</script>
+</Helmet>
       <nav style={{ position: "sticky", top: 0, zIndex: 50, padding: "18px 60px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", borderBottom: "1px solid var(--border)", backdropFilter: "blur(8px)" }}>
         <a href="/" style={{ textDecoration: "none" }}>
           <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", letterSpacing: "0.02em" }}>EMDR Therapy Bay Area</div>
