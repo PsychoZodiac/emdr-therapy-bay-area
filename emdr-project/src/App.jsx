@@ -2284,7 +2284,6 @@ function BlogIndex() {
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "52px", fontWeight: 400, lineHeight: 1.07, color: "var(--text)", marginBottom: "16px" }}>Writing on <em style={{ fontStyle: "italic", color: "var(--gold)" }}>EMDR & Healing</em></h1>
           <p style={{ fontSize: "17px", lineHeight: 1.78, color: "var(--muted)", fontWeight: 300, maxWidth: "600px", marginBottom: "64px" }}>Evidence-based perspectives on trauma, anxiety, and what actually helps. Written by Marcus Ghiasi, LMFT.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-            {BLOG_POSTS.map(post => (
 {BLOG_POSTS.map(post => (
   <a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}
     onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
