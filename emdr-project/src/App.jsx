@@ -1480,8 +1480,11 @@ function SEOLocationPage({ data, bookingUrl }) {
         <meta property="og:description" content={pageDesc} />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://emdrtherapybayarea.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDesc} />
+        <meta name="twitter:image" content="https://emdrtherapybayarea.com/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
       <SEONav bookingUrl={bookingUrl} />
@@ -1537,11 +1540,9 @@ function SEOLocationPage({ data, bookingUrl }) {
 
 function SEOConditionPage({ data, bookingUrl }) {
   const { title, condition, category, intro, isForYou, faqs, slug } = data;
-
   const pageTitle = `${title} | Marcus Ghiasi, LMFT — Bay Area`;
   const pageDesc = `${title} via telehealth throughout California. Marcus Ghiasi, LMFT #158475 — evidence-based EMDR therapy. Free 15-min consultation.`;
   const pageUrl = `https://emdrtherapybayarea.com/${slug}`;
-
   const schema = {
     "@context": "https://schema.org",
     "@type": "MedicalTherapy",
@@ -1553,7 +1554,6 @@ function SEOConditionPage({ data, bookingUrl }) {
       "jobTitle": "Licensed Marriage and Family Therapist"
     }
   };
-
   return (
     <div className="seo-page">
       <Helmet>
@@ -1565,8 +1565,11 @@ function SEOConditionPage({ data, bookingUrl }) {
         <meta property="og:description" content={pageDesc} />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://emdrtherapybayarea.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDesc} />
+        <meta name="twitter:image" content="https://emdrtherapybayarea.com/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
       <SEONav bookingUrl={bookingUrl} />
@@ -2267,6 +2270,15 @@ function BlogIndex() {
         <title>Blog | EMDR Therapy Bay Area</title>
         <meta name="description" content="Articles on EMDR therapy, trauma, anxiety, and healing from Marcus Ghiasi, LMFT." />
         <link rel="canonical" href="https://emdrtherapybayarea.com/blog" />
+        <meta property="og:title" content="Blog | EMDR Therapy Bay Area" />
+        <meta property="og:description" content="Articles on EMDR therapy, trauma, anxiety, and healing from Marcus Ghiasi, LMFT." />
+        <meta property="og:url" content="https://emdrtherapybayarea.com/blog" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://emdrtherapybayarea.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog | EMDR Therapy Bay Area" />
+        <meta name="twitter:description" content="Articles on EMDR therapy, trauma, anxiety, and healing from Marcus Ghiasi, LMFT." />
+        <meta name="twitter:image" content="https://emdrtherapybayarea.com/og-image.png" />
       </Helmet>
       <div style={{ minHeight: "100vh", background: "var(--ink)", color: "var(--text)", fontFamily: "'Jost', sans-serif" }}>
         <nav style={{ position: "sticky", top: 0, zIndex: 50, padding: "18px 60px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", borderBottom: "1px solid var(--border)", backdropFilter: "blur(8px)" }}>
@@ -2284,22 +2296,23 @@ function BlogIndex() {
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "52px", fontWeight: 400, lineHeight: 1.07, color: "var(--text)", marginBottom: "16px" }}>Writing on <em style={{ fontStyle: "italic", color: "var(--gold)" }}>EMDR & Healing</em></h1>
           <p style={{ fontSize: "17px", lineHeight: 1.78, color: "var(--muted)", fontWeight: 300, maxWidth: "600px", marginBottom: "64px" }}>Evidence-based perspectives on trauma, anxiety, and what actually helps. Written by Marcus Ghiasi, LMFT.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-{BLOG_POSTS.map(post => (
-<a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", alignItems: "stretch", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}    onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
-    onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
-<div style={{ overflow: "hidden", height: "100%", minHeight: "200px" }}>
-  <img src={post.image} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} loading="lazy" />
-</div>
-    <div style={{ padding: "32px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-      <div>
-        <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "12px" }}>{post.category} · {post.date}</div>
-        <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", fontWeight: 400, color: "var(--text)", lineHeight: 1.2, marginBottom: "14px" }}>{post.title}</div>
-        <p style={{ fontSize: "14px", lineHeight: 1.75, color: "var(--muted)", fontWeight: 300, margin: 0 }}>{post.excerpt}</p>
-      </div>
-      <div style={{ fontSize: "12px", color: "var(--gold)", letterSpacing: "0.08em", marginTop: "24px" }}>Read more →</div>
-    </div>
-  </a>
-))}
+            {BLOG_POSTS.map(post => (
+              <a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", alignItems: "stretch", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}
+                onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
+                onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
+                <div style={{ overflow: "hidden", height: "100%", minHeight: "200px" }}>
+                  <img src={post.image} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} loading="lazy" />
+                </div>
+                <div style={{ padding: "32px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "12px" }}>{post.category} · {post.date}</div>
+                    <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", fontWeight: 400, color: "var(--text)", lineHeight: 1.2, marginBottom: "14px" }}>{post.title}</div>
+                    <p style={{ fontSize: "14px", lineHeight: 1.75, color: "var(--muted)", fontWeight: 300, margin: 0 }}>{post.excerpt}</p>
+                  </div>
+                  <div style={{ fontSize: "12px", color: "var(--gold)", letterSpacing: "0.08em", marginTop: "24px" }}>Read more →</div>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
         <footer style={{ padding: "32px 60px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginTop: "80px" }}>
@@ -2314,6 +2327,7 @@ function BlogIndex() {
     </>
   );
 }
+
 function BlogPost({ post }) {
   const schema = {
     "@context": "https://schema.org",
