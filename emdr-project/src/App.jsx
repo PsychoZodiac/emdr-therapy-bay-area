@@ -2027,11 +2027,14 @@ const FAQS = [
 ];
 
 function BlogIndex() {
-  <Helmet>
+  return (
+    <>
+      <Helmet>
         <title>Blog | EMDR Therapy Bay Area</title>
         <meta name="description" content="Articles on EMDR therapy, trauma, anxiety, and healing from Marcus Ghiasi, LMFT." />
         <link rel="canonical" href="https://emdrtherapybayarea.com/blog" />
       </Helmet>
+      <div style={{ minHeight: "100vh", background: "var(--ink)" ...
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--ink)", color: "var(--text)", fontFamily: "'Jost', sans-serif" }}>
