@@ -2194,10 +2194,11 @@ function BlogPost({ post }) {
         <p style={{ fontSize: "11px", color: "var(--muted)", margin: 0 }}>Marcus Ghiasi, LMFT #158475 · Oakland, CA · Telehealth throughout California</p>
         <a href="/" style={{ fontSize: "12px", color: "var(--gold)", textDecoration: "none" }}>← Main site</a>
       </footer>
-      <div style={{ background: "var(--ink2)", borderTop: "1px solid var(--border)", padding: "12px 60px", textAlign: "center", fontSize: "11px", color: "var(--muted)" }}>
+     <div style={{ background: "var(--ink2)", borderTop: "1px solid var(--border)", padding: "12px 60px", textAlign: "center", fontSize: "11px", color: "var(--muted)" }}>
         <strong style={{ color: "var(--text)" }}>In crisis?</strong> Call or text <strong style={{ color: "var(--text)" }}>988</strong> — Suicide &amp; Crisis Lifeline, free &amp; confidential, 24/7.
       </div>
     </div>
+  </>
   );
 }
         
