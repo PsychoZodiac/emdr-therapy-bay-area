@@ -2086,119 +2086,48 @@ function BlogIndex() {
         <link rel="canonical" href="https://emdrtherapybayarea.com/blog" />
       </Helmet>
       <div style={{ minHeight: "100vh", background: "var(--ink)", color: "var(--text)", fontFamily: "'Jost', sans-serif" }}>
-
-  return (
-    <div style={{ minHeight: "100vh", background: "var(--ink)", color: "var(--text)", fontFamily: "'Jost', sans-serif" }}>
-      <nav style={{ position: "sticky", top: 0, zIndex: 50, padding: "18px 60px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", borderBottom: "1px solid var(--border)", backdropFilter: "blur(8px)" }}>
-        <a href="/" style={{ textDecoration: "none" }}>
-          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", letterSpacing: "0.02em" }}>EMDR Therapy Bay Area</div>
-          <div style={{ fontSize: "10px", color: "var(--muted)", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "2px", fontWeight: 300 }}>Marcus Ghiasi, LMFT</div>
-        </a>
-        <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consult</a>
-      </nav>
-      <div style={{ padding: "80px 60px 40px", maxWidth: "900px", margin: "0 auto" }}>
-        <div style={{ fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "20px", display: "flex", alignItems: "center", gap: "14px" }}>
-          <span style={{ display: "inline-block", width: "32px", height: "1px", background: "var(--gold)", flexShrink: 0 }}></span>
-          From the practice
-        </div>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "52px", fontWeight: 400, lineHeight: 1.07, color: "var(--text)", marginBottom: "16px" }}>Writing on <em style={{ fontStyle: "italic", color: "var(--gold)" }}>EMDR & Healing</em></h1>
-        <p style={{ fontSize: "17px", lineHeight: 1.78, color: "var(--muted)", fontWeight: 300, maxWidth: "600px", marginBottom: "64px" }}>Evidence-based perspectives on trauma, anxiety, and what actually helps. Written by Marcus Ghiasi, LMFT.</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-          {BLOG_POSTS.map(post => (
-            <a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
-              onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
-              <img src={post.image} alt={post.title} style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }} loading="lazy" />
-              <div style={{ padding: "32px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <div>
-                  <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "12px" }}>{post.category} · {post.date}</div>
-                  <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", fontWeight: 400, color: "var(--text)", lineHeight: 1.2, marginBottom: "14px" }}>{post.title}</div>
-                  <p style={{ fontSize: "14px", lineHeight: 1.75, color: "var(--muted)", fontWeight: 300, margin: 0 }}>{post.excerpt}</p>
+        <nav style={{ position: "sticky", top: 0, zIndex: 50, padding: "18px 60px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", borderBottom: "1px solid var(--border)", backdropFilter: "blur(8px)" }}>
+          <a href="/" style={{ textDecoration: "none" }}>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", letterSpacing: "0.02em" }}>EMDR Therapy Bay Area</div>
+            <div style={{ fontSize: "10px", color: "var(--muted)", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "2px", fontWeight: 300 }}>Marcus Ghiasi, LMFT</div>
+          </a>
+          <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consult</a>
+        </nav>
+        <div style={{ padding: "80px 60px 40px", maxWidth: "900px", margin: "0 auto" }}>
+          <div style={{ fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "20px", display: "flex", alignItems: "center", gap: "14px" }}>
+            <span style={{ display: "inline-block", width: "32px", height: "1px", background: "var(--gold)", flexShrink: 0 }}></span>
+            From the practice
+          </div>
+          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "52px", fontWeight: 400, lineHeight: 1.07, color: "var(--text)", marginBottom: "16px" }}>Writing on <em style={{ fontStyle: "italic", color: "var(--gold)" }}>EMDR & Healing</em></h1>
+          <p style={{ fontSize: "17px", lineHeight: 1.78, color: "var(--muted)", fontWeight: 300, maxWidth: "600px", marginBottom: "64px" }}>Evidence-based perspectives on trauma, anxiety, and what actually helps. Written by Marcus Ghiasi, LMFT.</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+            {BLOG_POSTS.map(post => (
+              <a key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "280px 1fr", border: "1px solid var(--border)", background: "rgba(184,130,106,0.03)", transition: "background 0.2s" }}
+                onMouseEnter={e => e.currentTarget.style.background = "rgba(184,130,106,0.08)"}
+                onMouseLeave={e => e.currentTarget.style.background = "rgba(184,130,106,0.03)"}>
+                <img src={post.image} alt={post.title} style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }} loading="lazy" />
+                <div style={{ padding: "32px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "12px" }}>{post.category} · {post.date}</div>
+                    <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", fontWeight: 400, color: "var(--text)", lineHeight: 1.2, marginBottom: "14px" }}>{post.title}</div>
+                    <p style={{ fontSize: "14px", lineHeight: 1.75, color: "var(--muted)", fontWeight: 300, margin: 0 }}>{post.excerpt}</p>
+                  </div>
+                  <div style={{ fontSize: "12px", color: "var(--gold)", letterSpacing: "0.08em", marginTop: "24px" }}>Read more →</div>
                 </div>
-                <div style={{ fontSize: "12px", color: "var(--gold)", letterSpacing: "0.08em", marginTop: "24px" }}>Read more →</div>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
+        </div>
+        <footer style={{ padding: "32px 60px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginTop: "80px" }}>
+          <a href="/" style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", textDecoration: "none" }}>EMDR Therapy Bay Area</a>
+          <p style={{ fontSize: "11px", color: "var(--muted)", margin: 0 }}>Marcus Ghiasi, LMFT #158475 · Oakland, CA · Telehealth throughout California</p>
+          <a href="/" style={{ fontSize: "12px", color: "var(--gold)", textDecoration: "none" }}>← Main site</a>
+        </footer>
+        <div style={{ background: "var(--ink2)", borderTop: "1px solid var(--border)", padding: "12px 60px", textAlign: "center", fontSize: "11px", color: "var(--muted)" }}>
+          <strong style={{ color: "var(--text)" }}>In crisis?</strong> Call or text <strong style={{ color: "var(--text)" }}>988</strong> — Suicide &amp; Crisis Lifeline, free &amp; confidential, 24/7.
         </div>
       </div>
-      <footer style={{ padding: "32px 60px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginTop: "80px" }}>
-        <a href="/" style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", textDecoration: "none" }}>EMDR Therapy Bay Area</a>
-        <p style={{ fontSize: "11px", color: "var(--muted)", margin: 0 }}>Marcus Ghiasi, LMFT #158475 · Oakland, CA · Telehealth throughout California</p>
-        <a href="/" style={{ fontSize: "12px", color: "var(--gold)", textDecoration: "none" }}>← Main site</a>
-      </footer>
-     <div style={{ background: "var(--ink2)", borderTop: "1px solid var(--border)", padding: "12px 60px", textAlign: "center", fontSize: "11px", color: "var(--muted)" }}>
-        <strong style={{ color: "var(--text)" }}>In crisis?</strong> Call or text <strong style={{ color: "var(--text)" }}>988</strong> — Suicide &amp; Crisis Lifeline, free &amp; confidential, 24/7.
-      </div>
-    </div>
-  </>
-  );
-}
-
-function BlogPost({ post }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": post.title,
-    "description": post.metaDescription,
-    "datePublished": post.date,
-    "author": { "@type": "Person", "name": "Marcus Ghiasi", "jobTitle": "Licensed Marriage and Family Therapist" },
-    "publisher": { "@type": "Organization", "name": "EMDR Therapy Bay Area", "url": "https://emdrtherapybayarea.com" },
-    "image": `https://emdrtherapybayarea.com${post.image}`,
-    "url": `https://emdrtherapybayarea.com/blog/${post.slug}`
-  };
-
-  return (
-    <div style={{ minHeight: "100vh", background: "var(--ink)", color: "var(--text)", fontFamily: "'Jost', sans-serif" }}>
-      <Helmet>
-        <title>{post.metaTitle}</title>
-        <meta name="description" content={post.metaDescription} />
-        <link rel="canonical" href={`https://emdrtherapybayarea.com/blog/${post.slug}`} />
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
-      </Helmet>
-      <nav style={{ position: "sticky", top: 0, zIndex: 50, padding: "18px 60px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", borderBottom: "1px solid var(--border)", backdropFilter: "blur(8px)" }}>
-        <a href="/" style={{ textDecoration: "none" }}>
-          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", letterSpacing: "0.02em" }}>EMDR Therapy Bay Area</div>
-          <div style={{ fontSize: "10px", color: "var(--muted)", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "2px", fontWeight: 300 }}>Marcus Ghiasi, LMFT</div>
-        </a>
-        <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book a free consult</a>
-      </nav>
-
-      <div style={{ maxWidth: "740px", margin: "0 auto", padding: "72px 60px 100px" }}>
-        <a href="/blog" style={{ fontSize: "12px", color: "var(--gold)", textDecoration: "none", letterSpacing: "0.06em", display: "inline-block", marginBottom: "48px" }}>← All posts</a>
-        <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "16px" }}>{post.category} · {post.date}</div>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "48px", fontWeight: 400, lineHeight: 1.1, color: "var(--text)", marginBottom: "40px" }}>{post.title}</h1>
-        <img src={post.image} alt={post.title} style={{ width: "100%", height: "360px", objectFit: "cover", display: "block", marginBottom: "56px" }} />
-        <div style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)", marginBottom: "48px", paddingBottom: "28px", borderBottom: "1px solid var(--border)" }}>
-          By Marcus Ghiasi, LMFT · EMDR Therapy Bay Area
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-          {post.content.map((block, i) => {
-            if (block.type === "h2") return (
-              <h2 key={i} style={{ fontFamily: "'Playfair Display', serif", fontSize: "28px", fontWeight: 400, color: "var(--text)", lineHeight: 1.25, marginTop: "48px", marginBottom: "20px" }}>{block.text}</h2>
-            );
-            return (
-              <p key={i} style={{ fontSize: "17px", lineHeight: 1.85, color: "var(--muted)", fontWeight: 300, marginBottom: "22px" }}>{block.text}</p>
-            );
-          })}
-        </div>
-        <div style={{ marginTop: "72px", padding: "40px", border: "1px solid var(--border)", background: "rgba(184,130,106,0.04)" }}>
-          <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "14px" }}>Ready to begin?</div>
-          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", fontWeight: 400, color: "var(--text)", lineHeight: 1.3, marginBottom: "20px" }}>Schedule a free 15-minute consultation.</p>
-          <p style={{ fontSize: "14px", lineHeight: 1.75, color: "var(--muted)", fontWeight: 300, marginBottom: "28px" }}>No forms, no pressure. Just a real conversation about whether EMDR therapy is the right fit for where you are.</p>
-          <a href="https://baysidewellnessandcounseling.janeapp.com/#/staff_member/1/treatment/1" target="_blank" rel="noopener noreferrer" className="btn-seo-gold">Book your free consultation</a>
-        </div>
-      </div>
-
-      <footer style={{ padding: "32px 60px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
-        <a href="/" style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", color: "var(--gold)", textDecoration: "none" }}>EMDR Therapy Bay Area</a>
-        <p style={{ fontSize: "11px", color: "var(--muted)", margin: 0 }}>Marcus Ghiasi, LMFT #158475 · Oakland, CA · Telehealth throughout California</p>
-        <a href="/" style={{ fontSize: "12px", color: "var(--gold)", textDecoration: "none" }}>← Main site</a>
-      </footer>
-     <div style={{ background: "var(--ink2)", borderTop: "1px solid var(--border)", padding: "12px 60px", textAlign: "center", fontSize: "11px", color: "var(--muted)" }}>
-        <strong style={{ color: "var(--text)" }}>In crisis?</strong> Call or text <strong style={{ color: "var(--text)" }}>988</strong> — Suicide &amp; Crisis Lifeline, free &amp; confidential, 24/7.
-      </div>
-    </div>
-  </>
+    </>
   );
 }
         
