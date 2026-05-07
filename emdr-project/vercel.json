@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/(.*)", "destination": "https://emdrtherapybayarea.com/$1", "permanent": true }
+  ],
   "rewrites": [
     {
       "source": "/blog/:slug",
