@@ -11,6 +11,7 @@
         }
       ]
     },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/api/og", "destination": "/api/og" },
+    { "source": "/(.*)", "destination": "/api/og?path=/$1" }
   ]
 }
