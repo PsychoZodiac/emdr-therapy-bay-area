@@ -1367,7 +1367,7 @@ function SEOAbout({ locationPhrase }) {
       <h2 className="seo-h2">Marcus <em>Ghiasi,</em> LMFT</h2>
       <div className="seo-about-grid">
         <div>
-          <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" width="400" height="533" loading="lazy" className="seo-about-img" />
+          <img src="/marcus-2.jpg" alt="Marcus Ghiasi, LMFT" width="400" height="533" loading="lazy" className="seo-about-img" />
         </div>
         <div className="seo-about-body">
           <p>I&apos;m a licensed Marriage and Family Therapist (LMFT #158475) and the founder of <strong>Bayside Wellness &amp; Counseling</strong>, based in Oakland. I&apos;ve been doing this work for over 10 years.</p>
