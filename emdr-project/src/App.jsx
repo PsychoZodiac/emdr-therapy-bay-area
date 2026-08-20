@@ -2874,14 +2874,11 @@ const schemas = [
           <div className="about-content">
             <h2>Marcus<br /><em>Ghiasi,</em> LMFT</h2>
             <p>
-              I am a licensed Marriage and Family Therapist and the founder of Bayside Wellness &amp; Counseling, based in Oakland, California. With over <strong>10 years of experience</strong> working with adults navigating trauma, anxiety, depression, grief, and the weight of lives that have been harder than they should have been, I built Bayside around the belief that people deserve care that actually gets to the root of things.
-            </p>
+              I'm a licensed Marriage and Family Therapist and the founder of Bayside Wellness & Counseling, based in Oakland, California. For over 10 years I've worked with adults carrying trauma, anxiety, depression, and grief, often after years of feeling like nothing had actually helped. I started Bayside because people deserve therapy that changes something, not just therapy that helps them talk about what's wrong.            </p>
             <p>
-              I specialize in <strong>EMDR therapy</strong> because I have seen it create change that talk therapy alone could not reach. There is something profound about watching a person's relationship to their own past shift — not through willpower or insight alone, but through the brain's own healing capacity.
-            </p>
+              EMDR is the approach I specialize in, because I've watched it do what talking alone often can't. A memory that used to feel like it was happening all over again starts to just feel like something that happened. That shift doesn't come from thinking your way through it. It comes from giving your brain the chance to actually finish processing what got stuck.            </p>
             <p>
-              My practice is fully virtual. I work with clients across California, and I bring the same care and attentiveness to a telehealth session that I would to an in-person one. If you are ready to do real work, I am ready to meet you there.
-            </p>
+              My practice is fully virtual, and I work with clients across California. A video session gets the same attention from me that an in-person one would. If you're ready to do this work, I'm ready to do it with you.            </p>
 
             <div className="pt-button-wrap">
               <p style={{ fontSize: "13px", color: "var(--muted)", fontWeight: "300", marginBottom: "20px" }}>
