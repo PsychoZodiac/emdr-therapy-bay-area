@@ -2810,8 +2810,6 @@ const schemas = [
       </div>
 
       <section id="emdr">
-
-      <section id="emdr">
         <div className="section-label">What is EMDR</div>
         <h2>A therapy that works<br /><em>below the surface.</em></h2>
         <div className="emdr-grid">
