@@ -2805,7 +2805,7 @@ const schemas = [
           </div>
         </div>
           <div className="hero-right">
-          <img src="/marcus-2.jpg" alt="Marcus Ghiasi, LMFT" className="hero-photo" width="600" height="800" />
+          <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" className="hero-photo" width="600" height="800" />
         </div>
       </div>
 
