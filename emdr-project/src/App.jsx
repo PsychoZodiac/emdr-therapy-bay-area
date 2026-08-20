@@ -2804,9 +2804,12 @@ const schemas = [
             <a href="#emdr" className="btn-outline" onClick={(e) => { e.preventDefault(); scrollTo("emdr"); }}>Learn about EMDR</a>
           </div>
         </div>
-        <div className="hero-right">
+                <div className="hero-right">
           <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" className="hero-photo" width="600" height="800" />
         </div>
+      </div>
+
+      <section id="emdr">
 
       <section id="emdr">
         <div className="section-label">What is EMDR</div>
