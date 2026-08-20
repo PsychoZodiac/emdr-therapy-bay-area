@@ -2855,7 +2855,7 @@ const schemas = [
         <div className="section-label">About</div>
         <div className="about-grid">
           <div className="about-left">
-            <img src="/marcus-2.jpg" alt="Marcus Ghiasi, LMFT" width="600" height="800" />
+            <img src="/Marcus-2.JPG" alt="Marcus Ghiasi, LMFT" width="600" height="800" />
             <div className="about-left-bottom">
               <div className="credentials">
                 <span className="cred-tag">LMFT #158475</span>
