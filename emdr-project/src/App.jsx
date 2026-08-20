@@ -1367,7 +1367,7 @@ function SEOAbout({ locationPhrase }) {
       <h2 className="seo-h2">Marcus <em>Ghiasi,</em> LMFT</h2>
       <div className="seo-about-grid">
         <div>
-          <img src="/marcus-2.jpg" alt="Marcus Ghiasi, LMFT" width="400" height="533" loading="lazy" className="seo-about-img" />
+          <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" width="400" height="533" loading="lazy" className="seo-about-img" />
         </div>
         <div className="seo-about-body">
           <p>I&apos;m a licensed Marriage and Family Therapist (LMFT #158475) and the founder of <strong>Bayside Wellness &amp; Counseling</strong>, based in Oakland. I&apos;ve been doing this work for over 10 years.</p>
@@ -2805,7 +2805,7 @@ const schemas = [
           </div>
         </div>
           <div className="hero-right">
-          <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" className="hero-photo" width="600" height="800" />
+          <img src="/marcus-2.jpg" alt="Marcus Ghiasi, LMFT" className="hero-photo" width="600" height="800" />
         </div>
       </div>
 
@@ -2855,7 +2855,7 @@ const schemas = [
         <div className="section-label">About</div>
         <div className="about-grid">
           <div className="about-left">
-            <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" width="600" height="800" />
+            <img src="/marcus-2.jpg" alt="Marcus Ghiasi, LMFT" width="600" height="800" />
             <div className="about-left-bottom">
               <div className="credentials">
                 <span className="cred-tag">LMFT #158475</span>
