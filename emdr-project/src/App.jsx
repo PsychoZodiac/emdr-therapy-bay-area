@@ -1741,9 +1741,9 @@ const styles = `
     transform: translateY(18px);
   }
 
-  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 60px 80px; position: relative; overflow: hidden; }
+  .hero { min-height: 100vh; display: flex; align-items: center; gap: 64px; padding: 120px 60px 80px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(184,130,106,0.07) 0%, transparent 60%); }
-  .hero-content { max-width: 580px; position: relative; z-index: 1; }
+  .hero-content { max-width: 560px; position: relative; z-index: 1; flex-shrink: 0; }
   .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; display: flex; align-items: center; gap: 14px; }
   .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
   h1 { font-family: 'Playfair Display', serif; font-size: 76px; font-weight: 400; line-height: 1.05; color: var(--text); margin-bottom: 28px; }
@@ -1754,8 +1754,10 @@ const styles = `
   .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
   .btn-outline { background: none; border: 1px solid var(--border); color: var(--text); padding: 18px 40px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-  .hero-right { position: absolute; right: 80px; top: 50%; transform: translateY(-50%); opacity: 0.2; }
-
+  .hero-right { position: relative; z-index: 1; flex: 1; max-width: 420px; height: 560px; align-self: center; overflow: hidden; border-radius: 4px; }
+  .hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+  .hero-right::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--border); border-radius: 4px; pointer-events: none; }
+  
   section { padding: 100px 60px; max-width: 1100px; margin: 0 auto; }
   .section-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
   .section-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
@@ -1903,8 +1905,8 @@ const styles = `
     .nav-hamburger { display: flex; }
     .hero { padding: 100px 24px 60px; }
     h1 { font-size: 44px; }
-    .hero-right { display: none; }
-    section { padding: 70px 24px; }
+    .hero { flex-direction: column; gap: 40px; }
+    .hero-right { max-width: 100%; width: 100%; height: 320px; order: -1; }    section { padding: 70px 24px; }
     .emdr-text { grid-template-columns: 1fr; }
     .emdr-phases { grid-template-columns: 1fr 1fr; }
     .about-grid { grid-template-columns: 1fr; }
@@ -2803,15 +2805,8 @@ const schemas = [
           </div>
         </div>
         <div className="hero-right">
-          <svg width="400" height="400" viewBox="0 0 400 400" fill="none">
-            {[40,80,120,160,200,240,280,320,360].map((r) => (
-              <circle key={r} cx="200" cy="200" r={r} stroke="#B8826A" strokeWidth="0.8" fill="none" opacity="0.3" />
-            ))}
-            <line x1="200" y1="0" x2="200" y2="400" stroke="#B8826A" strokeWidth="0.5" opacity="0.2" />
-            <line x1="0" y1="200" x2="400" y2="200" stroke="#B8826A" strokeWidth="0.5" opacity="0.2" />
-          </svg>
+          <img src="/marcus.jpg" alt="Marcus Ghiasi, LMFT" className="hero-photo" width="600" height="800" />
         </div>
-      </div>
 
       <section id="emdr">
         <div className="section-label">What is EMDR</div>
