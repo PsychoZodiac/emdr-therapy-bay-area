@@ -1379,7 +1379,7 @@ function SEOAbout({ locationPhrase }) {
           </div>
           <div className="seo-rates">
             <div className="seo-rates-row"><span className="seo-rates-label">45-minute session</span><span className="seo-rates-price">$210</span></div>
-            <div className="seo-rates-row"><span className="seo-rates-label">60-minute session</span><span className="seo-rates-price">$320</span></div>
+            <div className="seo-rates-row"><span className="seo-rates-label">60-minute session</span><span className="seo-rates-price">$280</span></div>
             <p className="seo-rates-note">Private pay. Superbill provided — many PPO clients recoup a portion through out-of-network benefits. HSA/FSA accepted.</p>
           </div>
           <div style={{ display: "flex", gap: "20px", alignItems: "center", flexWrap: "wrap", marginTop: "24px" }}>
