@@ -414,7 +414,7 @@ SEO_LOCATIONS.forEach(p => {
 
   // Shared telehealth FAQ used by all location pages
   const telehealthFaq = { q: "Can you really do EMDR effectively over video?", a: "Yes — and this is one of the most common questions I get. EMDR via telehealth has been well-studied and produces outcomes comparable to in-person work. The bilateral stimulation tool I use works through your screen. All you need is a private space and a reliable internet connection. Many clients actually prefer the comfort of being in their own environment." };
-  const insuranceFaq = { q: "Do you accept insurance?", a: "I'm an out-of-network provider. Sessions are $240 for 45 minutes and $320 for 60 minutes. Many clients use out-of-network benefits or HSA/FSA funds. I can provide a superbill for reimbursement." };
+  const insuranceFaq = { q: "Do you accept insurance?", a: "I'm an out-of-network provider. Sessions are $210 for 45 minutes and $280 for 60 minutes. Many clients use out-of-network benefits or HSA/FSA funds. I can provide a superbill for reimbursement." };
   const sessionCountFaq = { q: "How many sessions does EMDR take?", a: "It depends on what we're working on. Some focused issues resolve in 6–12 sessions. Complex trauma or longstanding patterns may take longer. I don't keep people in therapy longer than they need to be." };
   const worseFaq = { q: "Will EMDR make me feel worse before I feel better?", a: "Sometimes, briefly — and it's worth being honest about that. Processing difficult memories can stir things up between sessions. Most people describe it as feeling tired or emotionally tender for a day or two after early sessions. This is normal and typically settles quickly. We build stabilization skills before any processing begins specifically so you have tools to manage this." };
   const licenseFaq = { q: "Are you licensed to see clients in California?", a: "Yes. I hold California LMFT license #158475 and am authorized to practice throughout the state via telehealth. You don't need to be in the same city or county — just in California." };
@@ -1378,7 +1378,7 @@ function SEOAbout({ locationPhrase }) {
             ))}
           </div>
           <div className="seo-rates">
-            <div className="seo-rates-row"><span className="seo-rates-label">45-minute session</span><span className="seo-rates-price">$240</span></div>
+            <div className="seo-rates-row"><span className="seo-rates-label">45-minute session</span><span className="seo-rates-price">$210</span></div>
             <div className="seo-rates-row"><span className="seo-rates-label">60-minute session</span><span className="seo-rates-price">$320</span></div>
             <p className="seo-rates-note">Private pay. Superbill provided — many PPO clients recoup a portion through out-of-network benefits. HSA/FSA accepted.</p>
           </div>
@@ -2241,7 +2241,7 @@ const FAQS = [
   },
   {
     q: "What are your session rates?",
-    a: "$240 for a 45-minute session, $320 for a 60-minute session. I am private pay and do not bill insurance directly. I provide a superbill after each session — many clients with PPO plans recoup a portion of the cost through out-of-network benefits. I recommend checking with your insurer before we begin."
+    a: "$210 for a 45-minute session, $280 for a 60-minute session. I am private pay and do not bill insurance directly. I provide a superbill after each session — many clients with PPO plans recoup a portion of the cost through out-of-network benefits. I recommend checking with your insurer before we begin."
   },
   {
     q: "What does an EMDR session actually feel like?",
@@ -2603,7 +2603,7 @@ const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/$
       {
         "@type": "Question",
         "name": "What are your session rates?",
-        "acceptedAnswer": { "@type": "Answer", "text": "$240 for a 45-minute session, $320 for a 60-minute session. I am private pay and provide a superbill after each session — many clients with PPO plans recoup a portion of the cost through out-of-network benefits." }
+        "acceptedAnswer": { "@type": "Answer", "text": "$210 for a 45-minute session, $280 for a 60-minute session. I am private pay and provide a superbill after each session — many clients with PPO plans recoup a portion of the cost through out-of-network benefits." }
       },
       {
         "@type": "Question",
@@ -2957,7 +2957,7 @@ const schemas = [
                 </div>
                 <div className="contact-detail-item">
                   <span className="contact-detail-label">Session Rate</span>
-                  <span className="contact-detail-value">$240 / 45 min · $320 / 60 min</span>
+                  <span className="contact-detail-value">$210 / 45 min · $280 / 60 min</span>
                 </div>
                 <div className="contact-detail-item">
                   <span className="contact-detail-label">Insurance</span>
