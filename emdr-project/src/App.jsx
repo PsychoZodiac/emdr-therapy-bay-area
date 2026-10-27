@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 
 // ─── SEO LANDING PAGE DATA ───────────────────────────────────────────────────
@@ -1833,6 +1833,7 @@ const styles = `
   .form-input.error, .form-textarea.error { border-color: #c0392b; }
   .form-submit { background: var(--gold); color: white; padding: 18px 40px; border: none; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.25s; align-self: flex-start; }
   .form-submit:hover { background: var(--gold-light); }
+  .form-submit:disabled { opacity: 0.65; cursor: wait; }
   .form-success { padding: 24px; border: 1px solid var(--gold); color: var(--gold); font-size: 15px; line-height: 1.6; font-weight: 300; }
 
   footer { padding: 48px 60px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; background: var(--ink); transition: var(--transition); }
@@ -2408,6 +2409,8 @@ export default function App() {
   const [openFaq, setOpenFaq] = useState(null);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", concern: "", message: "", _honeypot: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const submissionInProgress = useRef(false);
   const [captchaToken, setCaptchaToken] = useState(null);
   const [formErrors, setFormErrors] = useState({});
   const [darkMode, setDarkMode] = useState(false);
@@ -2435,32 +2438,65 @@ const blogPostMatch = BLOG_POSTS.find(p => window.location.pathname === `/blog/$
   };
 
   useEffect(() => {
+    window.onCaptchaSuccess = (token) => {
+      setCaptchaToken(token);
+      setFormErrors((errors) => ({ ...errors, captcha: undefined }));
+    };
+    window.onCaptchaExpired = () => setCaptchaToken(null);
+    window.onCaptchaError = () => {
+      setCaptchaToken(null);
+      setFormErrors((errors) => ({ ...errors, captcha: "Verification could not load. Please try again, or call (415) 857-5799." }));
+    };
     const script = document.createElement('script');
     script.src = 'https://js.hcaptcha.com/1/api.js';
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
-    window.onCaptchaSuccess = (token) => setCaptchaToken(token);
-    window.onCaptchaExpired = () => setCaptchaToken(null);
   }, []);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // A ref also blocks repeat submissions before React updates the button.
+    if (submissionInProgress.current || submitted || formData._honeypot) return;
+
     const errors = {};
-    if (!formData.name) errors.name = "Name is required.";
-    if (!formData.email) errors.email = "Email is required.";
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    if (!name) errors.name = "Name is required.";
+    if (!email) errors.email = "Email is required.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = "Please enter a valid email address.";
     if (!captchaToken) errors.captcha = "Please complete the captcha.";
-    if (formData._honeypot) return;
     if (Object.keys(errors).length > 0) { setFormErrors(errors); return; }
+
+    submissionInProgress.current = true;
+    setIsSubmitting(true);
     setFormErrors({});
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
     try {
       const res = await fetch("https://formspree.io/f/mlgwzaoq", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...formData, 'h-captcha-response': captchaToken }),
+        body: JSON.stringify({ ...formData, name, email, 'h-captcha-response': captchaToken }),
+        signal: controller.signal,
       });
-      if (res.ok) setSubmitted(true);
-    } catch (e) {
+      if (!res.ok) throw new Error("Message submission was not accepted.");
       setSubmitted(true);
+    } catch {
+      // A network failure may occur after delivery, so never claim success.
+      // Keep the visitor's text in place so they can retry or contact us by phone.
+      setFormErrors({ submit: "We couldn't confirm that your message was received. Your text is still here. Please complete the captcha again and try sending, or call" });
+    } finally {
+      clearTimeout(timeoutId);
+      submissionInProgress.current = false;
+      setIsSubmitting(false);
+      // CAPTCHA tokens expire and may be consumed even on a failed attempt.
+      setCaptchaToken(null);
+      try {
+        window.hcaptcha?.reset();
+      } catch {
+        // A CAPTCHA widget error must not overwrite the submission result.
+      }
     }
   };
 
@@ -2971,31 +3007,31 @@ const schemas = [
             </div>
             <div>
               {submitted ? (
-                <div className="form-success">
+                <div className="form-success" role="status" aria-live="polite">
                   Thank you, {formData.name}. I will be in touch within one business day to schedule your consultation. I look forward to connecting.
                 </div>
               ) : (
-                <div className="form">
+                <form className="form" onSubmit={handleSubmit} noValidate aria-label="Contact Marcus" aria-busy={isSubmitting}>
                   <div className="form-row">
                     <div className="form-field">
                       <label className="form-label" htmlFor="form-name">Your name</label>
-                      <input id="form-name" className={`form-input${formErrors.name ? " error" : ""}`} placeholder="First Last" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} aria-required="true" aria-describedby={formErrors.name ? "error-name" : undefined} />
+                      <input id="form-name" name="name" autoComplete="name" className={`form-input${formErrors.name ? " error" : ""}`} placeholder="First Last" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} aria-required="true" aria-invalid={!!formErrors.name} aria-describedby={formErrors.name ? "error-name" : undefined} />
                       {formErrors.name && <span id="error-name" className="form-error" role="alert">{formErrors.name}</span>}
                     </div>
                     <div className="form-field">
                       <label className="form-label" htmlFor="form-email">Email</label>
-                      <input id="form-email" className={`form-input${formErrors.email ? " error" : ""}`} type="email" placeholder="you@email.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} aria-required="true" aria-describedby={formErrors.email ? "error-email" : undefined} />
+                      <input id="form-email" name="email" autoComplete="email" className={`form-input${formErrors.email ? " error" : ""}`} type="email" placeholder="you@email.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} aria-required="true" aria-invalid={!!formErrors.email} aria-describedby={formErrors.email ? "error-email" : undefined} />
                       {formErrors.email && <span id="error-email" className="form-error" role="alert">{formErrors.email}</span>}
                     </div>
                   </div>
                   <div className="form-row">
                     <div className="form-field">
-                      <label className="form-label">Phone (optional)</label>
-                      <input className="form-input" placeholder="(510) 000-0000" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
+                      <label className="form-label" htmlFor="form-phone">Phone (optional)</label>
+                      <input id="form-phone" name="phone" type="tel" autoComplete="tel" className="form-input" placeholder="(510) 000-0000" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
                     </div>
                     <div className="form-field">
-                      <label className="form-label">Primary concern</label>
-                      <select className="form-select form-input" value={formData.concern} onChange={(e) => setFormData({ ...formData, concern: e.target.value })}>
+                      <label className="form-label" htmlFor="form-concern">Primary concern</label>
+                      <select id="form-concern" name="concern" className="form-select form-input" value={formData.concern} onChange={(e) => setFormData({ ...formData, concern: e.target.value })}>
                         <option value="">Select one</option>
                         <option value="Trauma and PTSD">Trauma and PTSD</option>
                         <option value="Anxiety">Anxiety</option>
@@ -3007,19 +3043,27 @@ const schemas = [
                     </div>
                   </div>
                   <div className="form-field">
-                    <label className="form-label">Anything you would like me to know</label>
-                    <textarea className="form-textarea" placeholder="Share as much or as little as you would like..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+                    <label className="form-label" htmlFor="form-message">Anything you would like me to know</label>
+                    <textarea id="form-message" name="message" className="form-textarea" placeholder="Share as much or as little as you would like..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
                   </div>
                   <div style={{ position: "relative" }}>
                     <input className="_honeypot-field" type="text" name="_honeypot" value={formData._honeypot} onChange={(e) => setFormData({ ...formData, _honeypot: e.target.value })} tabIndex="-1" autoComplete="off" />
                   </div>
-                  <div className="h-captcha" data-sitekey="4feca060-ae00-4ba2-ad54-7e82c9988e46" data-callback="onCaptchaSuccess" data-expired-callback="onCaptchaExpired" style={{ marginBottom: "4px" }}></div>
+                  <div className="h-captcha" data-sitekey="4feca060-ae00-4ba2-ad54-7e82c9988e46" data-callback="onCaptchaSuccess" data-expired-callback="onCaptchaExpired" data-error-callback="onCaptchaError" style={{ marginBottom: "4px" }}></div>
                   {formErrors.captcha && <span className="form-error" role="alert" style={{ marginBottom: "12px", display: "block" }}>{formErrors.captcha}</span>}
                   <div>
-                    <button className="form-submit" onClick={handleSubmit}>Send message</button>
+                    {formErrors.submit && (
+                      <p className="form-error" role="alert" style={{ marginBottom: "12px", fontSize: "14px" }}>
+                        {formErrors.submit}{" "}
+                        <a href="tel:+14158575799" style={{ color: "inherit", textDecoration: "underline" }}>(415) 857-5799</a>.
+                      </p>
+                    )}
+                    <button className="form-submit" type="submit" disabled={isSubmitting}>
+                      {isSubmitting ? "Sending…" : "Send message"}
+                    </button>
                     <p style={{ fontSize: "12px", color: "var(--muted)", marginTop: "12px" }}>I typically respond within one business day.</p>
                   </div>
-                </div>
+                </form>
               )}
             </div>
           </div>
